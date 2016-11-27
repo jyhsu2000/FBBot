@@ -46,6 +46,13 @@ class LaravelMenu
                         $adminMenu->add('角色管理', ['route' => 'role.index']);
                     }
 
+                    if (Entrust::can('fb-bot.manage')) {
+                        $adminMenu->add(
+                            'FBBot除錯面板 <i class="fa fa-external-link" aria-hidden="true"></i>',
+                            ['route' => 'fb-bot.debug']
+                        )->link->attr('target', '_blank');
+                    }
+
                     if (Entrust::can('log-viewer.access')) {
                         $adminMenu->add(
                             '記錄檢視器 <i class="fa fa-external-link" aria-hidden="true"></i>',

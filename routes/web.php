@@ -41,6 +41,11 @@ Route::group(['middleware' => ['auth', 'email']], function () {
         Route::get('edit', 'ProfileController@getEditProfile')->name('profile.edit');
         Route::put('update', 'ProfileController@updateProfile')->name('profile.update');
     });
+    //FB訊息機器人除錯面板
+    Route::group(['middleware' => 'permission:fb-bot.manage'], function () {
+        Route::get('fb-messenger/debug', '\Casperlaitw\LaravelFbMessenger\Controllers\DebugController@index')
+            ->name('fb-bot.debug');
+    });
 });
 
 //會員系統
