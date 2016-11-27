@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="WEB_MODULE" version="4">
+  <component name="NewModuleRootManager">
+    <content url="file://$MODULE_DIR$">
+      <sourceFolder url="file://$MODULE_DIR$" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/app" isTestSource="false" packagePrefix="App" />
+      <sourceFolder url="file://$MODULE_DIR$/tests" isTestSource="true" />
+      <excludeFolder url="file://$MODULE_DIR$/storage" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="alertify" level="application" />
+    <orderEntry type="library" name="jquery" level="application" />
+    <orderEntry type="library" name="tether" level="application" />
+    <orderEntry type="library" name="bootstrap" level="application" />
+    <orderEntry type="library" name="alertify" level="application" />
+    <orderEntry type="library" name="544fc47aab" level="application" />
+    <orderEntry type="module-library">
+      <library name="PHP Runtime" type="php">
+        <CLASSES>
+          <root url="jar://$APPLICATION_HOME_DIR$/plugins/php/lib/php.jar!/stubs/standard" />
+        </CLASSES>
+        <SOURCES>
+          <root url="jar://$APPLICATION_HOME_DIR$/plugins/php/lib/php.jar!/stubs/standard" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+  </component>
+</module>
