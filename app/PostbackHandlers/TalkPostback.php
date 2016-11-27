@@ -3,7 +3,6 @@
 namespace App\PostbackHandlers;
 
 use Casperlaitw\LaravelFbMessenger\Contracts\PostbackHandler;
-use Casperlaitw\LaravelFbMessenger\Messages\QuickReply;
 use Casperlaitw\LaravelFbMessenger\Messages\ReceiveMessage;
 use Casperlaitw\LaravelFbMessenger\Messages\Text;
 
@@ -22,7 +21,7 @@ class TalkPostback extends PostbackHandler
     public function handle(ReceiveMessage $message)
     {
         //TODO
-        $text = new Text($message->getSender(), "我該說什麼？");
+        $text = new Text($message->getSender(), '我該說什麼？');
         $this->send($text);
     }
 }
