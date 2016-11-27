@@ -1,4 +1,5 @@
 <?php
+
 return [
     'debug'        => env('APP_DEBUG', false),
     'verify_token' => env('MESSENGER_VERIFY_TOKEN'),
