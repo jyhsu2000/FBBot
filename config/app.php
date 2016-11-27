@@ -175,6 +175,7 @@ return [
         GrahamCampbell\Throttle\ThrottleServiceProvider::class,
         Lavary\Menu\ServiceProvider::class,
         Arcanedev\LogViewer\LogViewerServiceProvider::class,
+        Casperlaitw\LaravelFbMessenger\LaravelFbMessengerServiceProvider::class,
 
         /*
          * Application Service Providers...
