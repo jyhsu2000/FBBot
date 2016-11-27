@@ -24,7 +24,7 @@ class MenuPostback extends PostbackHandler
         $smallBlackHat = 'http://i.imgur.com/qArK6MG.png';
 
         $generic = new GenericTemplate($message->getSender());
-        $generic->addElement('小黑帽', 'description', $smallBlackHat)
+        $generic->addElement('小黑帽向你問好～', '想做什麼呢？', $smallBlackHat)
             ->buttons()
             ->addPostBackButton('🚩資安大挑戰', 'CHALLENGE')
             ->addPostBackButton('👄隨便說點什麼吧', 'SAY_SOMETHING')
