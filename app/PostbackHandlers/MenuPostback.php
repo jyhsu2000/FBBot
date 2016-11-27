@@ -27,7 +27,7 @@ class MenuPostback extends PostbackHandler
         $generic->addElement('小黑帽向你問好～', '想做什麼呢？', $smallBlackHat)
             ->buttons()
             ->addPostBackButton('🚩資安大挑戰', 'CHALLENGE')
-            ->addPostBackButton('👄隨便說點什麼吧', 'SAY_SOMETHING')
+            ->addPostBackButton('👄隨便說點什麼吧', 'TALK')
             ->addWebButton('💻參觀黑客社網站', 'https://hackersir.org/');
         $this->send($generic);
     }
