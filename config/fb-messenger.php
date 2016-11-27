@@ -10,5 +10,7 @@ return [
     'custom_url'   => '/webhook',
     'postbacks'    => [
         App\PostbackHandlers\MenuPostback::class,
+        App\PostbackHandlers\ChallengePostback::class,
+        App\PostbackHandlers\TalkPostback::class,
     ],
 ];
