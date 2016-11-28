@@ -46,7 +46,7 @@ class LaravelMenu
                         $adminMenu->add('角色管理', ['route' => 'role.index']);
                     }
 
-                    if (Entrust::can('fb-bot.manage')) {
+                    if (Entrust::can('fb-bot.manage') && config('fb-messenger.debug')) {
                         $adminMenu->add(
                             'FBBot除錯面板 <i class="fa fa-external-link" aria-hidden="true"></i>',
                             ['route' => 'fb-bot.debug']
