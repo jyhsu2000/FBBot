@@ -6,7 +6,8 @@ return [
     'app_token'    => env('MESSENGER_APP_TOKEN'),
     'auto_typing'  => true,
     'handlers'     => [
-        Casperlaitw\LaravelFbMessenger\Contracts\DefaultHandler::class,
+        App\ChatbotHandlers\DefaultHandler::class,
+        App\ChatbotHandlers\DefaultHandler2::class,
     ],
     'custom_url'   => '/webhook',
     'postbacks'    => [
