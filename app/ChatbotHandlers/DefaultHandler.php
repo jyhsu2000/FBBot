@@ -8,7 +8,6 @@ use Casperlaitw\LaravelFbMessenger\Messages\Text;
 
 /**
  * Class DefaultHandler
- * @package Casperlaitw\LaravelFbMessenger\Contracts
  */
 class DefaultHandler extends BaseHandler
 {
