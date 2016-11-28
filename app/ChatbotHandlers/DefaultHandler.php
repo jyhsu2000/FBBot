@@ -21,6 +21,6 @@ class DefaultHandler extends BaseHandler
      */
     public function handle(ReceiveMessage $message)
     {
-        $this->send(new Text($message->getSender(), "Default Handler: {$message->getMessage()}"));
+        $this->send(new Text($message->getSender(), " 👤：" . $message->getMessage()));
     }
 }

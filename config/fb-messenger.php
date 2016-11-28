@@ -7,7 +7,6 @@ return [
     'auto_typing'  => true,
     'handlers'     => [
         App\ChatbotHandlers\DefaultHandler::class,
-        App\ChatbotHandlers\DefaultHandler2::class,
     ],
     'custom_url'   => '/webhook',
     'postbacks'    => [
