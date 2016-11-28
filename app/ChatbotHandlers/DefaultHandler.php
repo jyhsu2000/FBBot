@@ -8,7 +8,6 @@ use Casperlaitw\LaravelFbMessenger\Messages\Text;
 
 /**
  * Class DefaultHandler
- * @package Casperlaitw\LaravelFbMessenger\Contracts
  */
 class DefaultHandler extends BaseHandler
 {
@@ -21,6 +20,6 @@ class DefaultHandler extends BaseHandler
      */
     public function handle(ReceiveMessage $message)
     {
-        $this->send(new Text($message->getSender(), " 👤：" . $message->getMessage()));
+        $this->send(new Text($message->getSender(), ' 👤：' . $message->getMessage()));
     }
 }
