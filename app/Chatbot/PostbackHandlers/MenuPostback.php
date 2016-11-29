@@ -2,6 +2,7 @@
 
 namespace App\Chatbot\PostbackHandlers;
 
+use App\Chatbot\Tasks\MenuTask;
 use Casperlaitw\LaravelFbMessenger\Contracts\PostbackHandler;
 use Casperlaitw\LaravelFbMessenger\Messages\GenericTemplate;
 use Casperlaitw\LaravelFbMessenger\Messages\ReceiveMessage;
@@ -20,15 +21,6 @@ class MenuPostback extends PostbackHandler
      */
     public function handle(ReceiveMessage $message)
     {
-        //顯示選單
-        $smallBlackHat = 'http://i.imgur.com/qArK6MG.png';
-
-        $generic = new GenericTemplate($message->getSender());
-        $generic->addElement('小黑帽向你問好～', '想做什麼呢？', $smallBlackHat)
-            ->buttons()
-            ->addPostBackButton('🚩資安大挑戰', 'CHALLENGE')
-            ->addPostBackButton('👄隨便說點什麼吧', 'TALK')
-            ->addWebButton('💻參觀黑客社網站', 'https://hackersir.org/');
-        $this->send($generic);
+        app(MenuTask::class)->run($this, $message);
     }
 }
