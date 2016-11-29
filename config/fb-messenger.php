@@ -6,12 +6,12 @@ return [
     'app_token'    => env('MESSENGER_APP_TOKEN'),
     'auto_typing'  => true,
     'handlers'     => [
-        App\ChatbotHandlers\DefaultHandler::class,
+        App\Chatbot\MessageHandlers\DefaultHandler::class,
     ],
     'custom_url'   => '/webhook',
     'postbacks'    => [
-        App\PostbackHandlers\MenuPostback::class,
-        App\PostbackHandlers\ChallengePostback::class,
-        App\PostbackHandlers\TalkPostback::class,
+        App\Chatbot\PostbackHandlers\MenuPostback::class,
+        App\Chatbot\PostbackHandlers\ChallengePostback::class,
+        App\Chatbot\PostbackHandlers\TalkPostback::class,
     ],
 ];

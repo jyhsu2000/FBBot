@@ -1,6 +1,6 @@
 <?php
 
-namespace App\PostbackHandlers;
+namespace App\Chatbot\PostbackHandlers;
 
 use Casperlaitw\LaravelFbMessenger\Contracts\PostbackHandler;
 use Casperlaitw\LaravelFbMessenger\Messages\GenericTemplate;

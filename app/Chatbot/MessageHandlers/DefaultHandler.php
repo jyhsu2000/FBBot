@@ -1,6 +1,6 @@
 <?php
 
-namespace App\ChatbotHandlers;
+namespace App\Chatbot\MessageHandlers;
 
 use Casperlaitw\LaravelFbMessenger\Contracts\BaseHandler;
 use Casperlaitw\LaravelFbMessenger\Messages\ReceiveMessage;
