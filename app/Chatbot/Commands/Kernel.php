@@ -23,7 +23,7 @@ class Kernel
         /** @var Command $runClass */
         $runClass = null;
         foreach (static::$commandClasses as $commandClass) {
-            foreach (with($commandClass)->commands as $command) {
+            foreach (app($commandClass)->commands as $command) {
                 if ($receiveMessage->getMessage() == $command) {
                     $runClass = $commandClass;
                     $isMatch = true;
@@ -39,7 +39,7 @@ class Kernel
             return false;
         }
         //執行指令
-        with($runClass)->run($handler, $receiveMessage);
+        app($runClass)->run($handler, $receiveMessage);
 
         return true;
     }
