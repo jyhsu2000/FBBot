@@ -8,12 +8,12 @@ use Casperlaitw\LaravelFbMessenger\Messages\ReceiveMessage;
 class Kernel
 {
     /** @var Command[]|array */
-    public static $commandClasses = [
+    public $commandClasses = [
         HelpCommand::class,
         MenuCommand::class,
     ];
 
-    public static function run(BaseHandler $handler, ReceiveMessage $receiveMessage)
+    public function run(BaseHandler $handler, ReceiveMessage $receiveMessage)
     {
         //不處理空指令
         if (empty($receiveMessage->getMessage())) {
@@ -23,7 +23,7 @@ class Kernel
         $isMatch = false;
         /** @var Command $runClass */
         $runClass = null;
-        foreach (static::$commandClasses as $commandClass) {
+        foreach ($this->commandClasses as $commandClass) {
             foreach (app($commandClass)->commands as $command) {
                 if ($receiveMessage->getMessage() == $command) {
                     $runClass = $commandClass;
