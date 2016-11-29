@@ -23,8 +23,10 @@ class HelpCommand extends Command
     public function run(BaseHandler $handler, ReceiveMessage $receiveMessage)
     {
         $message = '指令清單：';
-        //TODO: 指令清單
-        $message .= '指令：描述';
+        foreach (Kernel::$commandClasses as $commandClass) {
+            $commandObject = app($commandClass);
+            $message .= $commandObject->commands[0] . '：' . $commandObject->description;
+        }
         $handler->send(new Text($receiveMessage->getSender(), $message));
     }
 }
