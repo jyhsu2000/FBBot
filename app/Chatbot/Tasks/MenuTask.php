@@ -8,7 +8,6 @@ use Casperlaitw\LaravelFbMessenger\Messages\ReceiveMessage;
 
 class MenuTask extends Task
 {
-
     /**
      * 執行任務
      *
