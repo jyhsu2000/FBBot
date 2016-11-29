@@ -10,6 +10,7 @@ class Kernel
     /** @var Command[]|array */
     public static $commandClasses = [
         HelpCommand::class,
+        MenuCommand::class,
     ];
 
     public static function run(BaseHandler $handler, ReceiveMessage $receiveMessage)
