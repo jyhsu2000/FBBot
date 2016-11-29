@@ -4,7 +4,6 @@ namespace App\Chatbot\PostbackHandlers;
 
 use App\Chatbot\Tasks\MenuTask;
 use Casperlaitw\LaravelFbMessenger\Contracts\PostbackHandler;
-use Casperlaitw\LaravelFbMessenger\Messages\GenericTemplate;
 use Casperlaitw\LaravelFbMessenger\Messages\ReceiveMessage;
 
 class MenuPostback extends PostbackHandler
