@@ -24,7 +24,8 @@ class Kernel
         /** @var Command $runClass */
         $runClass = null;
         foreach ($this->commandClasses as $commandClass) {
-            foreach (app($commandClass)->commands as $command) {
+            $classObject = app($commandClass);
+            foreach ($classObject->commands as $command) {
                 if (strcasecmp($receiveMessage->getMessage(), $command) == 0) {
                     $runClass = $commandClass;
                     $isMatch = true;
