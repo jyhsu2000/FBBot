@@ -28,7 +28,7 @@ class DefaultHandler extends BaseHandler
             return;
         }
         //檢查有無對應指令
-        $runSuccess = Kernel::run($this, $receiveMessage);
+        $runSuccess = app(Kernel::class)->run($this, $receiveMessage);
         if ($runSuccess) {
             return;
         }
