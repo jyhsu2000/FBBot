@@ -25,7 +25,7 @@ class HelpCommand extends Command
         $message = '指令清單：';
         foreach (Kernel::$commandClasses as $commandClass) {
             $commandObject = app($commandClass);
-            $message .= $commandObject->commands[0] . '：' . $commandObject->description;
+            $message .= PHP_EOL . $commandObject->commands[0] . '：' . $commandObject->description;
         }
         $handler->send(new Text($receiveMessage->getSender(), $message));
     }
