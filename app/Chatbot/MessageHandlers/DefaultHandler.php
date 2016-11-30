@@ -33,6 +33,6 @@ class DefaultHandler extends BaseHandler
             return;
         }
         //無對應指令
-        $this->send(new Text($receiveMessage->getSender(), ' 👤：' . $receiveMessage->getMessage()));
+        $this->send(new Text($receiveMessage->getSender(), '👤：' . $receiveMessage->getMessage()));
     }
 }
