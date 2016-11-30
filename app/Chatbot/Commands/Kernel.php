@@ -20,7 +20,6 @@ class Kernel
             return false;
         }
         //逐指令檢查
-        $isMatch = false;
         /** @var Command $runClass */
         $runClass = null;
         foreach ($this->commandClasses as $commandClass) {
