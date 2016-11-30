@@ -20,4 +20,21 @@ abstract class Command
      * @return mixed
      */
     abstract public function run(BaseHandler $handler, ReceiveMessage $receiveMessage);
+
+    /**
+     * 檢查是否匹配指令
+     *
+     * @param ReceiveMessage $receiveMessage
+     * @return bool
+     */
+    public function match(ReceiveMessage $receiveMessage)
+    {
+        foreach ($this->commands as $command) {
+            if (strcasecmp($receiveMessage->getMessage(), $command) == 0) {
+                return true;
+            }
+        }
+
+        return false;
+    }
 }
