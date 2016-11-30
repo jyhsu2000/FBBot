@@ -27,7 +27,7 @@ abstract class Command
      * @param ReceiveMessage $receiveMessage
      * @return bool
      */
-    public function match(ReceiveMessage $receiveMessage)
+    final public function match(ReceiveMessage $receiveMessage)
     {
         foreach ($this->commands as $command) {
             if (strcasecmp($receiveMessage->getMessage(), $command) == 0) {
