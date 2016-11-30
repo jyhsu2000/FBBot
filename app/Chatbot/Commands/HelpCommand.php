@@ -9,7 +9,7 @@ use Casperlaitw\LaravelFbMessenger\Messages\Text;
 class HelpCommand extends Command
 {
     /* @var array 對應指令清單 */
-    public $commands = ['help', '?'];
+    public $commands = ['help', '?', '？'];
     /* @var string 指令描述 */
     public $description = '顯示指令清單';
 
