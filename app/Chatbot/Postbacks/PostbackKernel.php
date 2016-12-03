@@ -11,6 +11,8 @@ class PostbackKernel
     /** @var Postback[]|array */
     public $postbackClasses = [
         MenuPostback::class,
+        ChallengePostback::class,
+        TalkPostback::class,
     ];
 
     public function run(BaseHandler $handler, ReceiveMessage $receiveMessage)

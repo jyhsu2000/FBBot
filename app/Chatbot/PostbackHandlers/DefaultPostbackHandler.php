@@ -36,24 +36,6 @@ class DefaultPostbackHandler extends PostbackHandler
             return;
         }
 
-        if ($keyword == 'CHALLENGE') {
-            //TODO: 資安大挑戰
-            $text = new Text($sender, '施工中...期待嗎？');
-            $text->addQuick(new QuickReply('期待', 'EXPECT'))
-                ->addQuick(new QuickReply('不期待', 'NO_EXPECT'));
-            $this->send($text);
-
-            return;
-        }
-
-        if ($keyword == 'TALK') {
-            //TODO: 隨便說點什麼
-            $text = new Text($sender, '我該說什麼？');
-            $this->send($text);
-
-            return;
-        }
-
         //無對應關鍵字
         $message = 'KEYWORD: ' . $keyword . PHP_EOL;
         $message .= 'DATA: ' . json_encode($data);
