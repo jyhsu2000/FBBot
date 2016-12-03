@@ -4,7 +4,6 @@ namespace App\Chatbot\PostbackHandlers;
 
 use App\Chatbot\Postbacks\PostbackKernel;
 use Casperlaitw\LaravelFbMessenger\Contracts\PostbackHandler;
-use Casperlaitw\LaravelFbMessenger\Messages\QuickReply;
 use Casperlaitw\LaravelFbMessenger\Messages\ReceiveMessage;
 use Casperlaitw\LaravelFbMessenger\Messages\Text;
 
