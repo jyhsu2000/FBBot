@@ -21,8 +21,6 @@ class DefaultPostbackHandler extends PostbackHandler
      */
     public function handle(ReceiveMessage $receiveMessage)
     {
-        //發送者
-        $sender = $receiveMessage->getSender();
         //取出關鍵字
         $keyword = $this->getKeyword($receiveMessage);
         //取出附加資料
