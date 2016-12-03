@@ -13,6 +13,6 @@ return [
         App\Chatbot\PostbackHandlers\MenuPostback::class,
         App\Chatbot\PostbackHandlers\ChallengePostback::class,
         App\Chatbot\PostbackHandlers\TalkPostback::class,
-        App\Chatbot\PostbackHandlers\DefaultPostback::class,
+        App\Chatbot\PostbackHandlers\DefaultPostbackHandler::class,
     ],
 ];
