@@ -21,10 +21,18 @@ class ChallengePostback extends PostbackHandler
      */
     public function handle(ReceiveMessage $message)
     {
+        $testJson = [
+            'test' => 'TT',
+            2      => [
+                1,
+                2,
+            ],
+        ];
         //TODO
         $text = new Text($message->getSender(), '施工中...期待嗎？');
         $text->addQuick(new QuickReply('期待', 'EXPECT'))
-            ->addQuick(new QuickReply('不期待', 'NO_EXPECT'));
+            ->addQuick(new QuickReply('不期待', 'NO_EXPECT'))
+            ->addQuick(new QuickReply('JSON', 'JSON ' . json_encode($testJson)));
         $this->send($text);
     }
 }
