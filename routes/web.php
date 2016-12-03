@@ -13,6 +13,10 @@
 
 //首頁
 Route::get('/', 'HomeController@index')->name('index');
+//服務條款
+Route::get('terms', function () {
+    return view('static.terms');
+})->name('terms');
 
 //會員（須完成信箱驗證）
 Route::group(['middleware' => ['auth', 'email']], function () {
