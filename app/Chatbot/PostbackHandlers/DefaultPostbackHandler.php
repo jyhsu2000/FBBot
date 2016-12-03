@@ -2,7 +2,9 @@
 
 namespace App\Chatbot\PostbackHandlers;
 
+use App\Chatbot\Tasks\MenuTask;
 use Casperlaitw\LaravelFbMessenger\Contracts\PostbackHandler;
+use Casperlaitw\LaravelFbMessenger\Messages\QuickReply;
 use Casperlaitw\LaravelFbMessenger\Messages\ReceiveMessage;
 use Casperlaitw\LaravelFbMessenger\Messages\Text;
 
@@ -20,9 +22,40 @@ class DefaultPostbackHandler extends PostbackHandler
      */
     public function handle(ReceiveMessage $receiveMessage)
     {
+        //發送者
+        $sender = $receiveMessage->getSender();
+        //取出關鍵字
         $keyword = $this->getKeyword($receiveMessage);
+        //取出附加資料
         $data = $this->getData($receiveMessage);
+        //根據關鍵字決定行為
 
+        if ($keyword == 'MENU') {
+            //顯示選單
+            app(MenuTask::class)->run($this, $receiveMessage);
+
+            return;
+        }
+
+        if ($keyword == 'CHALLENGE') {
+            //TODO: 資安大挑戰
+            $text = new Text($sender, '施工中...期待嗎？');
+            $text->addQuick(new QuickReply('期待', 'EXPECT'))
+                ->addQuick(new QuickReply('不期待', 'NO_EXPECT'));
+            $this->send($text);
+
+            return;
+        }
+
+        if ($keyword == 'TALK') {
+            //TODO: 隨便說點什麼
+            $text = new Text($sender, '我該說什麼？');
+            $this->send($text);
+
+            return;
+        }
+
+        //例外情況
         $message = 'KEYWORD: ' . $keyword . PHP_EOL;
         $message .= 'DATA: ' . json_encode($data);
         $text = new Text($receiveMessage->getSender(), $message);
