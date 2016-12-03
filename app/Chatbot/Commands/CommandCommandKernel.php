@@ -5,7 +5,7 @@ namespace App\Chatbot\Commands;
 use Casperlaitw\LaravelFbMessenger\Contracts\BaseHandler;
 use Casperlaitw\LaravelFbMessenger\Messages\ReceiveMessage;
 
-class Kernel
+class CommandKernel
 {
     /** @var Command[]|array */
     public $commandClasses = [

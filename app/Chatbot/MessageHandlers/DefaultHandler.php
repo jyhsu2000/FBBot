@@ -2,7 +2,7 @@
 
 namespace App\Chatbot\MessageHandlers;
 
-use App\Chatbot\Commands\Kernel;
+use App\Chatbot\Commands\CommandKernel;
 use Casperlaitw\LaravelFbMessenger\Contracts\BaseHandler;
 use Casperlaitw\LaravelFbMessenger\Messages\ReceiveMessage;
 use Casperlaitw\LaravelFbMessenger\Messages\Text;
@@ -28,7 +28,7 @@ class DefaultHandler extends BaseHandler
             return;
         }
         //檢查有無對應指令
-        $runSuccess = app(Kernel::class)->run($this, $receiveMessage);
+        $runSuccess = app(CommandKernel::class)->run($this, $receiveMessage);
         if ($runSuccess) {
             return;
         }

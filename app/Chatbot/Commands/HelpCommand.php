@@ -23,7 +23,7 @@ class HelpCommand extends Command
     public function run(BaseHandler $handler, ReceiveMessage $receiveMessage)
     {
         $message = '指令清單：';
-        $kernelObject = app(Kernel::class);
+        $kernelObject = app(CommandKernel::class);
         foreach ($kernelObject->commandClasses as $commandClass) {
             $commandObject = app($commandClass);
             $message .= PHP_EOL . $commandObject->commands[0] . '：' . $commandObject->description;
