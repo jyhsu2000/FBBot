@@ -9,7 +9,7 @@ use Casperlaitw\LaravelFbMessenger\Messages\Text;
 class DefaultPostback extends PostbackHandler
 {
     // If webhook get the $payload is `USER_DEFINED_PAYLOAD` will run this postback handler
-    protected $payload = ''; // You also can use regex!
+    protected $payload = '.*'; // You also can use regex!
 
     /**
      * Handle the chatbot message
