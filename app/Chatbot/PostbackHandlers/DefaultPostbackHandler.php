@@ -14,15 +14,51 @@ class DefaultPostbackHandler extends PostbackHandler
     /**
      * Handle the chatbot message
      *
-     * @param ReceiveMessage $message
+     * @param ReceiveMessage $receiveMessage
      *
      * @return mixed
      */
-    public function handle(ReceiveMessage $message)
+    public function handle(ReceiveMessage $receiveMessage)
     {
-        $postback = $message->getPostback();
+        $keyword = $this->getKeyword($receiveMessage);
+        $data = $this->getData($receiveMessage);
 
-        $text = new Text($message->getSender(), 'Postback: ' . $postback);
+        $message = 'KEYWORD: ' . $keyword . PHP_EOL;
+        $message .= 'DATA: ' . json_encode($data);
+        $text = new Text($receiveMessage->getSender(), $message);
         $this->send($text);
+    }
+
+    /**
+     * 取出關鍵字
+     *
+     * @param ReceiveMessage $receiveMessage
+     * @return string
+     */
+    public function getKeyword(ReceiveMessage $receiveMessage)
+    {
+        $postback = $receiveMessage->getPostback();
+        $keyword = explode(' ', $postback, 2)[0];
+
+        return $keyword;
+    }
+
+    /**
+     * 取出資料
+     *
+     * @param ReceiveMessage $receiveMessage
+     * @return object
+     */
+    public function getData(ReceiveMessage $receiveMessage)
+    {
+        $postback = $receiveMessage->getPostback();
+        try {
+            $dataString = explode(' ', $postback, 2)[1];
+            $data = json_decode($dataString);
+
+            return $data;
+        } catch (\Exception $exception) {
+            return null;
+        }
     }
 }
