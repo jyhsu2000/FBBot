@@ -2,7 +2,7 @@
 
 namespace App\Chatbot\PostbackHandlers;
 
-use App\Chatbot\Tasks\MenuTask;
+use App\Chatbot\Postbacks\PostbackKernel;
 use Casperlaitw\LaravelFbMessenger\Contracts\PostbackHandler;
 use Casperlaitw\LaravelFbMessenger\Messages\QuickReply;
 use Casperlaitw\LaravelFbMessenger\Messages\ReceiveMessage;
@@ -30,10 +30,9 @@ class DefaultPostbackHandler extends PostbackHandler
         $data = $this->getData($receiveMessage);
         //根據關鍵字決定行為
 
-        if ($keyword == 'MENU') {
-            //顯示選單
-            app(MenuTask::class)->run($this, $receiveMessage);
-
+        //檢查有無對應關鍵字
+        $runSuccess = app(PostbackKernel::class)->run($this, $receiveMessage);
+        if ($runSuccess) {
             return;
         }
 
@@ -55,7 +54,7 @@ class DefaultPostbackHandler extends PostbackHandler
             return;
         }
 
-        //例外情況
+        //無對應關鍵字
         $message = 'KEYWORD: ' . $keyword . PHP_EOL;
         $message .= 'DATA: ' . json_encode($data);
         $text = new Text($receiveMessage->getSender(), $message);
