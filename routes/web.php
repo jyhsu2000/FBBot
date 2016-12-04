@@ -13,6 +13,10 @@
 
 //首頁
 Route::get('/', 'HomeController@index')->name('index');
+//隱私權政策
+Route::get('privacy', function () {
+    return view('static.privacy');
+})->name('privacy');
 //服務條款
 Route::get('terms', function () {
     return view('static.terms');
