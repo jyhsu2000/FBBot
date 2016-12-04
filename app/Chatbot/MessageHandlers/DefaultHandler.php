@@ -3,9 +3,9 @@
 namespace App\Chatbot\MessageHandlers;
 
 use App\Chatbot\Commands\CommandKernel;
+use Casperlaitw\LaravelFbMessenger\Messages\Text;
 use Casperlaitw\LaravelFbMessenger\Contracts\BaseHandler;
 use Casperlaitw\LaravelFbMessenger\Messages\ReceiveMessage;
-use Casperlaitw\LaravelFbMessenger\Messages\Text;
 
 /**
  * Class DefaultHandler

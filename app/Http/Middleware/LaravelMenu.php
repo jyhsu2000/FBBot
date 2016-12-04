@@ -2,9 +2,9 @@
 
 namespace App\Http\Middleware;
 
+use Menu;
 use Closure;
 use Entrust;
-use Menu;
 
 class LaravelMenu
 {
@@ -69,7 +69,6 @@ class LaravelMenu
                 $menu->add('登入', ['route' => 'login']);
             }
         });
-
 
         return $next($request);
     }
