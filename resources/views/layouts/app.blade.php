@@ -17,7 +17,12 @@
           crossorigin="anonymous">
     <link rel="stylesheet" href="//cdn.jsdelivr.net/alertifyjs/1.8.0/css/alertify.min.css"/>
     <link rel="stylesheet" href="//cdn.jsdelivr.net/alertifyjs/1.8.0/css/themes/bootstrap.min.css"/>
+    <link rel="stylesheet" href="//fonts.googleapis.com/earlyaccess/notosanstc.css"/>
     <style>
+        body {
+            font-family: "Segoe UI", Roboto, "Noto Sans TC", "Helvetica Neue", Arial, sans-serif;
+        }
+
         body > .container {
             padding-top: 60px;
             min-height: calc(100vh - 55px);
