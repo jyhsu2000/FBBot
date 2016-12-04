@@ -9,6 +9,7 @@ class CommandKernel
 {
     /** @var Command[]|array */
     public $commandClasses = [
+        PingCommand::class,
         HelpCommand::class,
         MenuCommand::class,
     ];
