@@ -7,9 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 /**
  * App\Quotation
  *
- * @property integer $id
+ * @property int $id
  * @property string $context
- * @property integer $order
+ * @property int $order
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
  * @method static \Illuminate\Database\Query\Builder|\App\Quotation whereId($value)

@@ -41,7 +41,6 @@ class LaravelMenu
                         $isweekMenu->add('資安語錄', ['route' => 'quotation.index'])->active('quotation/*');
                     }
 
-
                     /** @var \Lavary\Menu\Builder $adminMenu */
                     $adminMenu = $menu->add('管理選單', 'javascript:void(0)');
 
