@@ -4,6 +4,21 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * App\Quotation
+ *
+ * @property integer $id
+ * @property string $context
+ * @property integer $order
+ * @property \Carbon\Carbon $created_at
+ * @property \Carbon\Carbon $updated_at
+ * @method static \Illuminate\Database\Query\Builder|\App\Quotation whereId($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Quotation whereContext($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Quotation whereOrder($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Quotation whereCreatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Quotation whereUpdatedAt($value)
+ * @mixin \Eloquent
+ */
 class Quotation extends Model
 {
     /**
