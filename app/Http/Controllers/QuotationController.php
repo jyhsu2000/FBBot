@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Quotation;
 use Illuminate\Http\Request;
 
 class QuotationController extends Controller
@@ -29,7 +30,7 @@ class QuotationController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -40,10 +41,10 @@ class QuotationController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param Quotation $quotation
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Quotation $quotation)
     {
         //TODO
     }
@@ -51,10 +52,10 @@ class QuotationController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param Quotation $quotation
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Quotation $quotation)
     {
         //TODO
     }
@@ -62,11 +63,11 @@ class QuotationController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request $request
+     * @param Quotation $quotation
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Quotation $quotation)
     {
         //TODO
     }
@@ -74,10 +75,10 @@ class QuotationController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param Quotation $quotation
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Quotation $quotation)
     {
         //TODO
     }
