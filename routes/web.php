@@ -54,6 +54,11 @@ Route::group(['middleware' => ['auth', 'email']], function () {
         Route::get('fb-messenger/debug', '\Casperlaitw\LaravelFbMessenger\Controllers\DebugController@index')
             ->name('fb-bot.debug');
     });
+    //資安語錄
+    //權限：quotation.manage
+    Route::group(['middleware' => 'permission:quotation.manage'], function () {
+        Route::resource('quotation', 'QuotationController');
+    });
 });
 
 //會員系統

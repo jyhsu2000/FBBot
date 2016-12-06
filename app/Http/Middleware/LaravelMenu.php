@@ -36,6 +36,13 @@ class LaravelMenu
                 //管理員
                 if (Entrust::can('menu.view') and auth()->user()->isConfirmed) {
                     /** @var \Lavary\Menu\Builder $adminMenu */
+                    $isweekMenu = $menu->add('資安週管理', 'javascript:void(0)');
+                    if (Entrust::can('quotation.manage')) {
+                        $isweekMenu->add('資安語錄', ['route' => 'quotation.index'])->active('quotation/*');
+                    }
+
+
+                    /** @var \Lavary\Menu\Builder $adminMenu */
                     $adminMenu = $menu->add('管理選單', 'javascript:void(0)');
 
                     if (Entrust::can(['user.manage', 'user.view'])) {
