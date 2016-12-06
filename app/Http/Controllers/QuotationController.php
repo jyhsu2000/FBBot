@@ -14,7 +14,7 @@ class QuotationController extends Controller
      */
     public function index()
     {
-        //TODO
+        return view('quotation.index');
     }
 
     /**
@@ -81,5 +81,12 @@ class QuotationController extends Controller
     public function destroy(Quotation $quotation)
     {
         //TODO
+    }
+
+    public function data()
+    {
+        $quotations = Quotation::orderBy('order')->get();
+
+        return response()->json($quotations);
     }
 }
