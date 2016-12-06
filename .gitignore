@@ -288,6 +288,4 @@ public/semantic
 .idea/vagrant.xml
 
 ### gulp build ###
-public/css/app.css
 public/css/app.css.map
-public/js/app.js
