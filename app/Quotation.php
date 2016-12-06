@@ -12,6 +12,7 @@ class Quotation extends Model
      * @var array
      */
     protected $fillable = [
+        'order',
         'context',
     ];
 }

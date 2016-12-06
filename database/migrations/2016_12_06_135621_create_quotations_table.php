@@ -16,6 +16,7 @@ class CreateQuotationsTable extends Migration
         Schema::create('quotations', function (Blueprint $table) {
             $table->increments('id');
             $table->string('context');
+            $table->integer('order');
             $table->timestamps();
         });
     }
