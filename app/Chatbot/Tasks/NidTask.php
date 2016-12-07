@@ -54,7 +54,7 @@ class NidTask extends Task
         $player = Player::findOrCreate($sender);
         //若已有NID
         if ($player->nid) {
-            $text = new Text($receiveMessage->getSender(), 'NID：' . $player->nid);
+            $text = new Text($receiveMessage->getSender(), 'NID：' . $player->nid . PHP_EOL . '（綁定後無法修改）');
             $handler->send($text);
             //清除狀態
             $player->update(['state' => '']);
