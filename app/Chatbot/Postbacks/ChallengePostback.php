@@ -37,6 +37,10 @@ class ChallengePostback extends Postback
         } elseif ($action == 'CANCEL_BIND_NID') {
             //綁定NID時，按下取消綁定
             $player->update(['state' => '']);
+            $text = new Text($receiveMessage->getSender(), '已取消輸入');
+            $handler->send($text);
+
+            return;
         }
 
         //根據玩家狀態選擇處理方式
