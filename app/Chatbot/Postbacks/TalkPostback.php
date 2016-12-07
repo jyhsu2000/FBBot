@@ -2,6 +2,7 @@
 
 namespace App\Chatbot\Postbacks;
 
+use App\Quotation;
 use Casperlaitw\LaravelFbMessenger\Messages\Text;
 use Casperlaitw\LaravelFbMessenger\Contracts\BaseHandler;
 use Casperlaitw\LaravelFbMessenger\Messages\ReceiveMessage;
@@ -20,7 +21,12 @@ class TalkPostback extends Postback
      */
     public function run(BaseHandler $handler, ReceiveMessage $receiveMessage)
     {
-        $text = new Text($receiveMessage->getSender(), '我該說什麼？');
+        $message = '我該說什麼？';
+        $quotation = Quotation::inRandomOrder()->first();
+        if ($quotation) {
+            $message = $quotation->content;
+        }
+        $text = new Text($receiveMessage->getSender(), $message);
         $handler->send($text);
     }
 }

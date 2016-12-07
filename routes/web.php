@@ -58,7 +58,14 @@ Route::group(['middleware' => ['auth', 'email']], function () {
     //權限：quotation.manage
     Route::group(['middleware' => 'permission:quotation.manage'], function () {
         Route::get('quotation/data', 'QuotationController@data')->name('quotation.data');
-        Route::resource('quotation', 'QuotationController');
+        Route::resource('quotation', 'QuotationController', [
+            'except' => [
+                'create',
+                'show',
+                'edit',
+                'update',
+            ],
+        ]);
     });
 });
 

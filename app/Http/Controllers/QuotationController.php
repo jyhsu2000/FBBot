@@ -18,16 +18,6 @@ class QuotationController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //TODO
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request $request
@@ -35,41 +25,27 @@ class QuotationController extends Controller
      */
     public function store(Request $request)
     {
-        //TODO
-    }
+        $validator = \Validator::make($request->all(), [
+            'content' => 'required|unique:quotations|max:255',
+        ]);
+        if ($validator->fails()) {
+            return response()->json([
+                'success' => false,
+                'errors'  => $validator->errors(),
+            ]);
+        }
+        //新增語錄
+        $quotation = Quotation::create([
+            'content' => $request->get('content'),
+            'order'   => Quotation::max('order') + 1,
+        ]);
+        //回傳結果
+        $json = [
+            'success'   => true,
+            'quotation' => $quotation->toArray(),
+        ];
 
-    /**
-     * Display the specified resource.
-     *
-     * @param Quotation $quotation
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Quotation $quotation)
-    {
-        //TODO
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param Quotation $quotation
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Quotation $quotation)
-    {
-        //TODO
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request $request
-     * @param Quotation $quotation
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Quotation $quotation)
-    {
-        //TODO
+        return response()->json($json);
     }
 
     /**
@@ -80,7 +56,10 @@ class QuotationController extends Controller
      */
     public function destroy(Quotation $quotation)
     {
-        //TODO
+        //刪除
+        $quotation->delete();
+
+        return response()->json(['success' => true]);
     }
 
     public function data()
