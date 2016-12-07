@@ -67,6 +67,11 @@ Route::group(['middleware' => ['auth', 'email']], function () {
             ],
         ]);
     });
+    //玩家
+    //權限：player.manage
+    Route::group(['middleware' => 'permission:player.manage'], function () {
+        Route::resource('player', 'PlayerController');
+    });
 });
 
 //會員系統
