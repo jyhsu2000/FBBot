@@ -8,12 +8,12 @@ use Illuminate\Database\Eloquent\Model;
  * App\Quotation
  *
  * @property int $id
- * @property string $context
+ * @property string $content
  * @property int $order
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
  * @method static \Illuminate\Database\Query\Builder|\App\Quotation whereId($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Quotation whereContext($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Quotation whereContent($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Quotation whereOrder($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Quotation whereCreatedAt($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Quotation whereUpdatedAt($value)
@@ -28,6 +28,6 @@ class Quotation extends Model
      */
     protected $fillable = [
         'order',
-        'context',
+        'content',
     ];
 }
