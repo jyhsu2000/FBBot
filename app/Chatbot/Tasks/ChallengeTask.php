@@ -36,7 +36,7 @@ class ChallengeTask extends Task
         $smallBlackHat = 'http://i.imgur.com/qArK6MG.png';
 
         //NID
-        $nidItem = $player->nid ? 'NID：' . $player->nid : '📲綁定NID';
+        $nidItem = '📲' . ($player->nid ? 'NID：' . $player->nid : '綁定NID');
         $generic = new GenericTemplate($receiveMessage->getSender());
         $generic->addElement('資安大挑戰', '想做什麼呢？', $smallBlackHat)
             ->buttons()
