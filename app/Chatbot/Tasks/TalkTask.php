@@ -3,9 +3,9 @@
 namespace App\Chatbot\Tasks;
 
 use App\Quotation;
+use Casperlaitw\LaravelFbMessenger\Messages\Text;
 use Casperlaitw\LaravelFbMessenger\Contracts\BaseHandler;
 use Casperlaitw\LaravelFbMessenger\Messages\ReceiveMessage;
-use Casperlaitw\LaravelFbMessenger\Messages\Text;
 
 class TalkTask extends Task
 {
