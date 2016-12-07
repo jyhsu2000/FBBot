@@ -64,7 +64,7 @@ class QuotationController extends Controller
 
     public function data()
     {
-        $quotations = Quotation::orderBy('order')->get();
+        $quotations = Quotation::orderBy('order')->orderBy('id')->get();
 
         return response()->json($quotations);
     }
