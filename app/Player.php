@@ -51,12 +51,13 @@ class Player extends Model
      */
     public static function findOrCreate($senderId)
     {
-        $player = Player::where('app_uid', $senderId)->first();
+        $player = self::where('app_uid', $senderId)->first();
         if (!$player) {
-            $player = Player::create([
+            $player = self::create([
                 'app_uid' => $senderId,
             ]);
         }
+
         return $player;
     }
 }
