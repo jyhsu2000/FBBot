@@ -35,7 +35,7 @@ class NidTask extends Task
         $player = Player::findOrCreate($sender);
         //更新NID
         $player->update(['nid' => strtoupper($message)]);
-        $text = new Text($receiveMessage->getSender(), '綁定NID: ' . $player->nid);
+        $text = new Text($receiveMessage->getSender(), '綁定NID：' . $player->nid);
         $handler->send($text);
         //清除輸入中的狀態
         $player->update(['state' => '']);
@@ -50,6 +50,15 @@ class NidTask extends Task
      */
     public function askForInput(BaseHandler $handler, ReceiveMessage $receiveMessage)
     {
+        $sender = $receiveMessage->getSender();
+        $player = Player::findOrCreate($sender);
+        //若已有NID
+        if ($player->nid) {
+            $text = new Text($receiveMessage->getSender(), 'NID：' . $player->nid);
+            $handler->send($text);
+            //清除狀態
+            $player->update(['state' => '']);
+        }
         $text = new Text($receiveMessage->getSender(), '請輸入NID');
         $text->addQuick(new QuickReply('取消輸入', 'CHALLENGE ' . json_encode(['action' => 'CANCEL_BIND_NID'])));
         $handler->send($text);

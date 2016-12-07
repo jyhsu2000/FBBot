@@ -46,13 +46,6 @@ class ChallengePostback extends Postback
         //根據玩家狀態選擇處理方式
         $state = $player->state;
         if ($state == 'INPUT_NID') {
-            //若已有NID
-            if ($player->nid) {
-                $text = new Text($receiveMessage->getSender(), 'NID: ' . $player->nid);
-                $handler->send($text);
-                //清除狀態
-                $player->update(['state' => '']);
-            }
             app(NidTask::class)->askForInput($handler, $receiveMessage);
 
             return;
