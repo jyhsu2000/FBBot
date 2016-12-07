@@ -58,6 +58,8 @@ class NidTask extends Task
             $handler->send($text);
             //清除狀態
             $player->update(['state' => '']);
+
+            return;
         }
         $text = new Text($receiveMessage->getSender(), '請輸入NID');
         $text->addQuick(new QuickReply('取消輸入', 'CHALLENGE ' . json_encode(['action' => 'CANCEL_BIND_NID'])));
