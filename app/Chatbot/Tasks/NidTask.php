@@ -3,14 +3,14 @@
 namespace App\Chatbot\Tasks;
 
 use App\Player;
-use Casperlaitw\LaravelFbMessenger\Contracts\BaseHandler;
-use Casperlaitw\LaravelFbMessenger\Messages\QuickReply;
-use Casperlaitw\LaravelFbMessenger\Messages\ReceiveMessage;
 use Casperlaitw\LaravelFbMessenger\Messages\Text;
+use Casperlaitw\LaravelFbMessenger\Messages\QuickReply;
+use Casperlaitw\LaravelFbMessenger\Contracts\BaseHandler;
+use Casperlaitw\LaravelFbMessenger\Messages\ReceiveMessage;
 
 class NidTask extends Task
 {
-    private static $pattern = "/^(([depmv]([0-9]){7})|(t[0-9]{5}))$/i";
+    private static $pattern = '/^(([depmv]([0-9]){7})|(t[0-9]{5}))$/i';
 
     /**
      * 執行任務
