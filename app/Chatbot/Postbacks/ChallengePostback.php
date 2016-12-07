@@ -3,7 +3,10 @@
 namespace App\Chatbot\Postbacks;
 
 use App\Chatbot\PostbackHandlers\DefaultPostbackHandler;
+use App\Chatbot\Tasks\ChallengeTask;
+use App\Chatbot\Tasks\NidTask;
 use App\Player;
+use Casperlaitw\LaravelFbMessenger\Messages\QuickReply;
 use Casperlaitw\LaravelFbMessenger\Messages\Text;
 use Casperlaitw\LaravelFbMessenger\Contracts\BaseHandler;
 use Casperlaitw\LaravelFbMessenger\Messages\ReceiveMessage;
@@ -23,7 +26,7 @@ class ChallengePostback extends Postback
     public function run(BaseHandler $handler, ReceiveMessage $receiveMessage)
     {
         $sender = $receiveMessage->getSender();
-        //TODO: 建立或取得玩家
+        //建立或取得玩家
         $player = Player::where('app_uid', $sender)->first();
         if (!$player) {
             $player = Player::create([
@@ -42,11 +45,22 @@ class ChallengePostback extends Postback
             $player->update(['state' => '']);
         }
 
-        //TODO: 根據動作與玩家狀態選擇處理方式
+        //根據玩家狀態選擇處理方式
+        $state = $player->state;
+        if ($state == 'INPUT_NID') {
+            app(NidTask::class)->askForInput($handler, $receiveMessage);
 
-        $text = new Text($receiveMessage->getSender(), '施工中...敬請期待');
-//        $text->addQuick(new QuickReply('期待', 'EXPECT'))
-//            ->addQuick(new QuickReply('不期待', 'NO_EXPECT'));
-        $handler->send($text);
+            return;
+        }
+        //若動作為開始挑戰
+        if ($action == 'START') {
+            //TODO: 顯示題目
+            $text = new Text($receiveMessage->getSender(), '施工中...敬請期待');
+            $handler->send($text);
+
+            return;
+        }
+        //顯示選單
+        app(ChallengeTask::class)->showMenu($handler, $receiveMessage);
     }
 }

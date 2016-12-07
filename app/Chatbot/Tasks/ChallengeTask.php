@@ -17,6 +17,18 @@ class ChallengeTask extends Task
      */
     public function run(BaseHandler $handler, ReceiveMessage $receiveMessage)
     {
+        //
+    }
+
+    /**
+     * 顯示選單
+     *
+     * @param BaseHandler $handler
+     * @param ReceiveMessage $receiveMessage
+     * @return mixed
+     */
+    public function showMenu(BaseHandler $handler, ReceiveMessage $receiveMessage)
+    {
         //顯示選單
         $smallBlackHat = 'http://i.imgur.com/qArK6MG.png';
 
