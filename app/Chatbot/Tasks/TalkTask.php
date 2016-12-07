@@ -22,6 +22,7 @@ class TalkTask extends Task
         $quotation = Quotation::inRandomOrder()->first();
         if ($quotation) {
             $message = $quotation->content;
+            $quotation->increment('counter');
         }
         $text = new Text($receiveMessage->getSender(), $message);
         $handler->send($text);
