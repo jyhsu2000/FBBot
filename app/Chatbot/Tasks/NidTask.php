@@ -28,6 +28,8 @@ class NidTask extends Task
             $text = new Text($receiveMessage->getSender(), 'NID格式有誤，請重新輸入');
             $text->addQuick(new QuickReply('取消輸入', 'CHALLENGE ' . json_encode(['action' => 'CANCEL_BIND_NID'])));
             $handler->send($text);
+
+            return;
         }
         $text = new Text($receiveMessage->getSender(), '綁定NID: ' . $message);
         $handler->send($text);
