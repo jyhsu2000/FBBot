@@ -2,11 +2,11 @@
 
 namespace App\Chatbot\Postbacks;
 
-use App\Chatbot\PostbackHandlers\DefaultPostbackHandler;
-use App\Chatbot\Tasks\ChallengeTask;
-use App\Chatbot\Tasks\NidTask;
 use App\Player;
+use App\Chatbot\Tasks\NidTask;
+use App\Chatbot\Tasks\ChallengeTask;
 use Casperlaitw\LaravelFbMessenger\Messages\Text;
+use App\Chatbot\PostbackHandlers\DefaultPostbackHandler;
 use Casperlaitw\LaravelFbMessenger\Contracts\BaseHandler;
 use Casperlaitw\LaravelFbMessenger\Messages\ReceiveMessage;
 
