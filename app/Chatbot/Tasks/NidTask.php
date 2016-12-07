@@ -31,11 +31,13 @@ class NidTask extends Task
 
             return;
         }
-        $text = new Text($receiveMessage->getSender(), '綁定NID: ' . $message);
-        $handler->send($text);
-        //清除輸入中的狀態
         $sender = $receiveMessage->getSender();
         $player = Player::findOrCreate($sender);
+        //更新NID
+        $player->update(['nid' => strtoupper($message)]);
+        $text = new Text($receiveMessage->getSender(), '綁定NID: ' . $player->nid);
+        $handler->send($text);
+        //清除輸入中的狀態
         $player->update(['state' => '']);
     }
 
