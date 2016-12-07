@@ -14,6 +14,7 @@ require('./bootstrap');
  */
 
 Vue.component('example', require('./components/Example.vue'));
+Vue.component('quotation-list', require('./components/QuotationList.vue'));
 Vue.component('quotation', require('./components/Quotation.vue'));
 
 const app = new Vue({

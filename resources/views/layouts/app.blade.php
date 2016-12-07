@@ -60,19 +60,21 @@
         crossorigin="anonymous"></script>
 <script src="//cdn.jsdelivr.net/alertifyjs/1.8.0/alertify.min.js"></script>
 <script src="https://use.fontawesome.com/544fc47aab.js"></script>
+<script>
+    //CSRF Token
+    window.Laravel = <?php echo json_encode([
+        'csrfToken' => csrf_token(),
+    ]); ?>
+</script>
 <script src="{{ asset('js/app.js') }}"></script>
 <script>
     $(function () {
-        //CSRF Token
-        window.Laravel = <?php echo json_encode([
-            'csrfToken' => csrf_token(),
-        ]); ?>
-            //AlertifyJS
-            alertify.defaults = {
-                notifier: {
-                    position: 'top-right'
-                }
-            };
+        //AlertifyJS
+        alertify.defaults = {
+            notifier: {
+                position: 'top-right'
+            }
+        };
         @if(session('global'))
             alertify.notify('{{ session('global') }}', 'success', 5);
         @endif

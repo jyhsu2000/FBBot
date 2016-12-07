@@ -1,13 +1,13 @@
 <template>
-    {{-- FIXME --}}
-    <li class="list-group-item"><slot></slot></li>
+    <li class="list-group-item">
+        {{ quotation.content }}
+    </li>
 </template>
 
 <script>
     export default {
-        props: ['content'],
-        ready() {
-            console.log('Component ready.')
-        }
+        props: [
+            'quotation'
+        ]
     }
 </script>
