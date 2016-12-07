@@ -61,7 +61,7 @@ class NidTask extends Task
 
             return;
         }
-        $text = new Text($receiveMessage->getSender(), '請輸入NID（只能綁定一次，請小心輸入）');
+        $text = new Text($receiveMessage->getSender(), '請輸入NID<br/>（只能綁定一次，請小心輸入）');
         $text->addQuick(new QuickReply('取消輸入', 'CHALLENGE ' . json_encode(['action' => 'CANCEL_BIND_NID'])));
         $handler->send($text);
     }
