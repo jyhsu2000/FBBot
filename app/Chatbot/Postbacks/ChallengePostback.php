@@ -2,6 +2,7 @@
 
 namespace App\Chatbot\Postbacks;
 
+use App\Chatbot\PostbackHandlers\DefaultPostbackHandler;
 use App\Player;
 use Casperlaitw\LaravelFbMessenger\Messages\Text;
 use Casperlaitw\LaravelFbMessenger\Contracts\BaseHandler;
@@ -30,7 +31,7 @@ class ChallengePostback extends Postback
             ]);
         }
         //取得動作
-        $data = $this->getData($receiveMessage);
+        $data = app(DefaultPostbackHandler::class)->getData($receiveMessage);
         $action = isset($data->action) ? $data->action : '';
         //TODO: 根據動作選擇處理方式與更新玩家狀態
         if ($action == 'BIND_NID') {
