@@ -7,12 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 /**
  * App\Player
  *
- * @property integer $id
+ * @property int $id
  * @property string $app_uid
  * @property string $uid
  * @property string $nid
- * @property integer $in_question
- * @property integer $time
+ * @property int $in_question
+ * @property int $time
  * @property string $state
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
