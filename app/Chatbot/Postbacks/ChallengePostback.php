@@ -21,9 +21,9 @@ class ChallengePostback extends Postback
      */
     public function run(BaseHandler $handler, ReceiveMessage $receiveMessage)
     {
-        $text = new Text($receiveMessage->getSender(), '施工中...期待嗎？');
-        $text->addQuick(new QuickReply('期待', 'EXPECT'))
-            ->addQuick(new QuickReply('不期待', 'NO_EXPECT'));
+        $text = new Text($receiveMessage->getSender(), '施工中...敬請期待');
+//        $text->addQuick(new QuickReply('期待', 'EXPECT'))
+//            ->addQuick(new QuickReply('不期待', 'NO_EXPECT'));
         $handler->send($text);
     }
 }
