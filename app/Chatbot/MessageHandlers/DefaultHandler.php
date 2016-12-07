@@ -26,7 +26,7 @@ class DefaultHandler extends BaseHandler
         $message = $receiveMessage->getMessage();
         //不處理空白訊息
         //TODO: 需處理貼圖、按讚等附件訊息
-        if (empty($message)) {
+        if (empty($message) && $message !== '0') {
             return;
         }
         //建立或取得玩家
