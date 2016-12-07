@@ -42,4 +42,21 @@ class Player extends Model
         'time',
         'state',
     ];
+
+    /**
+     * 根據sender找對應玩家
+     *
+     * @param $senderId
+     * @return Player
+     */
+    public static function findOrCreate($senderId)
+    {
+        $player = Player::where('app_uid', $senderId)->first();
+        if (!$player) {
+            $player = Player::create([
+                'app_uid' => $senderId,
+            ]);
+        }
+        return $player;
+    }
 }

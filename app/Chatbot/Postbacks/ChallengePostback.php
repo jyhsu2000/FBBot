@@ -6,7 +6,6 @@ use App\Chatbot\PostbackHandlers\DefaultPostbackHandler;
 use App\Chatbot\Tasks\ChallengeTask;
 use App\Chatbot\Tasks\NidTask;
 use App\Player;
-use Casperlaitw\LaravelFbMessenger\Messages\QuickReply;
 use Casperlaitw\LaravelFbMessenger\Messages\Text;
 use Casperlaitw\LaravelFbMessenger\Contracts\BaseHandler;
 use Casperlaitw\LaravelFbMessenger\Messages\ReceiveMessage;
@@ -27,16 +26,11 @@ class ChallengePostback extends Postback
     {
         $sender = $receiveMessage->getSender();
         //建立或取得玩家
-        $player = Player::where('app_uid', $sender)->first();
-        if (!$player) {
-            $player = Player::create([
-                'app_uid' => $sender,
-            ]);
-        }
+        $player = Player::findOrCreate($sender);
         //取得動作
         $data = app(DefaultPostbackHandler::class)->getData($receiveMessage);
         $action = isset($data->action) ? $data->action : '';
-        //TODO: 根據動作選擇處理方式與更新玩家狀態
+        //根據動作選擇處理方式與更新玩家狀態
         if ($action == 'BIND_NID') {
             //點擊綁定NID
             $player->update(['state' => 'INPUT_NID']);
@@ -48,6 +42,13 @@ class ChallengePostback extends Postback
         //根據玩家狀態選擇處理方式
         $state = $player->state;
         if ($state == 'INPUT_NID') {
+            //若已有NID
+            if ($player->nid) {
+                $text = new Text($receiveMessage->getSender(), 'NID: ' . $player->nid);
+                $handler->send($text);
+                //清除狀態
+                $player->update(['state' => '']);
+            }
             app(NidTask::class)->askForInput($handler, $receiveMessage);
 
             return;

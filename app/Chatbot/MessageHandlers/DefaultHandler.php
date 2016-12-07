@@ -3,6 +3,8 @@
 namespace App\Chatbot\MessageHandlers;
 
 use App\Chatbot\Commands\CommandKernel;
+use App\Chatbot\Tasks\NidTask;
+use App\Player;
 use Casperlaitw\LaravelFbMessenger\Messages\Text;
 use Casperlaitw\LaravelFbMessenger\Contracts\BaseHandler;
 use Casperlaitw\LaravelFbMessenger\Messages\ReceiveMessage;
@@ -27,6 +29,17 @@ class DefaultHandler extends BaseHandler
         if (empty($message)) {
             return;
         }
+        //建立或取得玩家
+        $sender = $receiveMessage->getSender();
+        $player = Player::findOrCreate($sender);
+        //根據玩家狀態選擇處理方式
+        $state = $player->state;
+        if ($state == 'INPUT_NID') {
+            app(NidTask::class)->run($this, $receiveMessage);
+
+            return;
+        }
+
         //檢查有無對應指令
         $runSuccess = app(CommandKernel::class)->run($this, $receiveMessage);
         if ($runSuccess) {
