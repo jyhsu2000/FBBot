@@ -12,15 +12,11 @@ class PlayerController extends Controller
      * Display a listing of the resource.
      *
      * @param PlayersDataTable $dataTable
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse|\Illuminate\View\View
      */
     public function index(PlayersDataTable $dataTable)
     {
-        $players = Player::all();
-
-        return $dataTable->render('player.index', compact('players'));
-
-        return view('player.index', compact('players'));
+        return $dataTable->render('player.index');
     }
 
     /**

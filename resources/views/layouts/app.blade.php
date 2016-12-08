@@ -20,7 +20,7 @@
     <link rel="stylesheet" href="//cdn.jsdelivr.net/alertifyjs/1.8.0/css/alertify.min.css"/>
     <link rel="stylesheet" href="//cdn.jsdelivr.net/alertifyjs/1.8.0/css/themes/bootstrap.min.css"/>
     <link rel="stylesheet" href="//fonts.googleapis.com/earlyaccess/notosanstc.css"/>
-    <link rel="stylesheet" href="//cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="//cdn.datatables.net/1.10.13/css/dataTables.bootstrap4.min.css">
     <link rel="stylesheet" href="//cdn.datatables.net/buttons/1.2.3/css/buttons.dataTables.min.css">
     <style>
         body {
@@ -63,6 +63,7 @@
 <script src="//cdn.jsdelivr.net/alertifyjs/1.8.0/alertify.min.js"></script>
 <script src="https://use.fontawesome.com/544fc47aab.js"></script>
 <script src="//cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
+<script src="//cdn.datatables.net/1.10.13/js/dataTables.bootstrap4.min.js"></script>
 <script src="//cdn.datatables.net/buttons/1.2.3/js/dataTables.buttons.min.js"></script>
 <script src="{{ asset('vendor/datatables/buttons.server-side.js') }}"></script>
 <script>
