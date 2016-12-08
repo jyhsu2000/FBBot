@@ -24,7 +24,7 @@ class PlayersDataTable extends DataTable
                 $html .= '<form action="' . route('player.unbind', $player) . '" method="POST"';
                 $html .= ' onsubmit="return confirm(\'確定解除NID綁定？\')">';
                 $html .= '<input type="hidden" name="_token" id="csrf-token" value="' . csrf_token() . '" />';
-                $html .= '<button type="submit" class="btn btn-danger">';
+                $html .= '<button type="submit" class="btn btn-danger" title="解除NID綁定">';
                 $html .= '<i class="fa fa-chain-broken" aria-hidden="true"></i>';
                 $html .= '</button>';
                 $html .= '</form>';
