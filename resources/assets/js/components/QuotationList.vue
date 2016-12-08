@@ -97,7 +97,7 @@
                         alertify.notify('刪除失敗', 'warning', 5);
                         return;
                     }
-                    //TODO: 移除該項
+                    //移除該項
                     this.quotations.splice($.inArray(quotation, this.quotations), 1);
                     //顯示通知
                     alertify.notify('已刪除', 'success', 5);
