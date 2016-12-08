@@ -56,12 +56,41 @@ class PlayersDataTable extends DataTable
     protected function getColumns()
     {
         return [
-            ['data' => 'id', 'title' => '#'],
-            ['data' => 'nid', 'title' => 'NID'],
-            ['data' => 'app_uid', 'title' => 'App UID'],
-            ['data' => 'uid', 'title' => 'UID'],
-            ['data' => 'in_question', 'title' => 'In Question'],
-            ['data' => 'time', 'title' => 'Times'],
+            [
+                'data'  => 'id',
+                'name'  => 'id',
+                'title' => '#',
+            ],
+            [
+                'data'  => 'nid',
+                'name'  => 'nid',
+                'title' => 'NID',
+            ],
+
+            [
+                'data'  => 'app_uid',
+                'name'  => 'app_uid',
+                'title' => 'App UID',
+            ],
+
+            [
+                'data'  => 'uid',
+                'name'  => 'uid',
+                'title' => 'UID',
+            ],
+
+            [
+                'data'  => 'in_question',
+                'name'  => 'in_question',
+                'title' => 'In Question',
+            ],
+
+            [
+                'data'  => 'time',
+                'name'  => 'time',
+                'title' => 'Times',
+            ],
+
         ];
     }
 
