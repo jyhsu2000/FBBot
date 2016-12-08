@@ -16,7 +16,6 @@ class PlayersDataTable extends DataTable
     {
         return $this->datatables
             ->eloquent($this->query())
-            ->addColumn('action', 'path.to.action.view')
             ->make(true);
     }
 
@@ -42,7 +41,6 @@ class PlayersDataTable extends DataTable
         return $this->builder()
             ->columns($this->getColumns())
             ->ajax('')
-            ->addAction(['width' => '80px'])
             ->parameters($this->getBuilderParameters())
             //FIXME: 語系等預設參數應提出
             ->parameters([
