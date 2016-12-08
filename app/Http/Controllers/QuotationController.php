@@ -40,9 +40,10 @@ class QuotationController extends Controller
             'order'   => Quotation::max('order') + 1,
         ]);
         //回傳結果
+        //FIXME: 需要重新修正缺少counter屬性的問題
         $json = [
             'success'   => true,
-            'quotation' => $quotation->toArray(),
+            'quotation' => array_merge($quotation->toArray(), ['counter' => 0]),
         ];
 
         return response()->json($json);
