@@ -16,6 +16,21 @@ class PlayersDataTable extends DataTable
     {
         return $this->datatables
             ->eloquent($this->query())
+            ->addColumn('action', function ($player) {
+                if (!$player->nid) {
+                    return '';
+                }
+                $html = '';
+                $html .= '<form action="' . route('player.unbind', $player) . '" method="POST"';
+                $html .= ' onsubmit="return confirm(\'確定解除NID綁定？\')">';
+                $html .= '<input type="hidden" name="_token" id="csrf-token" value="' . csrf_token() . '" />';
+                $html .= '<button type="submit" class="btn btn-danger">';
+                $html .= '<i class="fa fa-chain-broken" aria-hidden="true"></i>';
+                $html .= '</button>';
+                $html .= '</form>';
+
+                return $html;
+            })
             ->make(true);
     }
 
@@ -40,6 +55,7 @@ class PlayersDataTable extends DataTable
     {
         return $this->builder()
             ->columns($this->getColumns())
+            ->addAction(['width' => '80px'])
             ->ajax('')
             ->parameters($this->getBuilderParameters())
             ->parameters([

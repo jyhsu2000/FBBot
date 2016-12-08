@@ -70,6 +70,7 @@ Route::group(['middleware' => ['auth', 'email']], function () {
     //玩家
     //權限：player.manage
     Route::group(['middleware' => 'permission:player.manage'], function () {
+        Route::post('player/unbind/{player}', 'PlayerController@unbind')->name('player.unbind');
         Route::resource('player', 'PlayerController');
     });
 });
