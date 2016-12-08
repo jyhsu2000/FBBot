@@ -23,6 +23,7 @@
     {{-- DataTables --}}
     <link rel="stylesheet" href="//cdn.datatables.net/1.10.13/css/dataTables.bootstrap4.min.css">
     <link rel="stylesheet" href="//cdn.datatables.net/buttons/1.2.3/css/buttons.dataTables.min.css">
+    <link rel="stylesheet" href="//cdn.datatables.net/responsive/2.1.1/css/responsive.dataTables.min.css">
     <style>
         body {
             font-family: "Segoe UI", Roboto, "Noto Sans TC", "Helvetica Neue", Arial, sans-serif;
@@ -67,6 +68,7 @@
 <script src="//cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
 <script src="//cdn.datatables.net/1.10.13/js/dataTables.bootstrap4.min.js"></script>
 <script src="//cdn.datatables.net/buttons/1.2.3/js/dataTables.buttons.min.js"></script>
+<script src="//cdn.datatables.net/responsive/2.1.1/js/dataTables.responsive.min.js"></script>
 <script src="{{ asset('vendor/datatables/buttons.server-side.js') }}"></script>
 <script>
     //CSRF Token
@@ -115,6 +117,7 @@
     // DataTables 預設設定
     (function ($, DataTable) {
         $.extend(true, DataTable.defaults, {
+            responsive: true,
             language: {
                 "processing": "處理中...",
                 "loadingRecords": "載入中...",
