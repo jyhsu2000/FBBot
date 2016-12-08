@@ -22,6 +22,6 @@ class MenuCommand extends Command
      */
     public function run(BaseHandler $handler, ReceiveMessage $receiveMessage)
     {
-        app(MenuTask::class)->run($handler, $receiveMessage);
+        app(MenuTask::class)->showMenu($handler, $receiveMessage);
     }
 }

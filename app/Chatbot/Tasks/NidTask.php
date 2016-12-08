@@ -13,13 +13,13 @@ class NidTask extends Task
     private static $pattern = '/^(([depmv]([0-9]){7})|(t[0-9]{5}))$/i';
 
     /**
-     * 執行任務
+     * 輸入NID
      *
      * @param BaseHandler $handler
      * @param ReceiveMessage $receiveMessage
      * @return mixed
      */
-    public function run(BaseHandler $handler, ReceiveMessage $receiveMessage)
+    public function input(BaseHandler $handler, ReceiveMessage $receiveMessage)
     {
         $message = $receiveMessage->getMessage();
         //處理NID

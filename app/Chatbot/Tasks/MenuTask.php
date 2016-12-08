@@ -9,13 +9,13 @@ use Casperlaitw\LaravelFbMessenger\Messages\GenericTemplate;
 class MenuTask extends Task
 {
     /**
-     * 執行任務
+     * 顯示選單
      *
      * @param BaseHandler $handler
      * @param ReceiveMessage $receiveMessage
      * @return mixed
      */
-    public function run(BaseHandler $handler, ReceiveMessage $receiveMessage)
+    public function showMenu(BaseHandler $handler, ReceiveMessage $receiveMessage)
     {
         //顯示選單
         $smallBlackHat = 'http://i.imgur.com/qArK6MG.png';

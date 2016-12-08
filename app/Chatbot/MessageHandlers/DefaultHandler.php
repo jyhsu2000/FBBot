@@ -35,7 +35,7 @@ class DefaultHandler extends BaseHandler
         //根據玩家狀態選擇處理方式
         $state = $player->state;
         if ($state == 'INPUT_NID') {
-            app(NidTask::class)->run($this, $receiveMessage);
+            app(NidTask::class)->input($this, $receiveMessage);
 
             return;
         }

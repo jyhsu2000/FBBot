@@ -20,6 +20,6 @@ class TalkPostback extends Postback
      */
     public function run(BaseHandler $handler, ReceiveMessage $receiveMessage)
     {
-        app(TalkTask::class)->run($handler, $receiveMessage);
+        app(TalkTask::class)->saySomething($handler, $receiveMessage);
     }
 }
