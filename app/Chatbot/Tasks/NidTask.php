@@ -3,6 +3,7 @@
 namespace App\Chatbot\Tasks;
 
 use App\Player;
+use App\Services\LogService;
 use Casperlaitw\LaravelFbMessenger\Messages\Text;
 use Casperlaitw\LaravelFbMessenger\Messages\QuickReply;
 use Casperlaitw\LaravelFbMessenger\Contracts\BaseHandler;
@@ -11,6 +12,17 @@ use Casperlaitw\LaravelFbMessenger\Messages\ReceiveMessage;
 class NidTask extends Task
 {
     private static $pattern = '/^(([depmv]([0-9]){7})|(t[0-9]{5}))$/i';
+
+    protected $logService;
+
+    /**
+     * Create the event listener.
+     * @param LogService $logService
+     */
+    public function __construct(LogService $logService)
+    {
+        $this->logService = $logService;
+    }
 
     /**
      * 輸入NID
@@ -35,6 +47,11 @@ class NidTask extends Task
         $player = Player::findOrCreate($sender);
         //更新NID
         $player->update(['nid' => strtoupper($message)]);
+        //寫入紀錄
+        $this->logService->info('[Player][Bind] ' . $player->app_uid . ' 已綁定 ' . $player->nid . PHP_EOL, [
+            'player' => $player,
+        ]);
+        //傳送訊息
         $text = new Text($receiveMessage->getSender(), '綁定NID：' . $player->nid);
         $handler->send($text);
         //清除輸入中的狀態
