@@ -88,6 +88,9 @@
                 });
             },
             destroy: function (quotation) {
+                if(!confirm('確定要刪除嗎？')){
+                    return;
+                }
                 console.log('destroy: ' + quotation.id);
                 //發送請求
                 this.$http.delete(this.api + '/' + quotation.id).then(function (response) {
@@ -110,4 +113,6 @@
             }
         }
     }
+
+
 </script>
