@@ -17,7 +17,8 @@
         "graham-campbell/throttle": "^5.2",
         "lavary/laravel-menu": "^1.6",
         "arcanedev/log-viewer": "^4.1",
-        "casperlaitw/laravel-fb-messenger": "^1.2"
+        "casperlaitw/laravel-fb-messenger": "^1.2",
+        "yajra/laravel-datatables-oracle": "^6.22"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

@@ -176,6 +176,7 @@ return [
         Lavary\Menu\ServiceProvider::class,
         Arcanedev\LogViewer\LogViewerServiceProvider::class,
         Casperlaitw\LaravelFbMessenger\LaravelFbMessengerServiceProvider::class,
+        Yajra\Datatables\DatatablesServiceProvider::class,
 
         /*
          * Application Service Providers...

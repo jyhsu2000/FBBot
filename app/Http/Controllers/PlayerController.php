@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\DataTables\PlayersDataTable;
 use App\Player;
 use Illuminate\Http\Request;
 
@@ -10,11 +11,13 @@ class PlayerController extends Controller
     /**
      * Display a listing of the resource.
      *
+     * @param PlayersDataTable $dataTable
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(PlayersDataTable $dataTable)
     {
         $players = Player::all();
+        return $dataTable->render('player.index', compact('players'));
 
         return view('player.index', compact('players'));
     }

@@ -33,4 +33,9 @@
             </tbody>
         </table>
     </div>
+    {!! $dataTable->table() !!}
+@endsection
+
+@section('js')
+    {!! $dataTable->scripts() !!}
 @endsection
