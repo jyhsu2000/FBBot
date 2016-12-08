@@ -4,7 +4,6 @@
 
 @section('content')
     <h1>玩家管理</h1>
-    {{-- TODO: 改用DataTable --}}
     {!! $dataTable->table() !!}
 @endsection
 
