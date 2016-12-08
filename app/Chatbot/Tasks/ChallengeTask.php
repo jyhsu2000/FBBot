@@ -10,18 +10,6 @@ use Casperlaitw\LaravelFbMessenger\Messages\GenericTemplate;
 class ChallengeTask extends Task
 {
     /**
-     * 執行任務
-     *
-     * @param BaseHandler $handler
-     * @param ReceiveMessage $receiveMessage
-     * @return mixed
-     */
-    public function run(BaseHandler $handler, ReceiveMessage $receiveMessage)
-    {
-        //
-    }
-
-    /**
      * 顯示選單
      *
      * @param BaseHandler $handler
