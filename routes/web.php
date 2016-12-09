@@ -69,6 +69,7 @@ Route::group(['middleware' => ['auth', 'email']], function () {
     });
     //問題
     Route::group(['middleware' => 'permission:question.manage'], function () {
+        Route::get('question/get/{question}', 'QuestionController@get')->name('question.get');
         Route::resource('question', 'QuestionController');
         Route::resource('choice', 'ChoiceController');
     });

@@ -14,7 +14,9 @@ class QuestionController extends Controller
      */
     public function index()
     {
-        //TODO
+        $questions = Question::orderBy('order')->orderBy('id')->get();
+
+        return view('question.index', compact('questions'));
     }
 
     /**
@@ -46,7 +48,7 @@ class QuestionController extends Controller
      */
     public function show(Question $question)
     {
-        //TODO
+        return view('question.show', compact('question'));
     }
 
     /**
@@ -81,5 +83,11 @@ class QuestionController extends Controller
     public function destroy(Question $question)
     {
         //TODO
+    }
+
+    public function get(Question $question)
+    {
+        $question->load('choices');
+        return response()->json($question->toArray());
     }
 }
