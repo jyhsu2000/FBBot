@@ -35,4 +35,27 @@ class ChallengeTask extends Task
             ->addWebButton('👀查看進度＆記錄', 'https://fbbot.kid7.club/');
         $handler->send($generic);
     }
+
+    public function showQuestion(BaseHandler $handler, ReceiveMessage $receiveMessage)
+    {
+        //TODO: 找出題目（本次作答中，尚未完成的第一題）
+        //TODO: 若皆已完成，觸發檢查進度，並選擇第一題（通常不會發生）
+        //TODO: 記錄作答中題號
+        //TODO: 顯示題目
+    }
+
+    public function chooseAnswer(BaseHandler $handler, ReceiveMessage $receiveMessage)
+    {
+        //TODO: 若點擊非作答中題目的選項，應提示「非作答中題目」
+        //TODO: 記錄選擇答案
+        //TODO: 清除作答中的題號
+        //TODO: 若未完成，觸發顯示題目
+        //TODO: 若已完成，觸發檢查進度
+    }
+
+    public function checkProgress(BaseHandler $handler, ReceiveMessage $receiveMessage)
+    {
+        //TODO: 若無抽獎資格，取得抽獎資格
+        //TODO: 遞增完成次數
+    }
 }

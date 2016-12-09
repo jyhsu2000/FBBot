@@ -41,6 +41,11 @@ class ChallengePostback extends Postback
             $handler->send($text);
 
             return;
+        } elseif ($action == 'ANSWER' && false) {
+            //點擊答案
+            //TODO: 觸發作答任務
+
+            return;
         }
 
         //根據玩家狀態選擇處理方式
