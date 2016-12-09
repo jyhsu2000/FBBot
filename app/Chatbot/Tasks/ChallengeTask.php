@@ -36,6 +36,12 @@ class ChallengeTask extends Task
         $handler->send($generic);
     }
 
+    /**
+     * 自動選擇並顯示題目
+     *
+     * @param BaseHandler $handler
+     * @param ReceiveMessage $receiveMessage
+     */
     public function showQuestion(BaseHandler $handler, ReceiveMessage $receiveMessage)
     {
         //TODO: 找出題目（本次作答中，尚未完成的第一題）
@@ -44,6 +50,12 @@ class ChallengeTask extends Task
         //TODO: 顯示題目
     }
 
+    /**
+     * 點擊作答按鈕
+     *
+     * @param BaseHandler $handler
+     * @param ReceiveMessage $receiveMessage
+     */
     public function chooseAnswer(BaseHandler $handler, ReceiveMessage $receiveMessage)
     {
         //TODO: 若點擊非作答中題目的選項，應提示「非作答中題目」
@@ -53,6 +65,12 @@ class ChallengeTask extends Task
         //TODO: 若已完成，觸發檢查進度
     }
 
+    /**
+     * 檢查進度
+     *
+     * @param BaseHandler $handler
+     * @param ReceiveMessage $receiveMessage
+     */
     public function checkProgress(BaseHandler $handler, ReceiveMessage $receiveMessage)
     {
         //TODO: 若無抽獎資格，取得抽獎資格
