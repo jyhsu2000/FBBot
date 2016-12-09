@@ -72,16 +72,16 @@
         },
         {
             "name": "arcanedev/support",
-            "version": "3.18.1",
+            "version": "3.19.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ARCANEDEV/Support.git",
-                "reference": "66025237c080667a9ce3b5effbf91315c9bcf7f3"
+                "reference": "6055b41702532a60c63cbc10451085cb7457dfdd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ARCANEDEV/Support/zipball/66025237c080667a9ce3b5effbf91315c9bcf7f3",
-                "reference": "66025237c080667a9ce3b5effbf91315c9bcf7f3",
+                "url": "https://api.github.com/repos/ARCANEDEV/Support/zipball/6055b41702532a60c63cbc10451085cb7457dfdd",
+                "reference": "6055b41702532a60c63cbc10451085cb7457dfdd",
                 "shasum": ""
             },
             "require": {
@@ -127,20 +127,20 @@
                 "laravel",
                 "support"
             ],
-            "time": "2016-10-24 16:13:22"
+            "time": "2016-12-07 20:04:32"
         },
         {
             "name": "barryvdh/laravel-ide-helper",
-            "version": "v2.2.1",
+            "version": "v2.2.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/barryvdh/laravel-ide-helper.git",
-                "reference": "28af7cd19ca41cc0c63dd1de2b46c2b84d31c463"
+                "reference": "105f14a50d0959a0e80004a15b3350fdf78f9623"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/barryvdh/laravel-ide-helper/zipball/28af7cd19ca41cc0c63dd1de2b46c2b84d31c463",
-                "reference": "28af7cd19ca41cc0c63dd1de2b46c2b84d31c463",
+                "url": "https://api.github.com/repos/barryvdh/laravel-ide-helper/zipball/105f14a50d0959a0e80004a15b3350fdf78f9623",
+                "reference": "105f14a50d0959a0e80004a15b3350fdf78f9623",
                 "shasum": ""
             },
             "require": {
@@ -193,7 +193,7 @@
                 "phpstorm",
                 "sublime"
             ],
-            "time": "2016-07-04 11:52:48"
+            "time": "2016-11-15 08:21:23"
         },
         {
             "name": "barryvdh/reflection-docblock",
@@ -2396,16 +2396,16 @@
         },
         {
             "name": "pusher/pusher-php-server",
-            "version": "2.6.1",
+            "version": "2.6.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/pusher/pusher-http-php.git",
-                "reference": "dce77cc06669c634044723f9db0d682474f4d803"
+                "reference": "598d08dfeda85352b0ec684be4b87888ba3727f5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/pusher/pusher-http-php/zipball/dce77cc06669c634044723f9db0d682474f4d803",
-                "reference": "dce77cc06669c634044723f9db0d682474f4d803",
+                "url": "https://api.github.com/repos/pusher/pusher-http-php/zipball/598d08dfeda85352b0ec684be4b87888ba3727f5",
+                "reference": "598d08dfeda85352b0ec684be4b87888ba3727f5",
                 "shasum": ""
             },
             "require": {
@@ -2436,7 +2436,7 @@
                 "rest",
                 "trigger"
             ],
-            "time": "2016-11-11 10:32:50"
+            "time": "2016-12-04 18:53:56"
         },
         {
             "name": "ramsey/uuid",
@@ -4674,16 +4674,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "5.7.2",
+            "version": "5.7.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "336aff0ac52e306c98e7455bc3e8d7b0bf777a5e"
+                "reference": "de164acc2f2bb0b79beb892a36260264b2a03233"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/336aff0ac52e306c98e7455bc3e8d7b0bf777a5e",
-                "reference": "336aff0ac52e306c98e7455bc3e8d7b0bf777a5e",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/de164acc2f2bb0b79beb892a36260264b2a03233",
+                "reference": "de164acc2f2bb0b79beb892a36260264b2a03233",
                 "shasum": ""
             },
             "require": {
@@ -4694,7 +4694,7 @@
                 "ext-xml": "*",
                 "myclabs/deep-copy": "~1.3",
                 "php": "^5.6 || ^7.0",
-                "phpspec/prophecy": "^1.3.1",
+                "phpspec/prophecy": "^1.6.2",
                 "phpunit/php-code-coverage": "^4.0.3",
                 "phpunit/php-file-iterator": "~1.4",
                 "phpunit/php-text-template": "~1.2",
@@ -4752,20 +4752,20 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2016-12-03 08:33:00"
+            "time": "2016-12-09 02:48:53"
         },
         {
             "name": "phpunit/phpunit-mock-objects",
-            "version": "3.4.2",
+            "version": "3.4.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit-mock-objects.git",
-                "reference": "90a08f5deed5f7ac35463c161f2e8fa0e5652faf"
+                "reference": "3ab72b65b39b491e0c011e2e09bb2206c2aa8e24"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit-mock-objects/zipball/90a08f5deed5f7ac35463c161f2e8fa0e5652faf",
-                "reference": "90a08f5deed5f7ac35463c161f2e8fa0e5652faf",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit-mock-objects/zipball/3ab72b65b39b491e0c011e2e09bb2206c2aa8e24",
+                "reference": "3ab72b65b39b491e0c011e2e09bb2206c2aa8e24",
                 "shasum": ""
             },
             "require": {
@@ -4811,7 +4811,7 @@
                 "mock",
                 "xunit"
             ],
-            "time": "2016-11-27 07:52:03"
+            "time": "2016-12-08 20:27:08"
         },
         {
             "name": "sebastian/code-unit-reverse-lookup",
