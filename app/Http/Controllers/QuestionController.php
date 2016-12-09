@@ -82,12 +82,12 @@ class QuestionController extends Controller
         }
         //更新問題
         $question->update([
-            'content' => $request->get('content')
+            'content' => $request->get('content'),
         ]);
         //回傳結果
         $json = [
             'success'   => true,
-            'content' => $question->content,
+            'content'   => $question->content,
         ];
 
         return response()->json($json);
@@ -107,6 +107,7 @@ class QuestionController extends Controller
     public function get(Question $question)
     {
         $question->load('choices');
+
         return response()->json($question->toArray());
     }
 }
