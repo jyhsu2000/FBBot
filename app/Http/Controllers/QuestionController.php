@@ -88,6 +88,7 @@ class QuestionController extends Controller
     public function get(Question $question)
     {
         $question->load('choices');
+
         return response()->json($question->toArray());
     }
 }
