@@ -3,6 +3,8 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use ShiftOneLabs\LaravelCascadeDeletes\CascadesDeletes;
 
 /**
  * App\Question
@@ -26,6 +28,10 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Question extends Model
 {
+    use SoftDeletes;
+    use CascadesDeletes;
+
+    protected $cascadeDeletes = ['choices'];
     /**
      * The attributes that are mass assignable.
      *

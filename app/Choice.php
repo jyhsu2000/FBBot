@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * App\Choice
@@ -26,6 +27,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Choice extends Model
 {
+    use SoftDeletes;
     /**
      * The attributes that are mass assignable.
      *

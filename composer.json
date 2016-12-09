@@ -18,7 +18,8 @@
         "lavary/laravel-menu": "^1.6",
         "arcanedev/log-viewer": "^4.1",
         "casperlaitw/laravel-fb-messenger": "^1.2",
-        "yajra/laravel-datatables-oracle": "^6.22"
+        "yajra/laravel-datatables-oracle": "^6.22",
+        "shiftonelabs/laravel-cascade-deletes": "^1.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

@@ -34,3 +34,17 @@ $factory->define(App\Player::class, function (Faker\Generator $faker) {
         'nid'     => $faker->optional()->regexify('[DEPMV]{1}[0-9]{7}'),
     ];
 });
+
+$factory->define(App\Question::class, function (Faker\Generator $faker) {
+    return [
+        'content'         => $faker->sentence,
+        'correct_message' => $faker->optional()->sentence,
+        'wrong_message'   => $faker->optional()->sentence,
+    ];
+});
+$factory->define(App\Choice::class, function (Faker\Generator $faker) {
+    return [
+        'content'    => $faker->sentence,
+        'is_correct' => $faker->boolean,
+    ];
+});

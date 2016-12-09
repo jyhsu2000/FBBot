@@ -20,6 +20,7 @@ class CreateQuestionsTable extends Migration
             $table->string('correct_message')->nullable();
             $table->string('wrong_message')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

@@ -20,6 +20,7 @@ class CreateChoicesTable extends Migration
             $table->string('content');
             $table->boolean('is_correct')->default(false);
             $table->timestamps();
+            $table->softDeletes();
 
             $table->foreign('question_id')->references('id')->on('questions')->onUpdate('cascade')->onDelete('cascade');
         });
