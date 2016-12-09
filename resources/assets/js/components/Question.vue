@@ -5,12 +5,12 @@
         </div>
         <div class="card-block">
             <div class="card-text" v-if="!editMode">
-                <p>
-                <h3><span class="tag tag-default">問題描述</span></h3>{{ question.content }}</p>
-                <p>
-                <h3><span class="tag tag-default">答對的說明</span></h3>{{ question.correct_message }}</p>
-                <p>
-                <h3><span class="tag tag-default">答錯的說明</span></h3>{{ question.wrong_message }}</p>
+                <h3><span class="tag tag-default">問題描述</span></h3>
+                <p>{{ question.content }}</p>
+                <h3><span class="tag tag-default">答對的說明</span></h3>
+                <p>{{ question.correct_message }}</p>
+                <h3><span class="tag tag-default">答錯的說明</span></h3>
+                <p>{{ question.wrong_message }}</p>
             </div>
             <form @submit.prevent="submit" v-else>
                 <label for="question">問題描述</label>
