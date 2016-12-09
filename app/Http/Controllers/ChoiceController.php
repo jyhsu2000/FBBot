@@ -70,7 +70,7 @@ class ChoiceController extends Controller
     public function update(Request $request, Choice $choice)
     {
         $validator = \Validator::make($request->all(), [
-            'content' => 'required|unique:quotations|max:255',
+            'content' => 'required|max:255',
         ]);
         if ($validator->fails()) {
             return response()->json([
@@ -78,7 +78,7 @@ class ChoiceController extends Controller
                 'errors'  => $validator->errors(),
             ]);
         }
-        //更新問題
+        //更新題目
         $choice->update([
             'content' => $request->get('content'),
         ]);
@@ -120,7 +120,7 @@ class ChoiceController extends Controller
     public function sort(Request $request)
     {
         $idList = $request->get('idList');
-        $counter = 0;
+        $counter = 1;
         foreach ($idList as $id) {
             $choice = Choice::find($id);
             if (!$choice) {

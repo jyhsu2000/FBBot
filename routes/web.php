@@ -67,9 +67,11 @@ Route::group(['middleware' => ['auth', 'email']], function () {
             ],
         ]);
     });
-    //問題
+    //題目
     Route::group(['middleware' => 'permission:question.manage'], function () {
+        Route::get('question/data', 'QuestionController@data')->name('question.data');
         Route::get('question/get/{question}', 'QuestionController@get')->name('question.get');
+        Route::post('question/sort', 'QuestionController@sort')->name('question.sort');
         Route::resource('question', 'QuestionController');
         Route::post('choice/toggleCorrect/{choice}', 'ChoiceController@toggleCorrect')->name('choice.toggle');
         Route::post('choice/sort', 'ChoiceController@sort')->name('choice.sort');

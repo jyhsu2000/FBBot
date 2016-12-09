@@ -15,8 +15,8 @@ class CreateQuestionManagePermission extends Migration
     {
         $permQuestionManage = Permission::create([
             'name'         => 'question.manage',
-            'display_name' => '問題管理權限',
-            'description'  => '設定問題與答案',
+            'display_name' => '題目管理權限',
+            'description'  => '設定題目與答案',
         ]);
 
         // Find Admin and give permission to him

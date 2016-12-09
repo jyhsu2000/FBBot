@@ -1,7 +1,7 @@
 <template>
     <div class="card">
         <div class="card-header">
-            問題描述
+            題目描述
         </div>
         <div class="card-block">
             <p class="card-text" v-if="!editMode">

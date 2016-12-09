@@ -1,9 +1,9 @@
 @extends('layouts.app')
 
-@section('title', '檢視問題')
+@section('title', '檢視題目 #' . $question->order)
 
 @section('content')
-    <h1>檢視問題</h1>
+    <h1>檢視題目 #{{ $question->order }}</h1>
     <question api="{{ route('question.index') }}"
               choice_api="{{ route('choice.index') }}"
               question_id="{{ $question->id }}"></question>

@@ -83,7 +83,7 @@ class QuestionController extends Controller
     public function update(Request $request, Question $question)
     {
         $validator = \Validator::make($request->all(), [
-            'content' => 'required|unique:quotations|max:255',
+            'content' => 'required|max:255',
         ]);
         if ($validator->fails()) {
             return response()->json([
@@ -91,7 +91,7 @@ class QuestionController extends Controller
                 'errors'  => $validator->errors(),
             ]);
         }
-        //更新問題
+        //更新題目
         $question->update([
             'content' => $request->get('content'),
         ]);
@@ -122,5 +122,35 @@ class QuestionController extends Controller
         $question->load('choices');
 
         return response()->json($question->toArray());
+    }
+
+    public function data()
+    {
+        $questions = Question::orderBy('order')->orderBy('id')->with('choices')->get();
+
+        return response()->json($questions);
+    }
+
+    public function sort(Request $request)
+    {
+        $idList = $request->get('idList');
+        $counter = 1;
+        foreach ($idList as $id) {
+            $question = Question::find($id);
+            if (!$question) {
+                continue;
+            }
+            $question->update([
+                'order' => $counter,
+            ]);
+            $counter++;
+        }
+        //回傳結果
+        $json = [
+            'success' => true,
+            'idList'  => $idList,
+        ];
+
+        return response()->json($json);
     }
 }
