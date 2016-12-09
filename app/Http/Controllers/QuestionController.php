@@ -71,7 +71,26 @@ class QuestionController extends Controller
      */
     public function update(Request $request, Question $question)
     {
-        //TODO
+        $validator = \Validator::make($request->all(), [
+            'content' => 'required|unique:quotations|max:255',
+        ]);
+        if ($validator->fails()) {
+            return response()->json([
+                'success' => false,
+                'errors'  => $validator->errors(),
+            ]);
+        }
+        //更新問題
+        $question->update([
+            'content' => $request->get('content')
+        ]);
+        //回傳結果
+        $json = [
+            'success'   => true,
+            'content' => $question->content,
+        ];
+
+        return response()->json($json);
     }
 
     /**
