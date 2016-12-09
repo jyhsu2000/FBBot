@@ -7,11 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 /**
  * App\Choice
  *
- * @property integer $id
- * @property integer $question_id
- * @property integer $order
+ * @property int $id
+ * @property int $question_id
+ * @property int $order
  * @property string $content
- * @property boolean $is_correct
+ * @property bool $is_correct
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
  * @property-read \App\Question $question
