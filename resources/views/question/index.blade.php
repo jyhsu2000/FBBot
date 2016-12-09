@@ -7,7 +7,7 @@
     <div>
         <form action="{{ route('question.store') }}" method="post">
             {{ Form::token() }}
-            <input type="submit" value="題目問題" class="btn btn-primary"/>
+            <input type="submit" value="新增題目" class="btn btn-primary"/>
         </form>
     </div>
     <question-list api="{{ route('question.index') }}"></question-list>
