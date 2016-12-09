@@ -83,7 +83,9 @@ class QuestionController extends Controller
     public function update(Request $request, Question $question)
     {
         $validator = \Validator::make($request->all(), [
-            'content' => 'required|max:255',
+            'content'         => 'required|max:255',
+            'correct_message' => 'max:255',
+            'wrong_message'   => 'max:255',
         ]);
         if ($validator->fails()) {
             return response()->json([
@@ -93,7 +95,9 @@ class QuestionController extends Controller
         }
         //更新題目
         $question->update([
-            'content' => $request->get('content'),
+            'content'         => $request->get('content'),
+            'correct_message' => $request->get('correct_message'),
+            'wrong_message'   => $request->get('wrong_message'),
         ]);
         //回傳結果
         $json = [
