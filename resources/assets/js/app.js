@@ -17,6 +17,7 @@ Vue.component('example', require('./components/Example.vue'));
 Vue.component('quotation-list', require('./components/QuotationList.vue'));
 Vue.component('quotation', require('./components/Quotation.vue'));
 Vue.component('question', require('./components/Question.vue'));
+Vue.component('question-choice', require('./components/QuestionChoice.vue'));
 
 const app = new Vue({
     el: 'body'

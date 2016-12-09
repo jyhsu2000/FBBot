@@ -71,6 +71,7 @@ Route::group(['middleware' => ['auth', 'email']], function () {
     Route::group(['middleware' => 'permission:question.manage'], function () {
         Route::get('question/get/{question}', 'QuestionController@get')->name('question.get');
         Route::resource('question', 'QuestionController');
+        Route::post('choice/toggleCorrect/{choice}', 'ChoiceController@toggleCorrect')->name('choice.toggle');
         Route::resource('choice', 'ChoiceController');
     });
     //玩家

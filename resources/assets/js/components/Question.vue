@@ -19,33 +19,9 @@
         <div class="card-header">
             選項
         </div>
-        <div class="card-block">
-            <table class="table table-hover table-striped">
-                <thead>
-                <tr>
-                    <th>#</th>
-                    <th>Order</th>
-                    <th>Content</th>
-                    <th>Actions</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr v-for="choice in question.choices">
-                    <td>{{ choice.id }}</td>
-                    <td>{{ choice.order }}</td>
-                    <td>
-                        <a href="javascript:void(0)" class="btn btn-secondary">
-                            <i class="fa fa-check fa-fw fa-2x text-success" aria-hidden="true"
-                               v-if="choice.is_correct"></i>
-                            <i class="fa fa-times fa-fw fa-2x text-danger" aria-hidden="true" v-else></i>
-                        </a>
-                        {{ choice.content }}
-                    </td>
-                    <td></td>
-                </tr>
-                </tbody>
-            </table>
-        </div>
+        <template v-for="choice in question.choices">
+            <question-choice :choice="choice" :choice_api="choice_api"></question-choice>
+        </template>
     </div>
 </template>
 
@@ -68,6 +44,7 @@
         },
         props: [
             'api',
+            'choice_api',
             'question_id'
         ],
         methods: {
@@ -113,7 +90,7 @@
                     //顯示通知
                     alertify.notify('發生錯誤', 'warning', 5);
                 });
-            },
+            }
         }
     }
 </script>

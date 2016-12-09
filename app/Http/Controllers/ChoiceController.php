@@ -69,7 +69,26 @@ class ChoiceController extends Controller
      */
     public function update(Request $request, Choice $choice)
     {
-        //TODO
+        $validator = \Validator::make($request->all(), [
+            'content' => 'required|unique:quotations|max:255',
+        ]);
+        if ($validator->fails()) {
+            return response()->json([
+                'success' => false,
+                'errors'  => $validator->errors(),
+            ]);
+        }
+        //更新問題
+        $choice->update([
+            'content' => $request->get('content'),
+        ]);
+        //回傳結果
+        $json = [
+            'success' => true,
+            'content' => $choice->content,
+        ];
+
+        return response()->json($json);
     }
 
     /**
@@ -81,5 +100,20 @@ class ChoiceController extends Controller
     public function destroy(Choice $choice)
     {
         //TODO
+    }
+
+    public function toggleCorrect(Request $request, Choice $choice)
+    {
+        $choice->update([
+            'is_correct' => !$choice->is_correct,
+        ]);
+
+        //回傳結果
+        $json = [
+            'success'    => true,
+            'is_correct' => $choice->is_correct,
+        ];
+
+        return response()->json($json);
     }
 }
