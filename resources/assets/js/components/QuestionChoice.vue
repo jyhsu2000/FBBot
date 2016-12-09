@@ -49,11 +49,9 @@
         ],
         methods: {
             toggleCorrect: function (choiceId) {
-                console.log('toggleCorrect: ' + choiceId);
                 //發送請求
                 this.$http.post(this.choice_api + '/toggleCorrect/' + choiceId).then(function (response) {
                     var json = response.json();
-                    console.log(json);
                     //即時顯示
                     this.choice.is_correct = json.is_correct;
                     //顯示通知
@@ -73,13 +71,11 @@
                 if (input.length == 0) {
                     return;
                 }
-                console.log('submit:' + input);
                 //發送請求
                 this.$http.patch(this.choice_api + '/' + this.choice.id, {
                     content: input
                 }).then(function (response) {
                     var json = response.json();
-                    console.log(json);
                     if (json.success != true) {
                         window.errorMessage = '';
                         $.each(json.errors, function (field, item) {

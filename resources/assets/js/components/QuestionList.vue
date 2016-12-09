@@ -58,19 +58,15 @@
                 });
             },
             onUpdate: function (event) {
-                console.log(event);
                 this.questions.splice(event.newIndex, 0, this.questions.splice(event.oldIndex, 1)[0]);
                 var idList = [];
                 $.each(this.questions, function (key, question) {
                     idList.push(question.id);
                 });
-                console.log(idList);
                 //發送請求
                 this.$http.post(this.api + '/sort', {
                     idList: idList
                 }).then(function (response) {
-                    var json = response.json();
-                    console.log(json);
                     //重新獲取資料
                     this.fetch();
                     //顯示通知

@@ -63,13 +63,11 @@
                 if (input.length == 0) {
                     return;
                 }
-                console.log('submit:' + input);
                 //發送請求
                 this.$http.patch(this.api + '/' + this.question_id, {
                     content: input
                 }).then(function (response) {
                     var json = response.json();
-                    console.log(json);
                     if (json.success != true) {
                         window.errorMessage = '';
                         $.each(json.errors, function (field, item) {
@@ -94,19 +92,15 @@
                 });
             },
             onUpdate: function (event) {
-                console.log(event);
                 this.question.choices.splice(event.newIndex, 0, this.question.choices.splice(event.oldIndex, 1)[0]);
                 var idList = [];
                 $.each(this.question.choices, function (key, choice) {
                     idList.push(choice.id);
                 });
-                console.log(idList);
                 //發送請求
                 this.$http.post(this.choice_api + '/sort', {
                     idList: idList
                 }).then(function (response) {
-                    var json = response.json();
-                    console.log(json);
                     //顯示通知
                     alertify.notify('排序已更新', 'success', 5);
                 }, function (response) {
