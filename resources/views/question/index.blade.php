@@ -4,6 +4,12 @@
 
 @section('content')
     <h1>問題管理</h1>
+    <div>
+        <form action="{{ route('question.store') }}" method="post">
+            {{ Form::token() }}
+            <input type="submit" value="新增問題" class="btn btn-primary"/>
+        </form>
+    </div>
     <div class="table-responsive">
         <table class="table table-bordered table-hover table-striped">
             <thead>

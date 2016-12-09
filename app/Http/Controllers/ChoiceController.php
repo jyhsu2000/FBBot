@@ -116,4 +116,27 @@ class ChoiceController extends Controller
 
         return response()->json($json);
     }
+
+    public function sort(Request $request)
+    {
+        $idList = $request->get('idList');
+        $counter = 0;
+        foreach ($idList as $id) {
+            $choice = Choice::find($id);
+            if (!$choice) {
+                continue;
+            }
+            $choice->update([
+                'order' => $counter,
+            ]);
+            $counter++;
+        }
+        //回傳結果
+        $json = [
+            'success' => true,
+            'idList'  => $idList,
+        ];
+
+        return response()->json($json);
+    }
 }

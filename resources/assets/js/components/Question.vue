@@ -19,9 +19,11 @@
         <div class="card-header">
             選項
         </div>
-        <template v-for="choice in question.choices">
-            <question-choice :choice="choice" :choice_api="choice_api"></question-choice>
-        </template>
+        <div v-sortable="{ onUpdate: onUpdate, handle: '.handle' }">
+            <template v-for="choice in question.choices">
+                <question-choice :choice="choice" :choice_api="choice_api"></question-choice>
+            </template>
+        </div>
     </div>
 </template>
 
@@ -84,6 +86,29 @@
                     alertify.notify('已更新', 'success', 5);
                     //關閉輸入模式
                     this.editMode = false;
+                }, function (response) {
+                    console.log('Error: ');
+                    console.log(response);
+                    //顯示通知
+                    alertify.notify('發生錯誤', 'warning', 5);
+                });
+            },
+            onUpdate: function (event) {
+                console.log(event);
+                this.question.choices.splice(event.newIndex, 0, this.question.choices.splice(event.oldIndex, 1)[0]);
+                var idList = [];
+                $.each(this.question.choices, function (key, choice) {
+                    idList.push(choice.id);
+                });
+                console.log(idList);
+                //發送請求
+                this.$http.post(this.choice_api + '/sort', {
+                    idList: idList
+                }).then(function (response) {
+                    var json = response.json();
+                    console.log(json);
+                    //顯示通知
+                    alertify.notify('排序已更新', 'success', 5);
                 }, function (response) {
                     console.log('Error: ');
                     console.log(response);

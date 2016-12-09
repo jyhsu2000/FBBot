@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Choice;
 use App\Question;
 use Illuminate\Http\Request;
 
@@ -37,7 +38,17 @@ class QuestionController extends Controller
      */
     public function store(Request $request)
     {
-        //TODO
+        $question = Question::create([
+            'content' => '題目敘述',
+            'order'   => Question::max('order') + 1,
+        ]);
+        $choices = [];
+        for ($i = 1; $i <= 3; $i++) {
+            $choices[] = new Choice(['order' => $i, 'content' => '選項' . $i]);
+        }
+        $question->choices()->saveMany($choices);
+
+        return redirect()->route('question.show', $question)->with('global', '題目已新增');
     }
 
     /**
@@ -86,8 +97,8 @@ class QuestionController extends Controller
         ]);
         //回傳結果
         $json = [
-            'success'   => true,
-            'content'   => $question->content,
+            'success' => true,
+            'content' => $question->content,
         ];
 
         return response()->json($json);
@@ -101,7 +112,9 @@ class QuestionController extends Controller
      */
     public function destroy(Question $question)
     {
-        //TODO
+        $question->delete();
+
+        return redirect()->route('question.index')->with('global', '題目已刪除');
     }
 
     public function get(Question $question)

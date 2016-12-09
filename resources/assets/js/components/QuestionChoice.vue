@@ -1,13 +1,16 @@
 <template>
     <div class="card-block row">
         <div class="col-sm-1">
+            <i class="fa fa-arrows-v fa-2x btn btn-secondary handle" aria-hidden="true"></i>
+        </div>
+        <div class="col-sm-1">
             <button class="btn btn-secondary" @click.prevent="toggleCorrect(choice.id)">
                 <i class="fa fa-check fa-fw fa-2x text-success" aria-hidden="true"
                    v-if="choice.is_correct"></i>
                 <i class="fa fa-times fa-fw fa-2x text-danger" aria-hidden="true" v-else></i>
             </button>
         </div>
-        <div class="col-sm-10">
+        <div class="col-sm-9">
             <template v-if="!editMode">
                 {{ choice.content }}
             </template>
