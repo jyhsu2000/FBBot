@@ -40,6 +40,9 @@ class LaravelMenu
                     if (Entrust::can('quotation.manage')) {
                         $isweekMenu->add('資安語錄', ['route' => 'quotation.index'])->active('quotation/*');
                     }
+                    if (Entrust::can('question.manage')) {
+                        $isweekMenu->add('問題管理', ['route' => 'question.index'])->active('question/*');
+                    }
                     if (Entrust::can('player.manage')) {
                         $isweekMenu->add('玩家管理', ['route' => 'player.index'])->active('player/*');
                     }

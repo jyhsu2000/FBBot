@@ -67,6 +67,11 @@ Route::group(['middleware' => ['auth', 'email']], function () {
             ],
         ]);
     });
+    //問題
+    Route::group(['middleware' => 'permission:question.manage'], function () {
+        Route::resource('question', 'QuestionController');
+        Route::resource('choice', 'ChoiceController');
+    });
     //玩家
     //權限：player.manage
     Route::group(['middleware' => 'permission:player.manage'], function () {
