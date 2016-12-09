@@ -39,11 +39,12 @@ class QuotationController extends Controller
             'content' => $request->get('content'),
             'order'   => Quotation::max('order') + 1,
         ]);
+        //重新取得語錄（避免無法取得counter欄位）
+        $quotation = $quotation->fresh();
         //回傳結果
-        //FIXME: 需要重新修正缺少counter屬性的問題
         $json = [
             'success'   => true,
-            'quotation' => array_merge($quotation->toArray(), ['counter' => 0]),
+            'quotation' => $quotation->toArray(),
         ];
 
         return response()->json($json);
