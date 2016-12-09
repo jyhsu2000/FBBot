@@ -7,8 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 /**
  * App\Question
  *
- * @property integer $id
- * @property integer $order
+ * @property int $id
+ * @property int $order
  * @property string $content
  * @property string $correct_message
  * @property string $wrong_message
