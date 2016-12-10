@@ -4,6 +4,7 @@ namespace App\Chatbot\Tasks;
 
 use App\Player;
 use App\Question;
+use Casperlaitw\LaravelFbMessenger\Messages\ButtonTemplate;
 use Casperlaitw\LaravelFbMessenger\Messages\Text;
 use Casperlaitw\LaravelFbMessenger\Contracts\BaseHandler;
 use Casperlaitw\LaravelFbMessenger\Messages\ReceiveMessage;
@@ -62,9 +63,18 @@ class ChallengeTask extends Task
 
         //記錄作答中題號
         $player->update(['in_question' => $question->id]);
-        //TODO: 顯示題目
-        $text = new Text($sender, 'TODO: 顯示題目');
-        $handler->send($text);
+        //顯示題目
+        $button = new ButtonTemplate($sender);
+        $button->setText($question->content);
+        $choices = $question->choices;
+        for ($i = 0; $i < 3 && $i < $choices->count(); $i++) {
+            $choice = $choices[$i];
+            $button->addPostBackButton($choice->content, 'CHALLENGE ' . json_encode([
+                    'action' => 'ANSWER',
+                    'choice' => $choice->id,
+                ]));
+        }
+        $handler->send($button);
     }
 
     /**
