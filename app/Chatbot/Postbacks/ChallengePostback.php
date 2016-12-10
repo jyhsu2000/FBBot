@@ -44,7 +44,7 @@ class ChallengePostback extends Postback
         } elseif ($action == 'ANSWER') {
             //點擊答案
             //TODO: 觸發作答任務
-            $text = new Text($sender, 'data: ' . $data);
+            $text = new Text($sender, 'data: ' . json_encode($data));
             $handler->send($text);
 
             return;
