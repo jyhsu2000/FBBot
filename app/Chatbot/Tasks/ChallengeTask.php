@@ -2,10 +2,14 @@
 
 namespace App\Chatbot\Tasks;
 
+use App\Choice;
 use App\Player;
+use App\Question;
 use Casperlaitw\LaravelFbMessenger\Contracts\BaseHandler;
+use Casperlaitw\LaravelFbMessenger\Messages\ButtonTemplate;
 use Casperlaitw\LaravelFbMessenger\Messages\ReceiveMessage;
 use Casperlaitw\LaravelFbMessenger\Messages\GenericTemplate;
+use Casperlaitw\LaravelFbMessenger\Messages\Text;
 
 class ChallengeTask extends Task
 {
@@ -44,10 +48,25 @@ class ChallengeTask extends Task
      */
     public function showQuestion(BaseHandler $handler, ReceiveMessage $receiveMessage)
     {
+        $sender = $receiveMessage->getSender();
+        $player = Player::findOrCreate($sender);
+        //系統無題目
+        if (Question::count() == 0) {
+            $text = new Text($sender, '施工中...敬請期待');
+            $handler->send($text);
+
+            return;
+        }
         //TODO: 找出題目（本次作答中，尚未完成的第一題）
+        $question = Question::first();
+
         //TODO: 若皆已完成，觸發檢查進度，並選擇第一題（通常不會發生）
-        //TODO: 記錄作答中題號
+
+        //記錄作答中題號
+        $player->update(['in_question' => $question->id]);
         //TODO: 顯示題目
+        $text = new Text($sender, 'TODO: 顯示題目');
+        $handler->send($text);
     }
 
     /**

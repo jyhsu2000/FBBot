@@ -57,9 +57,8 @@ class ChallengePostback extends Postback
         }
         //若動作為開始挑戰
         if ($action == 'START') {
-            //TODO: 顯示題目
-            $text = new Text($receiveMessage->getSender(), '施工中...敬請期待');
-            $handler->send($text);
+            //顯示題目
+            app(ChallengeTask::class)->showQuestion($handler, $receiveMessage);
 
             return;
         }
