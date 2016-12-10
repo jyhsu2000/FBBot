@@ -67,10 +67,10 @@ class ChallengeTask extends Task
         $button = new ButtonTemplate($sender);
         $button->setText($question->content);
         $choices = $question->choices;
-        $nums = ['1⃣', '2⃣3', '⃣'];
+        $nums = ['1⃣', '2⃣', '3⃣'];
         for ($i = 0; $i < 3 && $i < $choices->count(); $i++) {
             $choice = $choices[$i];
-            $button->addPostBackButton($nums[$i] . $choice->content, 'CHALLENGE ' . json_encode([
+            $button->addPostBackButton($nums[$i] . ' ' . $choice->content, 'CHALLENGE ' . json_encode([
                     'action' => 'ANSWER',
                     'choice' => $choice->id,
                 ]));
