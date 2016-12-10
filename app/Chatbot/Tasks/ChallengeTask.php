@@ -112,6 +112,7 @@ class ChallengeTask extends Task
         $player->update(['in_question' => null]);
         //TODO: 若未完成，觸發顯示題目
         //TODO: 若已完成，觸發檢查進度
+        $handler->send(new Text($handler, 'TODO'));
     }
 
     /**
