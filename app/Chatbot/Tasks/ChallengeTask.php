@@ -96,13 +96,13 @@ class ChallengeTask extends Task
             $question = $choice->question;
         } catch (\Exception $exception) {
             //選項或問題不存在
-            $handler->send(new Text($handler, 'Error'));
+            $handler->send(new Text($sender, 'Error'));
 
             return;
         }
         //若點擊非作答中題目的選項，應提示「非作答中題目」
         if ($question->id != $player->in_question) {
-            $handler->send(new Text($handler, '非作答中題目'));
+            $handler->send(new Text($sender, '非作答中題目'));
 
             return;
         }
@@ -112,7 +112,7 @@ class ChallengeTask extends Task
         $player->update(['in_question' => null]);
         //TODO: 若未完成，觸發顯示題目
         //TODO: 若已完成，觸發檢查進度
-        $handler->send(new Text($handler, 'TODO'));
+        $handler->send(new Text($sender, 'TODO'));
     }
 
     /**
