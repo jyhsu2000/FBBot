@@ -2,6 +2,8 @@
 
 namespace App\Chatbot\Tasks;
 
+use App\Chatbot\PostbackHandlers\DefaultPostbackHandler;
+use App\Choice;
 use App\Player;
 use App\Question;
 use Casperlaitw\LaravelFbMessenger\Messages\Text;
@@ -86,9 +88,28 @@ class ChallengeTask extends Task
      */
     public function chooseAnswer(BaseHandler $handler, ReceiveMessage $receiveMessage)
     {
-        //TODO: 若點擊非作答中題目的選項，應提示「非作答中題目」
+        $sender = $receiveMessage->getSender();
+        $player = Player::findOrCreate($sender);
+        $data = app(DefaultPostbackHandler::class)->getData($receiveMessage);
+        try {
+            $choice = Choice::find($data->choice);
+            $question = $choice->question;
+        } catch (\Exception $exception) {
+            //選項或問題不存在
+            $handler->send(new Text($handler, 'Error'));
+
+            return;
+        }
+        //若點擊非作答中題目的選項，應提示「非作答中題目」
+        if ($question->id != $player->in_question) {
+            $handler->send(new Text($handler, '非作答中題目'));
+
+            return;
+        }
         //TODO: 記錄選擇答案
-        //TODO: 清除作答中的題號
+
+        //清除作答中的題號
+        $player->update(['in_question' => null]);
         //TODO: 若未完成，觸發顯示題目
         //TODO: 若已完成，觸發檢查進度
     }
