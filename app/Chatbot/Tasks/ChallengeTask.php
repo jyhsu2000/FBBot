@@ -150,7 +150,10 @@ class ChallengeTask extends Task
             if (!$player->nid) {
                 $message .= '（您未完成NID綁定，若是本校學生，完成綁定後即可參加抽獎）' . PHP_EOL;
             }
-            $handler->send(new Text($sender, $message));
+
+            $playerUrl = route('player.showByUuid', $player->uuid);
+            $button = new ButtonTemplate($sender, $message);
+            $button->addWebButton('👀查看進度＆記錄', $playerUrl);
 
             return;
         }
