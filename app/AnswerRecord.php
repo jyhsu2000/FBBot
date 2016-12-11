@@ -45,4 +45,9 @@ class AnswerRecord extends Model
     {
         return $this->belongsTo(Choice::class);
     }
+
+    public function getIsCorrectAttribute()
+    {
+        return $this->choice->is_correct;
+    }
 }
