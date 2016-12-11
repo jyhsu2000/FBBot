@@ -25,4 +25,3 @@ class Qualification extends Model
         return $this->belongsTo(Player::class);
     }
 }
-
