@@ -9,7 +9,7 @@
         </div>
         <div class="card-block" style="font-size: 1.5em">
             <div class="row">
-                <div class="col-sm-2 text-sm-right"><span class="tag tag-primary">網址</span></div>
+                <div class="col-sm-2 text-sm-right"><span class="tag tag-primary">分享用網址</span></div>
                 <div class="col-sm-10">
                     <div class="input-group">
                         <input type="text" class="form-control" id="url"
