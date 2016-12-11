@@ -61,7 +61,7 @@ class PlayersDataTable extends DataTable
     {
         return $this->builder()
             ->columns($this->getColumns())
-            ->addAction(['width' => '100px'])
+            ->addAction()
             ->ajax('')
             ->parameters($this->getBuilderParameters())
             ->parameters([
@@ -96,21 +96,15 @@ class PlayersDataTable extends DataTable
             ],
 
             [
-                'data'  => 'uid',
-                'name'  => 'uid',
-                'title' => 'UID',
-            ],
-
-            [
                 'data'  => 'in_question',
                 'name'  => 'in_question',
-                'title' => 'In Question',
+                'title' => '正在解題',
             ],
 
             [
                 'data'  => 'time',
                 'name'  => 'time',
-                'title' => 'Times',
+                'title' => '完成次數',
             ],
 
         ];
