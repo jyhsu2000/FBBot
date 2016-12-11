@@ -44,7 +44,7 @@
                         <span class="text-primary">已抽獎 （{{ $player->qualification->get_at }}）</span>
                     @elseif($player->qualification)
                         @if($player->nid)
-                            <span class="text-success">請至攤位參加抽獎</span>
+                            <span class="text-success">已取得抽獎資格，請至攤位參加抽獎</span>
                         @else
                             <span class="text-warning">已取得抽獎資格，完成NID綁定後即可抽獎</span>
                         @endif
