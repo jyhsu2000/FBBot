@@ -22,7 +22,6 @@ class CreateAnswerRecordsTable extends Migration
 
             $table->foreign('player_id')->references('id')->on('players')->onUpdate('cascade')->onDelete('cascade');
             $table->foreign('choice_id')->references('id')->on('choices')->onUpdate('cascade')->onDelete('cascade');
-            $table->unique(['player_id', 'time']);
         });
     }
 
