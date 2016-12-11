@@ -64,6 +64,7 @@
         crossorigin="anonymous"></script>
 <script src="//cdn.jsdelivr.net/alertifyjs/1.8.0/alertify.min.js"></script>
 <script src="https://use.fontawesome.com/544fc47aab.js"></script>
+<script src="//cdn.jsdelivr.net/clipboard.js/1.5.13/clipboard.min.js"></script>
 {{-- DataTables --}}
 <script src="//cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
 <script src="//cdn.datatables.net/1.10.13/js/dataTables.bootstrap4.min.js"></script>

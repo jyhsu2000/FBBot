@@ -8,37 +8,51 @@
             玩家資訊
         </div>
         <div class="card-block" style="font-size: 1.5em">
-                <div class="row">
-                    <div class="col-sm-2 text-sm-right"><span class="tag tag-primary">NID</span></div>
-                    <div class="col-sm-10">
+            <div class="row">
+                <div class="col-sm-2 text-sm-right"><span class="tag tag-primary">網址</span></div>
+                <div class="col-sm-10">
+                    <div class="input-group">
+                        <input type="text" class="form-control" id="url"
+                               value="{{ route('player.showByUuid', $player->uuid) }}" readonly/>
+                        <span class="input-group-btn">
+                            <button class="btn btn-secondary" data-clipboard-target="#url" id="copyBtn">
+                                <i class="fa fa-clipboard" aria-hidden="true"></i> Copy
+                            </button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2 text-sm-right"><span class="tag tag-primary">NID</span></div>
+                <div class="col-sm-10">
+                    @if($player->nid)
+                        {{ substr_replace($player->nid, '▒', -1) }}
+                    @else
+                        尚未綁定
+                    @endif
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2 text-sm-right"><span class="tag tag-primary">完成次數</span></div>
+                <div class="col-sm-10">{{ $player->time }}</div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2 text-sm-right"><span class="tag tag-primary">抽獎</span></div>
+                <div class="col-sm-10">
+                    {{-- TODO:抽獎資格判定 --}}
+                    @if(false)
+                        <span class="text-primary">已抽獎</span>
+                    @elseif(1)
                         @if($player->nid)
-                            {{ substr_replace($player->nid, '▒', -1) }}
+                            <span class="text-success">請至攤位參加抽獎</span>
                         @else
-                            尚未綁定
+                            <span class="text-warning">已取得抽獎資格，完成NID綁定後即可抽獎</span>
                         @endif
-                    </div>
+                    @else
+                        <span class="text-danger">未取得抽獎資格</span>
+                    @endif
                 </div>
-                <div class="row">
-                    <div class="col-sm-2 text-sm-right"><span class="tag tag-primary">完成次數</span></div>
-                    <div class="col-sm-10">{{ $player->time }}</div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-2 text-sm-right"><span class="tag tag-primary">抽獎</span></div>
-                    <div class="col-sm-10">
-                        {{-- TODO:抽獎資格判定 --}}
-                        @if(false)
-                            <span class="text-primary">已抽獎</span>
-                        @elseif(1)
-                            @if($player->nid)
-                                <span class="text-success">請至攤位參加抽獎</span>
-                            @else
-                                <span class="text-warning">已取得抽獎資格，完成NID綁定後即可抽獎</span>
-                            @endif
-                        @else
-                            <span class="text-danger">未取得抽獎資格</span>
-                        @endif
-                    </div>
-                </div>
+            </div>
         </div>
     </div>
     <div class="card">
@@ -103,4 +117,12 @@
             </div>
         </div>
     @endforeach
+@endsection
+
+@section('js')
+    <script>
+        $(function () {
+            new Clipboard('#copyBtn');
+        });
+    </script>
 @endsection
