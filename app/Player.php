@@ -69,9 +69,6 @@ class Player extends Model
                 'uuid'    => Uuid::generate(),
             ]);
         }
-        if (!$player->uuid) {
-            $player->update(['uuid' => Uuid::generate()]);
-        }
 
         return $player;
     }

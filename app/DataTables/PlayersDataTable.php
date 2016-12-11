@@ -18,12 +18,10 @@ class PlayersDataTable extends DataTable
             ->eloquent($this->query())
             ->addColumn('action', function ($player) {
                 $html = '';
-                if ($player->uuid) {
-                    $html .= '<a href="' . route('player.showByUuid', $player->uuid) . '" ';
-                    $html .= 'class="btn btn-primary" title="玩家資訊" target="_blank">';
-                    $html .= '<i class="fa fa-user" aria-hidden="true"></i>';
-                    $html .= '</a>';
-                }
+                $html .= '<a href="' . route('player.showByUuid', $player->uuid) . '" ';
+                $html .= 'class="btn btn-primary" title="玩家資訊" target="_blank">';
+                $html .= '<i class="fa fa-user" aria-hidden="true"></i>';
+                $html .= '</a>';
                 if ($player->nid) {
                     $html .= '<form action="' . route('player.unbind', $player) . '" method="POST"';
                     $html .= ' onsubmit="return confirm(\'確定解除NID綁定？\')" style="display: inline">';
