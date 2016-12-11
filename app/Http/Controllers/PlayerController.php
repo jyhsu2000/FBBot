@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\AnswerRecord;
-use NumberFormatter;
 use Route;
 use App\Choice;
 use App\Player;
 use App\Question;
+use App\AnswerRecord;
 use App\Services\LogService;
 use Illuminate\Http\Request;
 use App\DataTables\PlayersDataTable;
