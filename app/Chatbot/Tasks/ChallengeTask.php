@@ -141,8 +141,14 @@ class ChallengeTask extends Task
         //取得玩家
         $sender = $receiveMessage->getSender();
         $player = Player::findOrCreate($sender);
-        //TODO: 若剛完成最後一次
-        //TODO: 遞增完成次數
+        //原完成次數
+        $originalTime = $player->time;
+        //TODO: 若剛完成最後一次（當前完成次數之作答記錄，已具有所有題目之作答）
+        $justFinish = false;
+        if ($justFinish) {
+            //遞增完成次數
+            $player->increment('time');
+        }
 
         //若完成次數為零，直接結束
         if ($player->time <= 0) {
@@ -151,6 +157,7 @@ class ChallengeTask extends Task
 
         //TODO: 若無抽獎資格，取得抽獎資格
 
-        return false;
+        //回傳是否剛完成
+        return $justFinish;
     }
 }
