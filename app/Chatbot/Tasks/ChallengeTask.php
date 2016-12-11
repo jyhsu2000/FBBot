@@ -64,8 +64,9 @@ class ChallengeTask extends Task
         //找出題目（本次挑戰中，尚未完成的第一題）
         $question = $player->findNextQuestion();
 
-        //TODO: 若皆已完成，觸發檢查進度，並選擇第一題（通常不會發生）
+        //若皆已完成，觸發檢查進度，並選擇第一題（通常不會發生）
         if (!$question) {
+            $this->checkProgress($handler, $receiveMessage);
             $question = Question::orderBy('order')->orderBy('id')->first();
         }
 
@@ -141,8 +142,8 @@ class ChallengeTask extends Task
         //若剛完成，顯示提示訊息
         if ($justFinish) {
             //顯示提示訊息
-            $message = '恭喜完成挑戰' . PHP_EOL;
-            $message .= '可於活動當天攜帶學生證或職員證至單位參加抽獎' . PHP_EOL;
+            $message = '🎉恭喜完成挑戰🎉' . PHP_EOL;
+            $message .= '請於活動當天攜帶學生證（或職員證）至攤位參加抽獎' . PHP_EOL;
             if (!$player->nid) {
                 $message .= '（您未完成NID綁定，若是本校學生，完成綁定後即可參加抽獎）' . PHP_EOL;
             }
@@ -175,7 +176,6 @@ class ChallengeTask extends Task
         if ($justFinish) {
             //遞增完成次數
             $player->increment('time');
-            $handler->send(new Text($sender, 'TODO: 剛完成一次挑戰'));
         }
 
         //若完成次數為零，直接結束
