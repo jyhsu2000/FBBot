@@ -3,9 +3,7 @@
 namespace App\Http\Controllers;
 
 use Route;
-use App\Choice;
 use App\Player;
-use App\Question;
 use App\AnswerRecord;
 use App\Services\LogService;
 use Illuminate\Http\Request;
