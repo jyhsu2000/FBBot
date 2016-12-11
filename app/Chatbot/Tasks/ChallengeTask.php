@@ -2,6 +2,7 @@
 
 namespace App\Chatbot\Tasks;
 
+use App\AnswerRecord;
 use App\Choice;
 use App\Player;
 use App\Question;
@@ -106,7 +107,15 @@ class ChallengeTask extends Task
 
             return;
         }
-        //TODO: 記錄選擇答案
+        //記錄選擇答案
+        $answerRecord = AnswerRecord::updateOrCreate([
+            'player_id' => $player->id,
+            'choice_id' => $choice->id,
+        ], [
+            'player_id' => $player->id,
+            'choice_id' => $choice->id,
+            'time'      => $player->time,
+        ]);
 
         //清除作答中的題號
         $player->update(['in_question' => null]);
