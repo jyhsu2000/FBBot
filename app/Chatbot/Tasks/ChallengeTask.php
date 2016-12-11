@@ -4,6 +4,7 @@ namespace App\Chatbot\Tasks;
 
 use App\Choice;
 use App\Player;
+use App\Qualification;
 use App\Question;
 use App\AnswerRecord;
 use Casperlaitw\LaravelFbMessenger\Messages\Text;
@@ -185,7 +186,10 @@ class ChallengeTask extends Task
             return false;
         }
 
-        //TODO: 若無抽獎資格，取得抽獎資格
+        //若無抽獎資格，取得抽獎資格
+        if (!$player->qualification) {
+            $player->qualification()->save(new Qualification());
+        }
 
         //回傳是否剛完成
         return $justFinish;

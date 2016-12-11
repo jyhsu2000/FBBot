@@ -39,10 +39,10 @@
             <div class="row">
                 <div class="col-sm-2 text-sm-right"><span class="tag tag-primary">抽獎</span></div>
                 <div class="col-sm-10">
-                    {{-- TODO:抽獎資格判定 --}}
-                    @if(false)
+                    {{-- 抽獎資格判定 --}}
+                    @if($player->qualification && $player->qualification->get_at)
                         <span class="text-primary">已抽獎</span>
-                    @elseif(1)
+                    @elseif($player->qualification)
                         @if($player->nid)
                             <span class="text-success">請至攤位參加抽獎</span>
                         @else
