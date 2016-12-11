@@ -110,7 +110,7 @@ class ChallengeTask extends Task
         //記錄選擇答案
         $answerRecord = AnswerRecord::updateOrCreate([
             'player_id' => $player->id,
-            'choice_id' => $choice->id,
+            'time'      => $player->time,
         ], [
             'player_id' => $player->id,
             'choice_id' => $choice->id,
