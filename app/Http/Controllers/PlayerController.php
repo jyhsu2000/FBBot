@@ -67,7 +67,7 @@ class PlayerController extends Controller
         //第幾次挑戰的清單
         $times = array_unique($player->answerRecords->pluck('time')->toArray());
         sort($times);
-        $questions = [];
+        $answerRecords = [];
         if (count($times) <= 0) {
             //無挑戰記錄
             if ($request->has('t')) {
