@@ -54,4 +54,16 @@ class PlayerController extends Controller
 
         return back()->with('global', 'NID綁定已解除');
     }
+
+    public function showByUuid($uuid)
+    {
+        $player = Player::where('uuid', $uuid)->first();
+        if (!$player) {
+            abort(404);
+        }
+        //TODO: 顯示玩家資訊
+        dd($player);
+
+        return $uuid;
+    }
 }

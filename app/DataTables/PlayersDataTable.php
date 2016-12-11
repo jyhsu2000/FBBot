@@ -21,8 +21,14 @@ class PlayersDataTable extends DataTable
                     return '';
                 }
                 $html = '';
+                if ($player->uuid) {
+                    $html .= '<a href="' . route('player.showByUuid', $player->uuid) . '" ';
+                    $html .= 'class="btn btn-primary" title="玩家資訊" target="_blank">';
+                    $html .= '<i class="fa fa-user" aria-hidden="true"></i>';
+                    $html .= '</a>';
+                }
                 $html .= '<form action="' . route('player.unbind', $player) . '" method="POST"';
-                $html .= ' onsubmit="return confirm(\'確定解除NID綁定？\')">';
+                $html .= ' onsubmit="return confirm(\'確定解除NID綁定？\')" style="display: inline">';
                 $html .= '<input type="hidden" name="_token" id="csrf-token" value="' . csrf_token() . '" />';
                 $html .= '<button type="submit" class="btn btn-danger" title="解除NID綁定">';
                 $html .= '<i class="fa fa-chain-broken" aria-hidden="true"></i>';
@@ -55,7 +61,7 @@ class PlayersDataTable extends DataTable
     {
         return $this->builder()
             ->columns($this->getColumns())
-            ->addAction(['width' => '80px'])
+            ->addAction(['width' => '100px'])
             ->ajax('')
             ->parameters($this->getBuilderParameters())
             ->parameters([

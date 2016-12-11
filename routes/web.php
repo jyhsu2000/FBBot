@@ -21,6 +21,9 @@ Route::get('privacy', function () {
 Route::get('terms', function () {
     return view('static.terms');
 })->name('terms');
+//玩家資訊
+Route::get('player/{uuid}', 'PlayerController@showByUuid')->name('player.showByUuid')
+    ->where('uuid', "[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}");
 
 //會員（須完成信箱驗證）
 Route::group(['middleware' => ['auth', 'email']], function () {

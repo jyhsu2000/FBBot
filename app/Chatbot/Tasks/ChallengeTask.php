@@ -33,8 +33,8 @@ class ChallengeTask extends Task
         $nidButtonText = '📲' . ($player->nid ? 'NID：' . $player->nid : '綁定NID');
         //根據遊玩情況，決定顯示開始挑戰還是繼續挑戰
         $startButtonText = '🎮' . ($player->answerRecords->count() <= 0 ? '開始' : '繼續') . '挑戰';
-        //TODO: 根據玩家，連到該玩家對應網址
-        $playerUrl = 'https://fbbot.kid7.club/';
+        //根據玩家，連到該玩家對應網址
+        $playerUrl = route('player.showByUuid', $player->uuid);
         $generic = new GenericTemplate($receiveMessage->getSender());
         $generic->addElement('資安大挑戰', '想做什麼呢？', $smallBlackHat)
             ->buttons()
