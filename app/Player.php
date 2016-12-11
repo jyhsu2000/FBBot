@@ -43,7 +43,6 @@ class Player extends Model
         'state',
     ];
 
-
     public function answerRecords()
     {
         return $this->hasMany(AnswerRecord::class);
