@@ -56,6 +56,8 @@ class NidTask extends Task
         $handler->send($text);
         //清除輸入中的狀態
         $player->update(['state' => '']);
+        //顯示資安大挑戰選單
+        app(ChallengeTask::class)->showMenu($handler, $receiveMessage);
     }
 
     /**

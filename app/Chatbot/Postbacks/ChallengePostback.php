@@ -39,6 +39,8 @@ class ChallengePostback extends Postback
             $player->update(['state' => '']);
             $text = new Text($sender, '已取消輸入');
             $handler->send($text);
+            //顯示資安大挑戰選單
+            app(ChallengeTask::class)->showMenu($handler, $receiveMessage);
 
             return;
         } elseif ($action == 'ANSWER') {
