@@ -16,6 +16,7 @@ use ShiftOneLabs\LaravelCascadeDeletes\CascadesDeletes;
  * @property string $wrong_message
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
+ * @property \Carbon\Carbon $deleted_at
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Choice[] $choices
  * @method static \Illuminate\Database\Query\Builder|\App\Question whereId($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Question whereOrder($value)
@@ -24,6 +25,7 @@ use ShiftOneLabs\LaravelCascadeDeletes\CascadesDeletes;
  * @method static \Illuminate\Database\Query\Builder|\App\Question whereWrongMessage($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Question whereCreatedAt($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Question whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Question whereDeletedAt($value)
  * @mixin \Eloquent
  */
 class Question extends Model

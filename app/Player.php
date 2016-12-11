@@ -16,6 +16,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $state
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\AnswerRecord[] $answerRecords
  * @method static \Illuminate\Database\Query\Builder|\App\Player whereId($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Player whereAppUid($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Player whereUid($value)

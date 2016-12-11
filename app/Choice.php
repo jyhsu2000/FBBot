@@ -24,6 +24,9 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @method static \Illuminate\Database\Query\Builder|\App\Choice whereCreatedAt($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Choice whereUpdatedAt($value)
  * @mixin \Eloquent
+ * @property string $deleted_at
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\AnswerRecord[] $answerRecords
+ * @method static \Illuminate\Database\Query\Builder|\App\Choice whereDeletedAt($value)
  */
 class Choice extends Model
 {
