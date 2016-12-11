@@ -4,9 +4,9 @@ namespace App\Chatbot\Tasks;
 
 use App\Choice;
 use App\Player;
-use App\Qualification;
 use App\Question;
 use App\AnswerRecord;
+use App\Qualification;
 use Casperlaitw\LaravelFbMessenger\Messages\Text;
 use App\Chatbot\PostbackHandlers\DefaultPostbackHandler;
 use Casperlaitw\LaravelFbMessenger\Contracts\BaseHandler;
