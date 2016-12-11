@@ -32,6 +32,7 @@ $factory->define(App\Player::class, function (Faker\Generator $faker) {
     return [
         'app_uid' => $faker->unique()->randomNumber,
         'nid'     => $faker->optional()->regexify('[DEPMV]{1}[0-9]{7}'),
+        'uuid'     => $faker->uuid,
     ];
 });
 
