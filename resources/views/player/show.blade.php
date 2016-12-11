@@ -68,9 +68,12 @@
                 @foreach($times as $time)
                     <a href="{{ route('player.showByUuid', [$player->uuid, 't' => $time]) }}"
                        class="btn btn-secondary @if($time == $chooseTime) disabled @endif">
-                        <i class="fa fa-list-ol" aria-hidden="true"></i> {{ $time }}
+                        <i class="fa fa-list-ol" aria-hidden="true"></i> 第{{ $time+1 }}次
                     </a>
                 @endforeach
+            </div>
+            <div class="card-block">
+                答對題數：{{ $count['correct'] }}/{{ $count['total'] }}（{{ $count['percent'] }}%）
             </div>
         @endif
     </div>

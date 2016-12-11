@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\AnswerRecord;
+use NumberFormatter;
 use Route;
 use App\Choice;
 use App\Player;
@@ -83,10 +85,15 @@ class PlayerController extends Controller
                 return redirect()->route(Route::getCurrentRoute()->getName(), $player->uuid);
             }
             //該次挑戰的所有作答記錄
+            /* @var \Illuminate\Database\Eloquent\Collection|AnswerRecord[] $answerRecords */
             $answerRecords = $player->answerRecords()->where('time', $chooseTime)->get();
             $answerRecords->load('choice.question.choices');
+            //計算答對率
+            $count['total'] = $answerRecords->count();
+            $count['correct'] = $answerRecords->where('is_correct', true)->count();
+            $count['percent'] = number_format($count['correct'] / $count['total'] * 100, 2);
         }
 
-        return view('player.show', compact(['player', 'times', 'chooseTime', 'answerRecords']));
+        return view('player.show', compact(['player', 'times', 'chooseTime', 'answerRecords', 'count']));
     }
 }
