@@ -19,6 +19,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\AnswerRecord[] $answerRecords
+ * @property-read Qualification|null $qualification
  * @method static \Illuminate\Database\Query\Builder|\App\Player whereId($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Player whereAppUid($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Player whereUid($value)
@@ -93,5 +94,13 @@ class Player extends Model
         $question = Question::whereNotIn('id', $questionIds)->orderBy('order')->orderBy('id')->first();
 
         return $question;
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function qualification()
+    {
+        return $this->hasOne(Qualification::class);
     }
 }
