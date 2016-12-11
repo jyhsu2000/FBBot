@@ -41,7 +41,7 @@
                 <div class="col-sm-10">
                     {{-- 抽獎資格判定 --}}
                     @if($player->qualification && $player->qualification->get_at)
-                        <span class="text-primary">已抽獎</span>
+                        <span class="text-primary">已抽獎 （{{ $player->qualification->get_at }}）</span>
                     @elseif($player->qualification)
                         @if($player->nid)
                             <span class="text-success">請至攤位參加抽獎</span>
