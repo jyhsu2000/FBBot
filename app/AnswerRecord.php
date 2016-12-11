@@ -15,6 +15,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property \Carbon\Carbon $updated_at
  * @property-read \App\Player $player
  * @property-read \App\Choice $choice
+ * @property-read bool $is_correct
  * @method static \Illuminate\Database\Query\Builder|\App\AnswerRecord whereId($value)
  * @method static \Illuminate\Database\Query\Builder|\App\AnswerRecord wherePlayerId($value)
  * @method static \Illuminate\Database\Query\Builder|\App\AnswerRecord whereChoiceId($value)
