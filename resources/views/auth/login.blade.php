@@ -8,6 +8,13 @@
             Login
         </div>
         <div class="card-block">
+            <div class="alert alert-danger">
+                一般使用者是不用註冊或登入的唷～<br/>
+                回到首頁，直接按下「GO!」按鈕即可開始挑戰<br/>
+                {{ link_to_route('index', '按此返回首頁') }}
+            </div>
+        </div>
+        <div class="card-block">
             <form role="form" method="POST" action="{{ route('login') }}">
                 {{ csrf_field() }}
 
