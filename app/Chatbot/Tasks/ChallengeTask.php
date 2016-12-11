@@ -30,15 +30,17 @@ class ChallengeTask extends Task
         $smallBlackHat = 'http://i.imgur.com/qArK6MG.png';
 
         //NID
-        $nidItem = '📲' . ($player->nid ? 'NID：' . $player->nid : '綁定NID');
+        $nidButtonText = '📲' . ($player->nid ? 'NID：' . $player->nid : '綁定NID');
+        //根據遊玩情況，決定顯示開始挑戰還是繼續挑戰
+        $startButtonText = '🎮' . ($player->answerRecords->count() > 0 ? '開始' : '繼續') . '挑戰';
+        //TODO: 根據玩家，連到該玩家對應網址
+        $playerUrl = 'https://fbbot.kid7.club/';
         $generic = new GenericTemplate($receiveMessage->getSender());
         $generic->addElement('資安大挑戰', '想做什麼呢？', $smallBlackHat)
             ->buttons()
-            ->addPostBackButton($nidItem, 'CHALLENGE ' . json_encode(['action' => 'BIND_NID']))
-            //TODO: 根據遊玩情況，決定顯示開始挑戰還是繼續挑戰
-            ->addPostBackButton('🎮開始挑戰', 'CHALLENGE ' . json_encode(['action' => 'START']))
-            //TODO: 根據玩家，連到對應網址
-            ->addWebButton('👀查看進度＆記錄', 'https://fbbot.kid7.club/');
+            ->addPostBackButton($nidButtonText, 'CHALLENGE ' . json_encode(['action' => 'BIND_NID']))
+            ->addPostBackButton($startButtonText, 'CHALLENGE ' . json_encode(['action' => 'START']))
+            ->addWebButton('👀查看進度＆記錄', $playerUrl);
         $handler->send($generic);
     }
 
