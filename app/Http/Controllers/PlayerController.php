@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use Route;
 use App\Choice;
 use App\Player;
 use App\Question;
 use App\Services\LogService;
 use Illuminate\Http\Request;
 use App\DataTables\PlayersDataTable;
-use Route;
 
 class PlayerController extends Controller
 {
@@ -86,7 +86,6 @@ class PlayerController extends Controller
             $answerRecords = $player->answerRecords()->where('time', $chooseTime)->get();
             $answerRecords->load('choice.question.choices');
         }
-
 
         return view('player.show', compact(['player', 'times', 'chooseTime', 'answerRecords']));
     }
