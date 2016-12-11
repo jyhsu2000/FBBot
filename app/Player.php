@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Webpatser\Uuid\Uuid;
 
 /**
  * App\Player
@@ -14,6 +15,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $in_question
  * @property int $time
  * @property string $state
+ * @property string $uuid
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\AnswerRecord[] $answerRecords
@@ -24,6 +26,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Query\Builder|\App\Player whereInQuestion($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Player whereTime($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Player whereState($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Player whereUuid($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Player whereCreatedAt($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Player whereUpdatedAt($value)
  * @mixin \Eloquent
@@ -42,6 +45,7 @@ class Player extends Model
         'in_question',
         'time',
         'state',
+        'uuid',
     ];
 
     public function answerRecords()
@@ -61,7 +65,11 @@ class Player extends Model
         if (!$player) {
             $player = self::create([
                 'app_uid' => $senderId,
+                'uuid'    => Uuid::generate(),
             ]);
+        }
+        if (!$player->uuid) {
+            $player->update(['uuid' => Uuid::generate()]);
         }
 
         return $player;

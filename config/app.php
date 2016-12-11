@@ -239,6 +239,7 @@ return [
         'Entrust'      => Klaravel\Ntrust\NtrustFacade::class,
         'Throttle'     => GrahamCampbell\Throttle\Facades\Throttle::class,
         'Menu'         => Lavary\Menu\Facade::class,
+        'Uuid'         => Webpatser\Uuid\Uuid::class,
     ],
 
 ];
