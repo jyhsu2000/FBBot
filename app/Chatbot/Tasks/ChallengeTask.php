@@ -61,10 +61,20 @@ class ChallengeTask extends Task
 
             return;
         }
-        //TODO: 找出題目（本次作答中，尚未完成的第一題）
-        $question = Question::first();
+        //找出題目（本次作答中，尚未完成的第一題）
+        $player->load('answerRecords.choice');
+        //本次挑戰的所有作答記錄
+        $answerRecordsOfThisTime = $player->answerRecords()->where('time', $player->time)->get();
+        //作答記錄對應的所有選項
+        $choiceIds = $answerRecordsOfThisTime->pluck('choice_id');
+        //選項對應的所有題目
+        $questionIds = Choice::whereIn('id', $choiceIds)->pluck('question_id');
+        $question = Question::whereNotIn('id', $questionIds)->orderBy('order')->orderBy('id')->first();
 
         //TODO: 若皆已完成，觸發檢查進度，並選擇第一題（通常不會發生）
+        if (!$question) {
+            $question = Question::orderBy('order')->orderBy('id')->first();
+        }
 
         //記錄作答中題號
         $player->update(['in_question' => $question->id]);
@@ -110,14 +120,26 @@ class ChallengeTask extends Task
             return;
         }
         //記錄選擇答案
-        $answerRecord = AnswerRecord::updateOrCreate([
-            'player_id' => $player->id,
-            'time'      => $player->time,
-        ], [
-            'player_id' => $player->id,
-            'choice_id' => $choice->id,
-            'time'      => $player->time,
-        ]);
+        $choiceIdsOfThisQuestion = $question->choices->pluck('id');
+        //嘗試取得該次挑戰對同一題的答案
+        $answerRecord = AnswerRecord::where('player_id', $player->id)
+            ->where('time', $player->time)
+            ->whereIn('choice_id', $choiceIdsOfThisQuestion)
+            ->first();
+        //若以作答過該題
+        if ($answerRecord) {
+            //更新記錄
+            $answerRecord->update([
+                'choice_id' => $choice->id,
+            ]);
+        } else {
+            //新增記錄
+            $answerRecord = AnswerRecord::create([
+                'player_id' => $player->id,
+                'choice_id' => $choice->id,
+                'time'      => $player->time,
+            ]);
+        }
 
         //清除作答中的題號
         $player->update(['in_question' => null]);
