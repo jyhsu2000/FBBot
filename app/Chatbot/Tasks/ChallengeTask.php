@@ -61,15 +61,8 @@ class ChallengeTask extends Task
 
             return;
         }
-        //找出題目（本次作答中，尚未完成的第一題）
-        $player->load('answerRecords.choice');
-        //本次挑戰的所有作答記錄
-        $answerRecordsOfThisTime = $player->answerRecords()->where('time', $player->time)->get();
-        //作答記錄對應的所有選項
-        $choiceIds = $answerRecordsOfThisTime->pluck('choice_id');
-        //選項對應的所有題目
-        $questionIds = Choice::whereIn('id', $choiceIds)->pluck('question_id');
-        $question = Question::whereNotIn('id', $questionIds)->orderBy('order')->orderBy('id')->first();
+        //找出題目（本次挑戰中，尚未完成的第一題）
+        $question = $player->findNextQuestion();
 
         //TODO: 若皆已完成，觸發檢查進度，並選擇第一題（通常不會發生）
         if (!$question) {
@@ -126,7 +119,7 @@ class ChallengeTask extends Task
             ->where('time', $player->time)
             ->whereIn('choice_id', $choiceIdsOfThisQuestion)
             ->first();
-        //若以作答過該題
+        //若已作答過該題（不該發生）
         if ($answerRecord) {
             //更新記錄
             $answerRecord->update([
@@ -158,8 +151,8 @@ class ChallengeTask extends Task
             return;
         }
 
-        //TODO: 若未完成，觸發顯示題目
-        $handler->send(new Text($sender, 'TODO'));
+        //若未完成，觸發顯示題目
+        $this->showQuestion($handler, $receiveMessage);
     }
 
     /**
@@ -174,13 +167,15 @@ class ChallengeTask extends Task
         //取得玩家
         $sender = $receiveMessage->getSender();
         $player = Player::findOrCreate($sender);
-        //原完成次數
-        $originalTime = $player->time;
-        //TODO: 若剛完成最後一次（當前完成次數之作答記錄，已具有所有題目之作答）
-        $justFinish = false;
+        //若剛完成最後一次（當前完成次數之作答記錄，已具有所有題目之作答）
+        //找出題目（本次挑戰中，尚未完成的第一題）
+        $question = $player->findNextQuestion();
+        //若找不到，表示已完成該次挑戰
+        $justFinish = ($question == null);
         if ($justFinish) {
             //遞增完成次數
             $player->increment('time');
+            $handler->send(new Text($sender, 'TODO: 剛完成一次挑戰'));
         }
 
         //若完成次數為零，直接結束

@@ -66,4 +66,24 @@ class Player extends Model
 
         return $player;
     }
+
+    /**
+     * 找出本次挑戰中，尚未做答的第一題
+     * 若回傳為空，表示已完成該次挑戰
+     *
+     * @return Question|null;
+     */
+    public function findNextQuestion()
+    {
+        $this->load('answerRecords.choice');
+        //本次挑戰的所有作答記錄
+        $answerRecordsOfThisTime = $this->answerRecords()->where('time', $this->time)->get();
+        //作答記錄對應的所有選項
+        $choiceIds = $answerRecordsOfThisTime->pluck('choice_id');
+        //選項對應的所有題目
+        $questionIds = Choice::whereIn('id', $choiceIds)->pluck('question_id');
+        $question = Question::whereNotIn('id', $questionIds)->orderBy('order')->orderBy('id')->first();
+
+        return $question;
+    }
 }
