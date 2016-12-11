@@ -44,4 +44,9 @@ class Choice extends Model
     {
         return $this->belongsTo(Question::class);
     }
+
+    public function answerRecords()
+    {
+        return $this->hasMany(AnswerRecord::class);
+    }
 }
