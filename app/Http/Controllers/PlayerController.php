@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Choice;
 use App\Player;
+use App\Question;
 use App\Services\LogService;
 use Illuminate\Http\Request;
 use App\DataTables\PlayersDataTable;
+use Route;
 
 class PlayerController extends Controller
 {
@@ -55,15 +58,36 @@ class PlayerController extends Controller
         return back()->with('global', 'NID綁定已解除');
     }
 
-    public function showByUuid($uuid)
+    public function showByUuid(Request $request, $uuid)
     {
         $player = Player::where('uuid', $uuid)->first();
         if (!$player) {
             abort(404);
         }
-        //TODO: 顯示玩家資訊
-        dd($player);
+        //第幾次挑戰的清單
+        $times = array_unique($player->answerRecords->pluck('time')->toArray());
+        sort($times);
+        $questions = [];
+        if (count($times) <= 0) {
+            //無挑戰記錄
+            if ($request->has('t')) {
+                //直接清除t參數
+                return redirect()->route(Route::getCurrentRoute()->getName(), $player->uuid);
+            }
+        } else {
+            //選擇的挑戰次數
+            $chooseTime = $request->get('t', min($times));
+            //若選擇無效
+            if (!in_array($chooseTime, $times)) {
+                //清除t參數
+                return redirect()->route(Route::getCurrentRoute()->getName(), $player->uuid);
+            }
+            //該次挑戰的所有作答記錄
+            $answerRecords = $player->answerRecords()->where('time', $chooseTime)->get();
+            $answerRecords->load('choice.question.choices');
+        }
 
-        return $uuid;
+
+        return view('player.show', compact(['player', 'times', 'chooseTime', 'answerRecords']));
     }
 }
