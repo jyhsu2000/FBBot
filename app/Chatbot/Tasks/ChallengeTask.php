@@ -110,8 +110,22 @@ class ChallengeTask extends Task
 
         //清除作答中的題號
         $player->update(['in_question' => null]);
+        //檢查進度
+        $justFinish = $this->checkProgress($handler, $receiveMessage);
+        //若剛完成，顯示提示訊息
+        if ($justFinish) {
+            //顯示提示訊息
+            $message = '恭喜完成挑戰' . PHP_EOL;
+            $message .= '可於活動當天攜帶學生證或職員證至單位參加抽獎' . PHP_EOL;
+            if (!$player->nid) {
+                $message .= '（您未完成NID綁定，若是本校學生，完成綁定後即可參加抽獎）' . PHP_EOL;
+            }
+            $handler->send(new Text($sender, $message));
+
+            return;
+        }
+
         //TODO: 若未完成，觸發顯示題目
-        //TODO: 若已完成，觸發檢查進度
         $handler->send(new Text($sender, 'TODO'));
     }
 
@@ -120,10 +134,23 @@ class ChallengeTask extends Task
      *
      * @param BaseHandler $handler
      * @param ReceiveMessage $receiveMessage
+     * @return bool 是否剛完成（早已完成者不算）
      */
     public function checkProgress(BaseHandler $handler, ReceiveMessage $receiveMessage)
     {
-        //TODO: 若無抽獎資格，取得抽獎資格
+        //取得玩家
+        $sender = $receiveMessage->getSender();
+        $player = Player::findOrCreate($sender);
+        //TODO: 若剛完成最後一次
         //TODO: 遞增完成次數
+
+        //若完成次數為零，直接結束
+        if ($player->time <= 0) {
+            return false;
+        }
+
+        //TODO: 若無抽獎資格，取得抽獎資格
+
+        return false;
     }
 }
