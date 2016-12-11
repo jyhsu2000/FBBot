@@ -8,25 +8,23 @@
             玩家資訊
         </div>
         <div class="card-block" style="font-size: 1.5em">
-            <table>
-                <tbody>
-                <tr>
-                    <td class="text-sm-right"><span class="tag tag-primary">NID</span></td>
-                    <td>
+                <div class="row">
+                    <div class="col-sm-2 text-sm-right"><span class="tag tag-primary">NID</span></div>
+                    <div class="col-sm-10">
                         @if($player->nid)
                             {{ substr_replace($player->nid, '▒', -1) }}
                         @else
                             尚未綁定
                         @endif
-                    </td>
-                </tr>
-                <tr>
-                    <td class="text-sm-right"><span class="tag tag-primary">完成次數</span></td>
-                    <td>{{ $player->time }}</td>
-                </tr>
-                <tr>
-                    <td class="text-sm-right"><span class="tag tag-primary">抽獎</span></td>
-                    <td>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-2 text-sm-right"><span class="tag tag-primary">完成次數</span></div>
+                    <div class="col-sm-10">{{ $player->time }}</div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-2 text-sm-right"><span class="tag tag-primary">抽獎</span></div>
+                    <div class="col-sm-10">
                         {{-- TODO:抽獎資格判定 --}}
                         @if(false)
                             <span class="text-primary">已抽獎</span>
@@ -39,10 +37,8 @@
                         @else
                             <span class="text-danger">未取得抽獎資格</span>
                         @endif
-                    </td>
-                </tr>
-                </tbody>
-            </table>
+                    </div>
+                </div>
         </div>
     </div>
     <div class="card">
@@ -83,7 +79,7 @@
                         @endif
                             ">
                             @if($choice->is_correct)
-                                <i class="fa fa-check float-sm-right text-success" aria-hidden="true"></i>
+                                <i class="fa fa-check float-xs-right text-success" aria-hidden="true"></i>
                             @endif
                             {{ $choice->content }}
                         </li>
