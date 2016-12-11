@@ -154,6 +154,7 @@ class ChallengeTask extends Task
             $playerUrl = route('player.showByUuid', $player->uuid);
             $button = new ButtonTemplate($sender, $message);
             $button->addWebButton('👀查看進度＆記錄', $playerUrl);
+            $handler->send($button);
 
             return;
         }
