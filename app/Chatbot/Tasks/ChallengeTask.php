@@ -64,10 +64,12 @@ class ChallengeTask extends Task
         //找出題目（本次挑戰中，尚未完成的第一題）
         $question = $player->findNextQuestion();
 
-        //若皆已完成，觸發檢查進度，並選擇第一題（通常不會發生）
+        //若皆已完成，觸發檢查進度，並重新選擇題目（通常不會發生）
         if (!$question) {
+            //檢查進度
             $this->checkProgress($handler, $receiveMessage);
-            $question = Question::orderBy('order')->orderBy('id')->first();
+            //重新選擇題目，若依然沒有，就選擇第一題（不該發生）
+            $question = $player->findNextQuestion() ?: Question::orderBy('order')->orderBy('id')->first();
         }
 
         //記錄作答中題號
