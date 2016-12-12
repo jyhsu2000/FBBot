@@ -80,6 +80,10 @@ Route::group(['middleware' => ['auth', 'email']], function () {
         Route::post('choice/sort', 'ChoiceController@sort')->name('choice.sort');
         Route::resource('choice', 'ChoiceController');
     });
+    //抽獎資格
+    Route::group(['middleware' => 'permission:qualification.manage'], function () {
+        Route::resource('qualification', 'QualificationController');
+    });
     //玩家
     //權限：player.manage
     Route::group(['middleware' => 'permission:player.manage'], function () {

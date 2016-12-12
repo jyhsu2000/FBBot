@@ -47,6 +47,10 @@ class LaravelMenu
                         $isweekMenu->add('玩家管理', ['route' => 'player.index'])->active('player/*');
                     }
 
+                    if (Entrust::can('qualification.manage')) {
+                        $isweekMenu->add('抽獎資格', ['route' => 'qualification.index'])->active('qualification/*');
+                    }
+
                     /** @var \Lavary\Menu\Builder $adminMenu */
                     $adminMenu = $menu->add('管理選單', 'javascript:void(0)');
 
