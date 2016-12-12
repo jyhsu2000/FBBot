@@ -22,6 +22,7 @@ require('vue-resource');
 
 window.Sortable = require('vue-sortable');
 Vue.use(Sortable);
+window.Focus = require('vue-focus');
 
 /**
  * We'll register a HTTP interceptor to attach the "CSRF" header to each of
