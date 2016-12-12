@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\DataTables\QualificationDataTable;
 use App\Qualification;
 use Illuminate\Http\Request;
+use App\DataTables\QualificationDataTable;
 
 class QualificationController extends Controller
 {
