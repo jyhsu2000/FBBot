@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\DataTables\QualificationDataTable;
 use App\Qualification;
 use Illuminate\Http\Request;
 
@@ -10,11 +11,12 @@ class QualificationController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @param QualificationDataTable $dataTable
+     * @return \Illuminate\Http\JsonResponse|\Illuminate\View\View
      */
-    public function index()
+    public function index(QualificationDataTable $dataTable)
     {
-        //TODO
+        return $dataTable->render('qualification.index');
     }
 
     /**
