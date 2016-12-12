@@ -30,9 +30,9 @@ $factory->define(App\Quotation::class, function (Faker\Generator $faker) {
 
 $factory->define(App\Player::class, function (Faker\Generator $faker) {
     return [
-        'app_uid'  => $faker->unique()->randomNumber,
-        'nid'      => $faker->optional()->regexify('[DEPMV]{1}[0-9]{7}'),
-        'uuid'     => $faker->uuid,
+        'app_uid' => $faker->unique()->randomNumber,
+        'nid'     => $faker->optional()->regexify('[DEPMV]{1}[0-9]{7}'),
+        'uuid'    => $faker->uuid,
     ];
 });
 
@@ -43,9 +43,18 @@ $factory->define(App\Question::class, function (Faker\Generator $faker) {
         'wrong_message'   => $faker->optional()->sentence,
     ];
 });
+
 $factory->define(App\Choice::class, function (Faker\Generator $faker) {
     return [
         'content'    => $faker->sentence,
         'is_correct' => $faker->boolean,
+    ];
+});
+
+$factory->define(App\Qualification::class, function (Faker\Generator $faker) {
+    return [
+        'player_id'  => $faker->randomElement(App\Player::pluck('id')->toArray()),
+        'get_at'     => $faker->optional()->dateTimeBetween('-2 days'),
+        'created_at' => $faker->dateTimeBetween('-10 days', '-2 days'),
     ];
 });
