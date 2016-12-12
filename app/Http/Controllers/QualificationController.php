@@ -84,4 +84,9 @@ class QualificationController extends Controller
     {
         //TODO
     }
+
+    public function panel()
+    {
+        return view('qualification.panel');
+    }
 }
