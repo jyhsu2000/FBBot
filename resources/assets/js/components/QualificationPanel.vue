@@ -7,7 +7,7 @@
     <div class="card">
         <div class="card-header">
             輸入NID
-            <label class="custom-control custom-checkbox">
+            <label class="custom-control custom-checkbox" style="margin: 0">
                 <input type="checkbox" class="custom-control-input" v-model="autoFocus">
                 <span class="custom-control-indicator"></span>
                 <span class="custom-control-description">Auto Focus</span>
