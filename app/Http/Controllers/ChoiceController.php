@@ -70,7 +70,7 @@ class ChoiceController extends Controller
     public function update(Request $request, Choice $choice)
     {
         $validator = \Validator::make($request->all(), [
-            'content' => 'required|max:255',
+            'content' => 'required|max:20',
         ]);
         if ($validator->fails()) {
             return response()->json([
