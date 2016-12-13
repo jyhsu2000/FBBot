@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Player;
-use App\Qualification;
 use Carbon\Carbon;
+use App\Qualification;
 use Illuminate\Http\Request;
 use App\DataTables\QualificationDataTable;
 
@@ -144,7 +144,7 @@ class QualificationController extends Controller
 
         return response()->json([
             'success' => true,
-            'player' => [
+            'player'  => [
                 'nid'           => $player->nid,
                 'qualification' => $player->qualification,
             ],
