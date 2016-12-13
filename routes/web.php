@@ -83,6 +83,8 @@ Route::group(['middleware' => ['auth', 'email']], function () {
     //抽獎資格
     Route::group(['middleware' => 'permission:qualification.manage'], function () {
         Route::get('qualification/panel', 'QualificationController@panel')->name('qualification.panel');
+        Route::post('qualification/find', 'QualificationController@find')->name('qualification.find');
+        Route::post('qualification/grant', 'QualificationController@grant')->name('qualification.grant');
         Route::resource('qualification', 'QualificationController');
     });
     //玩家

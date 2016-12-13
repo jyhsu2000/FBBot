@@ -14,7 +14,7 @@
             </label>
         </div>
         <div class="card-block">
-            <form @submit.prevent="">
+            <form @submit.prevent="findPlayer">
                 <div class="input-group">
                     <input id="nidInput" class="form-control" type="text" required v-model="nidInput"
                            :placeholder="focused ? '掃描學生證條碼 或 輸入NID' : '請點擊此處'"
@@ -29,6 +29,34 @@
             </form>
         </div>
     </div>
+    <div class="card">
+        <div class="card-header">
+            玩家
+        </div>
+        <div class="card-block text-sm-center" v-if="nid">
+            <span class="text-danger" style="font-size: 50px" v-if="!player">找不到玩家：{{ nid }}</span>
+            <template v-else>
+                <span class="text-primary" style="font-size: 50px">玩家：{{ nid }}</span><br/>
+                <div style="font-size: 30px">
+                    <template v-if="player.qualification">
+                        <template v-if="player.qualification.get_at">
+                            <span class="text-primary">已抽獎 （{{ player.qualification.get_at }}）</span>
+                        </template>
+                        <template v-else>
+                            <span class="text-success">已取得抽獎資格</span><br/>
+                            <button class="btn btn-success" style="font-size: 50px" @click="grant">
+                                <i class="fa fa-check-square-o" aria-hidden="true"></i> 標記為已抽獎
+                            </button>
+                        </template>
+                    </template>
+                    <template v-else>
+                        <span class="text-danger">未取得抽獎資格</span>
+                    </template>
+                </div>
+                {{ player|json }}
+            </template>
+        </div>
+    </div>
 </template>
 <script>
     export default {
@@ -39,7 +67,9 @@
             return {
                 nidInput: '',
                 autoFocus: true,
-                focused: true
+                focused: true,
+                nid: '',
+                player: {}
             }
         },
         props: [
@@ -47,7 +77,7 @@
         ],
         watch: {
             autoFocus: function (val, oldVal) {
-                if(val){
+                if (val) {
                     $('#nidInput').focus()
                 }
             }
@@ -58,6 +88,51 @@
                 if (this.autoFocus) {
                     $('#nidInput').focus()
                 }
+            },
+            findPlayer: function () {
+                var input = $.trim(this.nidInput);
+                this.nidInput = '';
+                //檢查輸入
+                if (input.length == 0) {
+                    return;
+                }
+                //發送請求
+                this.$http.post(this.api + '/find', {
+                    nid: input
+                }).then(function (response) {
+                    var json = response.json();
+                    this.nid = json.nid;
+                    this.player = json.player;
+                }, function (response) {
+                    console.log('Error: ');
+                    console.log(response);
+                    //顯示通知
+                    alertify.notify('發生錯誤', 'warning', 5);
+                });
+            },
+            grant: function () {
+                var nid = this.nid;
+                //檢查輸入
+                if (nid.length == 0) {
+                    return;
+                }
+                //發送請求
+                this.$http.post(this.api + '/grant', {
+                    nid: nid
+                }).then(function (response) {
+                    var json = response.json();
+                    if (json.success != true) {
+                        alertify.notify('無法標記為已抽獎<br/>' + json.errorMessage, 'warning', 5);
+                        return;
+                    }
+                    alertify.notify('已標記為已抽獎', 'success', 5);
+                    this.findPlayer();
+                }, function (response) {
+                    console.log('Error: ');
+                    console.log(response);
+                    //顯示通知
+                    alertify.notify('發生錯誤', 'warning', 5);
+                });
             }
         }
     }
