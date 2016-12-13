@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Player;
-use App\Qualification;
 use Carbon\Carbon;
+use App\Qualification;
 use Illuminate\Http\Request;
 use App\DataTables\QualificationDataTable;
 
