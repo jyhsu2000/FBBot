@@ -35,6 +35,9 @@ class LaravelMenu
                 }
                 //管理員
                 if (Entrust::can('menu.view') and auth()->user()->isConfirmed) {
+                    if (Entrust::can('qualification.manage')) {
+                        $menu->add('抽獎面板', ['route' => 'qualification.panel']);
+                    }
                     /** @var \Lavary\Menu\Builder $isweekMenu */
                     $isweekMenu = $menu->add('資安週管理', 'javascript:void(0)');
                     if (Entrust::can('quotation.manage')) {
