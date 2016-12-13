@@ -2522,16 +2522,16 @@
         },
         {
             "name": "recca0120/laravel-tracy",
-            "version": "v1.7.12",
+            "version": "v1.7.13",
             "source": {
                 "type": "git",
                 "url": "https://github.com/recca0120/laravel-tracy.git",
-                "reference": "dc79a058b4babae1d5c0f49cd28178d743be9df2"
+                "reference": "304457f01f32982d9f1a468fb1d7bd26de223227"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/recca0120/laravel-tracy/zipball/dc79a058b4babae1d5c0f49cd28178d743be9df2",
-                "reference": "dc79a058b4babae1d5c0f49cd28178d743be9df2",
+                "url": "https://api.github.com/repos/recca0120/laravel-tracy/zipball/304457f01f32982d9f1a468fb1d7bd26de223227",
+                "reference": "304457f01f32982d9f1a468fb1d7bd26de223227",
                 "shasum": ""
             },
             "require": {
@@ -2540,6 +2540,7 @@
                 "illuminate/routing": "~5.1",
                 "illuminate/session": "~5.1",
                 "illuminate/support": "~5.1",
+                "illuminate/view": "~5.1",
                 "php": ">=5.5.9",
                 "recca0120/terminal": "~1.6.3",
                 "tracy/tracy": "^2.4.0"
@@ -2580,7 +2581,7 @@
                 "tracy",
                 "webprofiler"
             ],
-            "time": "2016-12-11 05:32:28"
+            "time": "2016-12-13 06:17:40"
         },
         {
             "name": "recca0120/terminal",
