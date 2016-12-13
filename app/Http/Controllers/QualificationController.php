@@ -31,7 +31,7 @@ class QualificationController extends Controller
         //取得NID
         $nidInput = $request->get('nid');
         $nidInput = strtoupper($nidInput);
-        if (!$nidInput) {
+        if (!$nidInput && $nidInput !== '0') {
             return response()->json(['player' => null]);
         }
         $nid = $nidInput;
