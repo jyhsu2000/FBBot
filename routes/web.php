@@ -85,7 +85,9 @@ Route::group(['middleware' => ['auth', 'email']], function () {
         Route::get('qualification/panel', 'QualificationController@panel')->name('qualification.panel');
         Route::post('qualification/find', 'QualificationController@find')->name('qualification.find');
         Route::post('qualification/grant', 'QualificationController@grant')->name('qualification.grant');
-        Route::resource('qualification', 'QualificationController');
+        Route::resource('qualification', 'QualificationController', [
+            'only' => 'index',
+        ]);
     });
     //玩家
     //權限：player.manage
