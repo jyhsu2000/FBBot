@@ -15,7 +15,7 @@ class CreateQualificationsTable extends Migration
     {
         Schema::create('qualifications', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('player_id');
+            $table->unsignedInteger('player_id')->unique();
             $table->timestamp('get_at')->nullable();
             $table->timestamps();
 
