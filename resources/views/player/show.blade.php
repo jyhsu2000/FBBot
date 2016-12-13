@@ -106,13 +106,13 @@
                 @if($answerRecord->is_correct)
                     @if($answerRecord->choice->question->correct_message)
                         <blockquote class="blockquote">
-                            {{ $answerRecord->choice->question->correct_message }}
+                            {!! nl2br(htmlspecialchars($answerRecord->choice->question->correct_message)) !!}
                         </blockquote>
                     @endif
                 @else
                     @if($answerRecord->choice->question->wrong_message)
                         <blockquote class="blockquote">
-                            {{ $answerRecord->choice->question->wrong_message }}
+                            {!! nl2br(htmlspecialchars($answerRecord->choice->question->wrong_message)) !!}
                         </blockquote>
                     @endif
                 @endif
