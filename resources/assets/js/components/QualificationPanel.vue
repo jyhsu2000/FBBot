@@ -55,6 +55,9 @@
                 </div>
             </template>
         </div>
+        <div class="card-block text-sm-center" style="font-size: 50px" v-else>
+            ﾚ(ﾟ∀ﾟ;)ﾍ　ﾍ( ﾟ∀ﾟ;)ﾉ
+        </div>
     </div>
 </template>
 <script>
