@@ -144,6 +144,10 @@ class QualificationController extends Controller
 
         return response()->json([
             'success' => true,
+            'player' => [
+                'nid'           => $player->nid,
+                'qualification' => $player->qualification,
+            ],
         ]);
     }
 }

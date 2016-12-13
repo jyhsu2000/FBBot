@@ -53,7 +53,6 @@
                         <span class="text-danger">未取得抽獎資格</span>
                     </template>
                 </div>
-                {{ player|json }}
             </template>
         </div>
     </div>
@@ -126,7 +125,7 @@
                         return;
                     }
                     alertify.notify('已標記為已抽獎', 'success', 5);
-                    this.findPlayer();
+                    this.player = json.player;
                 }, function (response) {
                     console.log('Error: ');
                     console.log(response);
