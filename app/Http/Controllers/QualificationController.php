@@ -6,17 +6,17 @@ use App\Player;
 use Carbon\Carbon;
 use App\Qualification;
 use Illuminate\Http\Request;
-use App\DataTables\QualificationDataTable;
+use App\DataTables\QualificationsDataTable;
 
 class QualificationController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @param QualificationDataTable $dataTable
+     * @param QualificationsDataTable $dataTable
      * @return \Illuminate\Http\JsonResponse|\Illuminate\View\View
      */
-    public function index(QualificationDataTable $dataTable)
+    public function index(QualificationsDataTable $dataTable)
     {
         return $dataTable->render('qualification.index');
     }

@@ -5,7 +5,7 @@ namespace App\DataTables;
 use App\Qualification;
 use Yajra\Datatables\Services\DataTable;
 
-class QualificationDataTable extends DataTable
+class QualificationsDataTable extends DataTable
 {
     /**
      * Display ajax response.
@@ -99,6 +99,6 @@ class QualificationDataTable extends DataTable
      */
     protected function filename()
     {
-        return 'qualificationdatatables_' . time();
+        return 'qualifications_' . time();
     }
 }
