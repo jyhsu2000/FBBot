@@ -34,19 +34,28 @@ class NidTask extends Task
     public function input(BaseHandler $handler, ReceiveMessage $receiveMessage)
     {
         $message = $receiveMessage->getMessage();
+        $sender = $receiveMessage->getSender();
         //處理NID
         //檢查NID格式
         if (!preg_match(static::$pattern, $message)) {
-            $text = new Text($receiveMessage->getSender(), 'NID格式有誤，請重新輸入');
+            $text = new Text($sender, 'NID格式有誤，請重新輸入');
             $text->addQuick(new QuickReply('取消輸入', 'CHALLENGE ' . json_encode(['action' => 'CANCEL_BIND_NID'])));
             $handler->send($text);
 
             return;
         }
-        $sender = $receiveMessage->getSender();
         $player = Player::findOrCreate($sender);
+        $nid = strtoupper($message);
+        //檢查NID是否已被綁定
+        if (Player::where('nid', $nid)->count()) {
+            $text = new Text($sender, '此NID已被綁定過，請重新輸入（若認為被冒用，請洽工作人員）');
+            $text->addQuick(new QuickReply('取消輸入', 'CHALLENGE ' . json_encode(['action' => 'CANCEL_BIND_NID'])));
+            $handler->send($text);
+
+            return;
+        }
         //更新NID
-        $player->update(['nid' => strtoupper($message)]);
+        $player->update(['nid' => $nid]);
         //寫入紀錄
         $this->logService->info('[Player][Bind] ' . $player->app_uid . ' 已綁定 ' . $player->nid . PHP_EOL, [
             'player' => $player,
