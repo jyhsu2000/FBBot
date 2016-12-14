@@ -16,7 +16,7 @@ class PlayersDataTable extends DataTable
     {
         return $this->datatables
             ->eloquent($this->query())
-            ->addColumn('action', 'player.action')
+            ->addColumn('action', 'player.datatables.action')
             ->make(true);
     }
 
@@ -41,7 +41,7 @@ class PlayersDataTable extends DataTable
     {
         return $this->builder()
             ->columns($this->getColumns())
-            ->addAction()
+            ->addAction(['title' => '操作'])
             ->ajax('')
             ->parameters($this->getBuilderParameters())
             ->parameters([
@@ -58,35 +58,11 @@ class PlayersDataTable extends DataTable
     protected function getColumns()
     {
         return [
-            [
-                'data'  => 'id',
-                'name'  => 'id',
-                'title' => '#',
-            ],
-            [
-                'data'  => 'nid',
-                'name'  => 'nid',
-                'title' => 'NID',
-            ],
-
-            [
-                'data'  => 'app_uid',
-                'name'  => 'app_uid',
-                'title' => 'App UID',
-            ],
-
-            [
-                'data'  => 'in_question',
-                'name'  => 'in_question',
-                'title' => '正在解題',
-            ],
-
-            [
-                'data'  => 'time',
-                'name'  => 'time',
-                'title' => '完成次數',
-            ],
-
+            'id'          => ['title' => '#'],
+            'nid'         => ['title' => 'NID'],
+            'app_uid'     => ['title' => 'App UID'],
+            'in_question' => ['title' => '正在解題'],
+            'time'        => ['title' => '完成次數'],
         ];
     }
 

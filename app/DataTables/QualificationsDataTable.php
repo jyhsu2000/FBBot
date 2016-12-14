@@ -3,6 +3,7 @@
 namespace App\DataTables;
 
 use App\Qualification;
+use Illuminate\Database\Eloquent\Builder;
 use Yajra\Datatables\Services\DataTable;
 
 class QualificationsDataTable extends DataTable
@@ -16,7 +17,7 @@ class QualificationsDataTable extends DataTable
     {
         return $this->datatables
             ->eloquent($this->query())
-            ->addColumn('action', 'qualification.action')
+            ->addColumn('action', 'qualification.datatables.action')
             ->editColumn('player_id', function (Qualification $qualification) {
                 return $qualification->player->nid;
             })
@@ -38,6 +39,7 @@ class QualificationsDataTable extends DataTable
      */
     public function query()
     {
+        /* @var Builder $query */
         $query = Qualification::with('player');
 
         return $this->applyScopes($query);
@@ -53,7 +55,7 @@ class QualificationsDataTable extends DataTable
         return $this->builder()
             ->columns($this->getColumns())
             ->ajax('')
-            ->addAction(['width' => '80px'])
+            ->addAction(['title' => '操作'])
             ->parameters($this->getBuilderParameters())
             ->parameters([
                 'order'      => [[0, 'desc']],
@@ -69,26 +71,10 @@ class QualificationsDataTable extends DataTable
     protected function getColumns()
     {
         return [
-            [
-                'data'  => 'id',
-                'name'  => 'id',
-                'title' => '#',
-            ],
-            [
-                'data'  => 'player_id',
-                'name'  => 'player_id',
-                'title' => '玩家',
-            ],
-            [
-                'data'  => 'created_at',
-                'name'  => 'created_at',
-                'title' => '取得時間',
-            ],
-            [
-                'data'  => 'get_at',
-                'name'  => 'get_at',
-                'title' => '抽獎時間',
-            ],
+            'id'         => ['title' => '#'],
+            'player_id'  => ['title' => '玩家'],
+            'created_at' => ['title' => '取得時間'],
+            'get_at'     => ['title' => '抽獎時間'],
         ];
     }
 
