@@ -19,6 +19,7 @@ class UsersDataTable extends DataTable
             ->eloquent($this->query())
             ->addColumn('action', 'user.datatables.action')
             ->editColumn('name', 'user.datatables.name')
+            ->editColumn('email', 'user.datatables.email')
             ->make(true);
     }
 
