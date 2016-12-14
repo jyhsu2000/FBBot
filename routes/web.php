@@ -75,10 +75,20 @@ Route::group(['middleware' => ['auth', 'email']], function () {
         Route::get('question/data', 'QuestionController@data')->name('question.data');
         Route::get('question/get/{question}', 'QuestionController@get')->name('question.get');
         Route::post('question/sort', 'QuestionController@sort')->name('question.sort');
-        Route::resource('question', 'QuestionController');
+        Route::resource('question', 'QuestionController', [
+            'except' => [
+                'create',
+                'edit',
+            ],
+        ]);
         Route::post('choice/toggleCorrect/{choice}', 'ChoiceController@toggleCorrect')->name('choice.toggle');
         Route::post('choice/sort', 'ChoiceController@sort')->name('choice.sort');
-        Route::resource('choice', 'ChoiceController');
+        Route::resource('choice', 'ChoiceController', [
+            'only' => [
+                'index',
+                'update',
+            ],
+        ]);
     });
     //抽獎資格
     Route::group(['middleware' => 'permission:qualification.manage'], function () {

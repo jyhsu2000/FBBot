@@ -14,50 +14,7 @@ class ChoiceController extends Controller
      */
     public function index()
     {
-        //TODO
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //TODO
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //TODO
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param Choice $choice
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Choice $choice)
-    {
-        //TODO
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param Choice $choice
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Choice $choice)
-    {
-        //TODO
+        //僅為了讓Vue傳遞網址而存在路由，非實際方法
     }
 
     /**
@@ -89,17 +46,6 @@ class ChoiceController extends Controller
         ];
 
         return response()->json($json);
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param Choice $choice
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Choice $choice)
-    {
-        //TODO
     }
 
     public function toggleCorrect(Request $request, Choice $choice)
