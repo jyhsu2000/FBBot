@@ -2,6 +2,7 @@
 
 namespace App\Chatbot\MessageHandlers;
 
+use App\Keyword;
 use App\Player;
 use App\Chatbot\Tasks\NidTask;
 use App\Chatbot\Commands\CommandKernel;
@@ -45,7 +46,15 @@ class DefaultHandler extends BaseHandler
         if ($runSuccess) {
             return;
         }
+        //檢查對應關鍵字
+        $keyword = Keyword::where('keyword', $message)->first();
+        if ($keyword) {
+            $this->send(new Text($sender, $keyword->reply));
+
+            return;
+        }
+
         //無對應指令
-        $this->send(new Text($receiveMessage->getSender(), '👤：' . $receiveMessage->getMessage()));
+        $this->send(new Text($sender, '👤：' . $receiveMessage->getMessage()));
     }
 }
