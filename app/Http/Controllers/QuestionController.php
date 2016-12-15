@@ -63,8 +63,8 @@ class QuestionController extends Controller
     {
         $validator = \Validator::make($request->all(), [
             'content'         => 'required|max:255',
-            'correct_message' => 'max:255',
-            'wrong_message'   => 'max:255',
+            'correct_message' => 'max:65535',
+            'wrong_message'   => 'max:65535',
         ]);
         if ($validator->fails()) {
             return response()->json([
