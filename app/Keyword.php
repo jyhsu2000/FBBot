@@ -16,6 +16,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Query\Builder|\App\Keyword whereId($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Keyword whereKeyword($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Keyword whereReply($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Keyword whereCounter($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Keyword whereCreatedAt($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Keyword whereUpdatedAt($value)
  * @mixin \Eloquent
