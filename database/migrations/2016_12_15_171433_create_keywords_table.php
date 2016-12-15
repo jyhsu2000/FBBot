@@ -17,6 +17,7 @@ class CreateKeywordsTable extends Migration
             $table->increments('id');
             $table->string('keyword')->unique();
             $table->text('reply');
+            $table->integer('counter')->default(0);
             $table->timestamps();
         });
     }

@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $id
  * @property string $keyword
  * @property string $reply
+ * @property int $counter
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
  * @method static \Illuminate\Database\Query\Builder|\App\Keyword whereId($value)
@@ -24,5 +25,6 @@ class Keyword extends Model
     protected $fillable = [
         'keyword',
         'reply',
+        'counter',
     ];
 }
