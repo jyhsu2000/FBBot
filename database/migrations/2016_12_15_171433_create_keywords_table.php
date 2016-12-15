@@ -16,7 +16,7 @@ class CreateKeywordsTable extends Migration
         Schema::create('keywords', function (Blueprint $table) {
             $table->increments('id');
             $table->string('keyword')->unique();
-            $table->text('reply');
+            $table->string('reply', 320);
             $table->integer('counter')->default(0);
             $table->timestamps();
         });

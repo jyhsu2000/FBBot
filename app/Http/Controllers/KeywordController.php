@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\DataTables\KeywordsDataTable;
+use App\Keyword;
 use Illuminate\Http\Request;
 
 class KeywordController extends Controller
@@ -9,11 +11,12 @@ class KeywordController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @param KeywordsDataTable $dataTable
+     * @return \Illuminate\Http\JsonResponse|\Illuminate\View\View
      */
-    public function index()
+    public function index(KeywordsDataTable $dataTable)
     {
-        //TODO
+        return $dataTable->render('keyword.index');
     }
 
     /**
@@ -29,21 +32,42 @@ class KeywordController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        //TODO
+        $validator = \Validator::make($request->all(), [
+            'keyword' => 'required|unique:keywords|max:255',
+            'reply'   => 'required|max:320',
+        ]);
+        if ($validator->fails()) {
+            return response()->json([
+                'success' => false,
+                'errors'  => $validator->errors(),
+            ]);
+        }
+        //新增語錄
+        $keyword = Keyword::create([
+            'keyword' => $request->get('keyword'),
+            'reply'   => $request->get('reply'),
+        ]);
+        //回傳結果
+        $json = [
+            'success' => true,
+            'keyword' => $keyword->toArray(),
+        ];
+
+        return response()->json($json);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param Keyword $keyword
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Keyword $keyword)
     {
         //TODO
     }
@@ -51,10 +75,10 @@ class KeywordController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param Keyword $keyword
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Keyword $keyword)
     {
         //TODO
     }
@@ -62,11 +86,11 @@ class KeywordController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request $request
+     * @param Keyword $keyword
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Keyword $keyword)
     {
         //TODO
     }
@@ -74,11 +98,13 @@ class KeywordController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param Keyword $keyword
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Keyword $keyword)
     {
-        //TODO
+        $keyword->delete();
+
+        return redirect()->route('keyword.index')->with('global', '關鍵字已刪除');
     }
 }

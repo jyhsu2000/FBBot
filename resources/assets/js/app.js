@@ -19,6 +19,7 @@ Vue.component('question-list', require('./components/QuestionList.vue'));
 Vue.component('question', require('./components/Question.vue'));
 Vue.component('question-choice', require('./components/QuestionChoice.vue'));
 Vue.component('qualification-panel', require('./components/QualificationPanel.vue'));
+Vue.component('keyword-input', require('./components/KeywordInput.vue'));
 
 const app = new Vue({
     el: 'body'
