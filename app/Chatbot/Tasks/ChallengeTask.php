@@ -153,6 +153,9 @@ class ChallengeTask extends Task
 
             $playerUrl = route('player.showByUuid', $player->uuid);
             $button = new ButtonTemplate($sender, $message);
+            if (!$player->nid) {
+                $button->addPostBackButton('📲綁定NID', 'CHALLENGE ' . json_encode(['action' => 'BIND_NID']));
+            }
             $button->addWebButton('👀查看進度＆記錄', $playerUrl);
             $handler->send($button);
 
