@@ -1,4 +1,3 @@
-
 /**
  * First we will load all of this project's JavaScript dependencies which
  * include Vue and Vue Resource. This gives a great starting point for
@@ -23,4 +22,25 @@ Vue.component('qualification-panel', require('./components/QualificationPanel.vu
 
 const app = new Vue({
     el: 'body'
+});
+
+/**
+ * Filters
+ */
+
+Vue.filter('nl2br', function (value) {
+    return value.replace(/\n/g, "<br/>");
+});
+
+
+Vue.filter('escapeHtml', function escapeHtml(text) {
+    var map = {
+        '&': '&amp;',
+        '<': '&lt;',
+        '>': '&gt;',
+        '"': '&quot;',
+        "'": '&#039;'
+    };
+
+    return text.replace(/[&<>"']/g, function(m) { return map[m]; });
 });
