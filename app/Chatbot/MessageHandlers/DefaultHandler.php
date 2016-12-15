@@ -49,6 +49,7 @@ class DefaultHandler extends BaseHandler
         //檢查對應關鍵字
         $keyword = Keyword::where('keyword', $message)->first();
         if ($keyword) {
+            $keyword->increment('counter');
             $this->send(new Text($sender, $keyword->reply));
 
             return;
