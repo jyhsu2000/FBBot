@@ -70,6 +70,11 @@ Route::group(['middleware' => ['auth', 'email']], function () {
             ],
         ]);
     });
+    //關鍵字
+    //權限：keyword.manage
+    Route::group(['middleware' => 'permission:keyword.manage'], function () {
+        Route::resource('keyword', 'KeywordController');
+    });
     //題目
     Route::group(['middleware' => 'permission:question.manage'], function () {
         Route::get('question/data', 'QuestionController@data')->name('question.data');
