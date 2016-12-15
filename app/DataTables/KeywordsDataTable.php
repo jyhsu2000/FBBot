@@ -17,6 +17,9 @@ class KeywordsDataTable extends DataTable
         return $this->datatables
             ->eloquent($this->query())
             ->addColumn('action', 'keyword.datatables.action')
+            ->editColumn('reply', function ($keyword) {
+                return nl2br($keyword->reply);
+            })
             ->make(true);
     }
 
