@@ -58,3 +58,11 @@ $factory->define(App\Qualification::class, function (Faker\Generator $faker) {
         'created_at' => $faker->dateTimeBetween('-10 days', '-2 days'),
     ];
 });
+
+$factory->define(App\AnswerRecord::class, function (Faker\Generator $faker) {
+    return [
+        'player_id' => $faker->randomElement(App\Player::pluck('id')->toArray()),
+        'choice_id' => $faker->randomElement(App\Choice::pluck('id')->toArray()),
+        'time'      => $faker->randomDigit,
+    ];
+});
