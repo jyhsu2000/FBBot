@@ -8,5 +8,6 @@ class AutoReply extends Model
 {
     protected $fillable = [
         'name',
+        'order',
     ];
 }

@@ -16,6 +16,7 @@ class CreateAutoRepliesTable extends Migration
         Schema::create('auto_replies', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
+            $table->integer('order')->default(0);
             $table->timestamps();
         });
     }
