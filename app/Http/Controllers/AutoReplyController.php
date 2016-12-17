@@ -46,7 +46,7 @@ class AutoReplyController extends Controller
         }
         //新增語錄
         $autoReply = AutoReply::create([
-            'name' => $request->get('name'),
+            'name'    => $request->get('name'),
             'order'   => AutoReply::max('order') + 1,
         ]);
         //回傳結果
