@@ -75,6 +75,11 @@ Route::group(['middleware' => ['auth', 'email']], function () {
     Route::group(['middleware' => 'permission:keyword.manage'], function () {
         Route::resource('keyword', 'KeywordController');
     });
+    //自動回覆
+    //權限：autoReply.manage
+    Route::group(['middleware' => 'permission:autoReply.manage'], function () {
+        Route::resource('autoReply', 'AutoReplyController');
+    });
     //題目
     Route::group(['middleware' => 'permission:question.manage'], function () {
         Route::get('question/data', 'QuestionController@data')->name('question.data');
