@@ -20,6 +20,8 @@ Vue.component('question', require('./components/Question.vue'));
 Vue.component('question-choice', require('./components/QuestionChoice.vue'));
 Vue.component('qualification-panel', require('./components/QualificationPanel.vue'));
 Vue.component('keyword-input', require('./components/KeywordInput.vue'));
+Vue.component('auto-reply-panel', require('./components/AutoReplyPanel.vue'));
+Vue.component('auto-reply', require('./components/AutoReply.vue'));
 
 const app = new Vue({
     el: 'body'
