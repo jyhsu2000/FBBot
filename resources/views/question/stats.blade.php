@@ -18,7 +18,7 @@
             <div class="card-block">
                 @foreach($question->choices as $choice)
                     <div class="row">
-                        <div class="col-sm-6">{{ $choice->content }}</div>
+                        <div class="col-sm-6 @if($choice->is_correct) text-primary @endif">{{ $choice->content }}</div>
                         <div class="col-sm-1">×{{ $choiceAnswerRecordCount[$choice->id]['count'] or 0 }}</div>
                         <div class="col-sm-1" style="white-space: nowrap">
                             {{ $choiceAnswerRecordCount[$choice->id]['percent'] or 0 }} %
