@@ -57,13 +57,11 @@
                 if (input.length == 0) {
                     return;
                 }
-                console.log('submit:' + input);
                 //發送請求
                 this.$http.post(this.api, {
                     content: input
                 }).then(function (response) {
                     var json = response.json();
-                    console.log(json);
                     if (json.success != true) {
                         window.errorMessage = '';
                         $.each(json.errors, function (field, item) {
@@ -91,11 +89,9 @@
                 if(!confirm('確定要刪除嗎？')){
                     return;
                 }
-                console.log('destroy: ' + quotation.id);
                 //發送請求
                 this.$http.delete(this.api + '/' + quotation.id).then(function (response) {
                     var json = response.json();
-                    console.log(json);
                     if (json.success != true) {
                         alertify.notify('刪除失敗', 'warning', 5);
                         return;

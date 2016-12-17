@@ -46,7 +46,6 @@
                     reply: reply
                 }).then(function (response) {
                     var json = response.json();
-                    console.log(json);
                     if (json.success != true) {
                         window.errorMessage = '';
                         $.each(json.errors, function (field, item) {
