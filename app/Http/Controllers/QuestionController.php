@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\AnswerRecord;
 use App\Choice;
 use App\Question;
+use DB;
 use Illuminate\Http\Request;
 
 class QuestionController extends Controller
@@ -135,5 +137,25 @@ class QuestionController extends Controller
         ];
 
         return response()->json($json);
+    }
+
+    public function stats()
+    {
+        $questions = Question::with('choices')->orderBy('order')->orderBy('id')->get();
+        $answerRecordCounts = DB::table(app(AnswerRecord::class)->getTable())
+            ->select('choice_id', DB::raw('count(*) as count'))->groupBy('choice_id')->get();
+        $choiceQuestionMap = Choice::pluck('question_id', 'id');
+        $choiceAnswerRecordCount = [];
+        $questionAnswerRecordCount = [];
+        foreach ($answerRecordCounts as $answerRecordCount) {
+            $choiceAnswerRecordCount[$answerRecordCount->choice_id] = $answerRecordCount->count;
+            $questionId = $choiceQuestionMap[$answerRecordCount->choice_id];
+            if (!isset($questionAnswerRecordCount[$questionId])) {
+                $questionAnswerRecordCount[$questionId] = 0;
+            }
+            $questionAnswerRecordCount[$questionId] += $answerRecordCount->count;
+        }
+
+        return view('question.stats', compact(['questions', 'choiceAnswerRecordCount', 'questionAnswerRecordCount']));
     }
 }

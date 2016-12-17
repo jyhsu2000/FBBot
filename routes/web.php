@@ -80,6 +80,7 @@ Route::group(['middleware' => ['auth', 'email']], function () {
         Route::get('question/data', 'QuestionController@data')->name('question.data');
         Route::get('question/get/{question}', 'QuestionController@get')->name('question.get');
         Route::post('question/sort', 'QuestionController@sort')->name('question.sort');
+        Route::get('stats', 'QuestionController@stats')->name('question.stats');
         Route::resource('question', 'QuestionController', [
             'except' => [
                 'create',

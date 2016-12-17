@@ -35,6 +35,9 @@ class LaravelMenu
                 }
                 //管理員
                 if (Entrust::can('menu.view') and auth()->user()->isConfirmed) {
+                    if (Entrust::can('question.manage')) {
+                        $menu->add('答題狀況', ['route' => 'question.stats']);
+                    }
                     if (Entrust::can('qualification.manage')) {
                         $menu->add('抽獎面板', ['route' => 'qualification.panel']);
                     }
