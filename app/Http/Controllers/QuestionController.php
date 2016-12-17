@@ -147,13 +147,20 @@ class QuestionController extends Controller
         $choiceQuestionMap = Choice::pluck('question_id', 'id');
         $choiceAnswerRecordCount = [];
         $questionAnswerRecordCount = [];
+        //計算作答數量
         foreach ($answerRecordCounts as $answerRecordCount) {
-            $choiceAnswerRecordCount[$answerRecordCount->choice_id] = $answerRecordCount->count;
+            $choiceAnswerRecordCount[$answerRecordCount->choice_id]['count'] = $answerRecordCount->count;
             $questionId = $choiceQuestionMap[$answerRecordCount->choice_id];
             if (!isset($questionAnswerRecordCount[$questionId])) {
                 $questionAnswerRecordCount[$questionId] = 0;
             }
             $questionAnswerRecordCount[$questionId] += $answerRecordCount->count;
+        }
+        //計算百分比
+        foreach ($answerRecordCounts as $answerRecordCount) {
+            $questionId = $choiceQuestionMap[$answerRecordCount->choice_id];
+            $percent = $answerRecordCount->count / $questionAnswerRecordCount[$questionId] * 100;
+            $choiceAnswerRecordCount[$answerRecordCount->choice_id]['percent'] = number_format($percent, 2);
         }
 
         return view('question.stats', compact(['questions', 'choiceAnswerRecordCount', 'questionAnswerRecordCount']));

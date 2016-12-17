@@ -19,10 +19,13 @@
                 @foreach($question->choices as $choice)
                     <div class="row">
                         <div class="col-sm-6">{{ $choice->content }}</div>
-                        <div class="col-sm-1">{{ $choiceAnswerRecordCount[$choice->id] or 0 }}</div>
-                        <div class="col-sm-5">
+                        <div class="col-sm-1">×{{ $choiceAnswerRecordCount[$choice->id]['count'] or 0 }}</div>
+                        <div class="col-sm-1" style="white-space: nowrap">
+                            {{ $choiceAnswerRecordCount[$choice->id]['percent'] or 0 }} %
+                        </div>
+                        <div class="col-sm-4">
                             <progress class="progress progress-info"
-                                      value="{{ $choiceAnswerRecordCount[$choice->id] or 0 }}"
+                                      value="{{ $choiceAnswerRecordCount[$choice->id]['count'] or 0 }}"
                                       max="{{ $questionAnswerRecordCount[$question->id] or 0}}">
                             </progress>
                         </div>
