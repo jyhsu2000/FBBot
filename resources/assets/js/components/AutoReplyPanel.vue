@@ -19,9 +19,11 @@
             </form>
         </div>
     </div>
-    <template v-for="autoReply in autoReplies">
-        <auto-reply :autoReply="autoReply"></auto-reply>
-    </template>
+    <div v-sortable="{ onUpdate: onUpdate, handle: '.handle' }">
+        <template v-for="autoReply in autoReplies">
+            <auto-reply :reply="autoReply"></auto-reply>
+        </template>
+    </div>
 </template>
 
 <script>
@@ -58,7 +60,7 @@
                 console.log('submit:' + input);
                 //發送請求
                 this.$http.post(this.api, {
-                    content: input
+                    name: input
                 }).then(function (response) {
                     var json = response.json();
                     console.log(json);
@@ -77,7 +79,7 @@
                     //顯示通知
                     alertify.notify('已新增', 'success', 5);
                     //清空輸入框
-                    this.quotationInput = '';
+                    this.autoReplyInput = '';
                 }, function (response) {
                     console.log('Error: ');
                     console.log(response);
@@ -86,7 +88,7 @@
                 });
             },
             destroy: function (autoReply) {
-                if(!confirm('確定要刪除嗎？')){
+                if (!confirm('確定要刪除嗎？')) {
                     return;
                 }
                 console.log('destroy: ' + autoReply.id);
@@ -102,6 +104,27 @@
                     this.autoReplies.splice($.inArray(autoReply, this.autoReplies), 1);
                     //顯示通知
                     alertify.notify('已刪除', 'success', 5);
+                }, function (response) {
+                    console.log('Error: ');
+                    console.log(response);
+                    //顯示通知
+                    alertify.notify('發生錯誤', 'warning', 5);
+                });
+            },
+            onUpdate: function (event) {
+                this.autoReplies.splice(event.newIndex, 0, this.autoReplies.splice(event.oldIndex, 1)[0]);
+                var idList = [];
+                $.each(this.autoReplies, function (key, autoReply) {
+                    idList.push(autoReply.id);
+                });
+                //發送請求
+                this.$http.post(this.api + '/sort', {
+                    idList: idList
+                }).then(function (response) {
+                    //重新獲取資料
+                    this.fetch();
+                    //顯示通知
+                    alertify.notify('排序已更新', 'success', 5);
                 }, function (response) {
                     console.log('Error: ');
                     console.log(response);

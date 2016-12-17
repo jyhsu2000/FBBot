@@ -35,7 +35,27 @@ class AutoReplyController extends Controller
      */
     public function store(Request $request)
     {
-        //TODO
+        $validator = \Validator::make($request->all(), [
+            'name' => 'required|max:255',
+        ]);
+        if ($validator->fails()) {
+            return response()->json([
+                'success' => false,
+                'errors'  => $validator->errors(),
+            ]);
+        }
+        //新增語錄
+        $autoReply = AutoReply::create([
+            'name' => $request->get('name'),
+            'order'   => AutoReply::max('order') + 1,
+        ]);
+        //回傳結果
+        $json = [
+            'success'   => true,
+            'autoReply' => $autoReply->toArray(),
+        ];
+
+        return response()->json($json);
     }
 
     /**
@@ -80,6 +100,38 @@ class AutoReplyController extends Controller
      */
     public function destroy(AutoReply $autoReply)
     {
-        //TODO
+        $autoReply->delete();
+
+        return response()->json(['success' => true]);
+    }
+
+    public function data()
+    {
+        $autoReply = AutoReply::orderBy('order')->orderBy('id')->get();
+
+        return response()->json($autoReply);
+    }
+
+    public function sort(Request $request)
+    {
+        $idList = $request->get('idList');
+        $counter = 1;
+        foreach ($idList as $id) {
+            $autoReply = AutoReply::find($id);
+            if (!$autoReply) {
+                continue;
+            }
+            $autoReply->update([
+                'order' => $counter,
+            ]);
+            $counter++;
+        }
+        //回傳結果
+        $json = [
+            'success' => true,
+            'idList'  => $idList,
+        ];
+
+        return response()->json($json);
     }
 }

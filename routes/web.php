@@ -78,6 +78,8 @@ Route::group(['middleware' => ['auth', 'email']], function () {
     //自動回覆
     //權限：autoReply.manage
     Route::group(['middleware' => 'permission:autoReply.manage'], function () {
+        Route::get('autoReply/data', 'AutoReplyController@data')->name('autoReply.data');
+        Route::post('autoReply/sort', 'AutoReplyController@sort')->name('autoReply.sort');
         Route::resource('autoReply', 'AutoReplyController');
     });
     //題目
