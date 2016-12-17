@@ -131,6 +131,34 @@
                     //顯示通知
                     alertify.notify('發生錯誤', 'warning', 5);
                 });
+            },
+            updateName: function (autoReply, newName) {
+                //發送請求
+                this.$http.patch(this.api + '/' + autoReply.id, {
+                    name: newName
+                }).then(function (response) {
+                    var json = response.json();
+                    console.log(json);
+                    if (json.success != true) {
+                        window.errorMessage = '';
+                        $.each(json.errors, function (field, item) {
+                            $.each(item, function (key, value) {
+                                window.errorMessage += '<br/>' + field + ':' + value;
+                            });
+                        });
+                        alertify.notify('更新失敗' + window.errorMessage, 'warning', 5);
+                        return;
+                    }
+                    //顯示通知
+                    alertify.notify('已更新', 'success', 5);
+                    //更新介面顯示名稱
+                    autoReply.name = newName;
+                }, function (response) {
+                    console.log('Error: ');
+                    console.log(response);
+                    //顯示通知
+                    alertify.notify('發生錯誤', 'warning', 5);
+                });
             }
         }
     }

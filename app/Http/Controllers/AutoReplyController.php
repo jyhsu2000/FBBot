@@ -46,8 +46,8 @@ class AutoReplyController extends Controller
         }
         //新增語錄
         $autoReply = AutoReply::create([
-            'name' => $request->get('name'),
-            'order'   => AutoReply::max('order') + 1,
+            'name'  => $request->get('name'),
+            'order' => AutoReply::max('order') + 1,
         ]);
         //回傳結果
         $json = [
@@ -89,7 +89,26 @@ class AutoReplyController extends Controller
      */
     public function update(Request $request, AutoReply $autoReply)
     {
-        //TODO
+        $validator = \Validator::make($request->all(), [
+            'name' => 'required|max:255',
+        ]);
+        if ($validator->fails()) {
+            return response()->json([
+                'success' => false,
+                'errors'  => $validator->errors(),
+            ]);
+        }
+        //新增語錄
+        $autoReply->update([
+            'name' => $request->get('name'),
+        ]);
+        //回傳結果
+        $json = [
+            'success'   => true,
+            'autoReply' => $autoReply->toArray(),
+        ];
+
+        return response()->json($json);
     }
 
     /**

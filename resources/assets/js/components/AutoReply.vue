@@ -7,6 +7,7 @@
             <span class="tag tag-default">#{{ reply.id }}</span>
         </div>
         <div class="col-sm-9">
+            <i class="fa fa-pencil btn btn-primary" aria-hidden="true" @click="editName"></i>
             {{ reply.name }}
         </div>
         <div class="col-sm-1">
@@ -21,6 +22,16 @@
     export default {
         props: [
             'reply'
-        ]
+        ],
+        methods: {
+            editName: function () {
+                var oldName = this.reply.name;
+                var newName = prompt("請輸入新名稱", oldName);
+                if (newName == oldName || newName == null || newName.length == 0) {
+                    return;
+                }
+                this.$parent.updateName(this.reply, newName);
+            }
+        }
     }
 </script>
