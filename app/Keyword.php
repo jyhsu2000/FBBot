@@ -20,6 +20,8 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Query\Builder|\App\Keyword whereCreatedAt($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Keyword whereUpdatedAt($value)
  * @mixin \Eloquent
+ * @property-read \App\AutoReply $autoReply
+ * @method static \Illuminate\Database\Query\Builder|\App\Keyword whereAutoReplyId($value)
  */
 class Keyword extends Model
 {
