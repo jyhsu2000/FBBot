@@ -2,6 +2,7 @@
 
 namespace App\Chatbot\MessageHandlers;
 
+use App\AutoReplyMessage;
 use App\Player;
 use App\Keyword;
 use App\Chatbot\Tasks\NidTask;
@@ -49,10 +50,20 @@ class DefaultHandler extends BaseHandler
         //檢查對應關鍵字
         $keyword = Keyword::where('keyword', $message)->first();
         if ($keyword) {
-            $keyword->increment('counter');
-            $this->send(new Text($sender, $keyword->reply));
+            //檢查有無對應訊息
+            $autoReplyMessageCount = $keyword->autoReply->autoReplyMessages->count();
+            if ($autoReplyMessageCount > 0) {
+                //隨機選擇回覆訊息
+                /* @var AutoReplyMessage $autoReplyMessage */
+                $autoReplyMessage = $keyword->autoReply->autoReplyMessages->random(1);
+                //計算次數
+                $keyword->increment('counter');
+                $autoReplyMessage->increment('counter');
+                //傳送訊息
+                $this->send(new Text($sender, $autoReplyMessage->content));
 
-            return;
+                return;
+            }
         }
 
         //無對應指令
