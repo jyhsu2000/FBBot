@@ -15,4 +15,9 @@ class AutoReply extends Model
     {
         return $this->hasMany(Keyword::class);
     }
+
+    public function autoReplyMessages()
+    {
+        return $this->hasMany(AutoReplyMessage::class);
+    }
 }

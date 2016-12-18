@@ -78,6 +78,9 @@ Route::group(['middleware' => ['auth', 'email']], function () {
         Route::post('autoReply/storeKeyword', 'KeywordController@store')->name('autoReply.storeKeyword');
         Route::delete('autoReply/destroyKeyword/{keyword}', 'KeywordController@destroy')
             ->name('autoReply.destroyKeyword');
+        Route::post('autoReply/storeMessage', 'AutoReplyMessageController@store')->name('autoReply.storeMessage');
+        Route::delete('autoReply/destroyMessage/{autoReplyMessage}', 'AutoReplyMessageController@destroy')
+            ->name('autoReply.destroyMessage');
         Route::resource('autoReply', 'AutoReplyController');
     });
     //題目
