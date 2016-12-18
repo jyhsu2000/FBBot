@@ -10,18 +10,18 @@
             <i class="fa fa-pencil btn btn-primary" aria-hidden="true" @click="editName"></i>
             {{ reply.name }}
             <div class="row">
-                <div class="col-sm-6">
-                    關鍵字 <a href="javascript:void(0)" class="text-success" @click="addKeyword">[+新增]</a>
+                <div class="col-sm-4">
+                    關鍵字 <a href="javascript:void(0)" class="text-success" @click="addKeyword">[+]</a>
                     <ul>
                         <li v-for="keyword in reply.keywords">
-                            <a href="javascript:void(0)" class="text-danger" @click="removeKeyword(keyword)">[X刪除]</a>
+                            <a href="javascript:void(0)" class="text-danger" @click="removeKeyword(keyword)">[X]</a>
                             <span class="text-primary">({{ keyword.counter }})</span>
                             {{ keyword.keyword }}
                         </li>
                     </ul>
                 </div>
-                <div class="col-sm-6">
-                    回應內容 <a href="javascript:void(0)" class="text-success" @click="showMessageInput = true">[+新增]</a>
+                <div class="col-sm-8">
+                    回應內容 <a href="javascript:void(0)" class="text-success" @click="showMessageInput = true">[+]</a>
                     <form v-show="showMessageInput" @submit.prevent="submitMessage">
                         <textarea name="messageInput" id="messageInput" cols="30" rows="10" class="form-control"
                                   v-model="messageInput"></textarea>
@@ -30,7 +30,7 @@
                     </form>
                     <ul>
                         <li v-for="auto_reply_message in reply.auto_reply_messages">
-                            <a href="javascript:void(0)" class="text-danger" @click="removeMessage(auto_reply_message)">[X刪除]</a>
+                            <a href="javascript:void(0)" class="text-danger" @click="removeMessage(auto_reply_message)">[X]</a>
                             <span class="text-primary">({{ auto_reply_message.counter }})</span>
                             <pre>{{ auto_reply_message.content }}</pre>
                         </li>
