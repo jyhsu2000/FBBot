@@ -49,6 +49,8 @@ class AutoReplyController extends Controller
             'name'  => $request->get('name'),
             'order' => AutoReply::max('order') + 1,
         ]);
+        //重新讀取
+        $autoReply = $autoReply->fresh();
         //回傳結果
         $json = [
             'success'   => true,
