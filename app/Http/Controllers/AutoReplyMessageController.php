@@ -8,26 +8,6 @@ use Illuminate\Http\Request;
 class AutoReplyMessageController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //TODO
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //TODO
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request $request
@@ -59,40 +39,6 @@ class AutoReplyMessageController extends Controller
         ];
 
         return response()->json($json);
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param AutoReplyMessage $autoReplyMessage
-     * @return \Illuminate\Http\Response
-     */
-    public function show(AutoReplyMessage $autoReplyMessage)
-    {
-        //TODO
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param AutoReplyMessage $autoReplyMessage
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(AutoReplyMessage $autoReplyMessage)
-    {
-        //TODO
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request $request
-     * @param AutoReplyMessage $autoReplyMessage
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, AutoReplyMessage $autoReplyMessage)
-    {
-        //TODO
     }
 
     /**
