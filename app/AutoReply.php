@@ -10,4 +10,9 @@ class AutoReply extends Model
         'name',
         'order',
     ];
+
+    public function keywords()
+    {
+        return $this->hasMany(Keyword::class);
+    }
 }

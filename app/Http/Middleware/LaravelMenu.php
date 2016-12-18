@@ -46,9 +46,6 @@ class LaravelMenu
                     if (Entrust::can('quotation.manage')) {
                         $isweekMenu->add('資安語錄', ['route' => 'quotation.index'])->active('quotation/*');
                     }
-                    if (Entrust::can('keyword.manage')) {
-                        $isweekMenu->add('關鍵字管理', ['route' => 'keyword.index'])->active('keyword/*');
-                    }
                     if (Entrust::can('autoReply.manage')) {
                         $isweekMenu->add('自動回覆管理', ['route' => 'autoReply.index'])->active('autoReply/*');
                     }

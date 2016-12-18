@@ -8,8 +8,8 @@ use Illuminate\Database\Eloquent\Model;
  * App\Keyword
  *
  * @property int $id
+ * @property int $auto_reply_id
  * @property string $keyword
- * @property string $reply
  * @property int $counter
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
@@ -24,8 +24,13 @@ use Illuminate\Database\Eloquent\Model;
 class Keyword extends Model
 {
     protected $fillable = [
+        'auto_reply_id',
         'keyword',
-        'reply',
         'counter',
     ];
+
+    public function autoReply()
+    {
+        return $this->belongsTo(AutoReply::class);
+    }
 }

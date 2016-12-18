@@ -21,7 +21,7 @@
     </div>
     <div v-sortable="{ onUpdate: onUpdate, handle: '.handle' }">
         <template v-for="autoReply in autoReplies">
-            <auto-reply :reply="autoReply"></auto-reply>
+            <auto-reply :api="api" :reply="autoReply"></auto-reply>
         </template>
     </div>
 </template>

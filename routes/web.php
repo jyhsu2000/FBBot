@@ -70,16 +70,14 @@ Route::group(['middleware' => ['auth', 'email']], function () {
             ],
         ]);
     });
-    //關鍵字
-    //權限：keyword.manage
-    Route::group(['middleware' => 'permission:keyword.manage'], function () {
-        Route::resource('keyword', 'KeywordController');
-    });
     //自動回覆
     //權限：autoReply.manage
     Route::group(['middleware' => 'permission:autoReply.manage'], function () {
         Route::get('autoReply/data', 'AutoReplyController@data')->name('autoReply.data');
         Route::post('autoReply/sort', 'AutoReplyController@sort')->name('autoReply.sort');
+        Route::post('autoReply/storeKeyword', 'KeywordController@store')->name('autoReply.storeKeyword');
+        Route::delete('autoReply/destroyKeyword/{keyword}', 'KeywordController@destroy')
+            ->name('autoReply.destroyKeyword');
         Route::resource('autoReply', 'AutoReplyController');
     });
     //題目

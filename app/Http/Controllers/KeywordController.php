@@ -11,12 +11,11 @@ class KeywordController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @param KeywordsDataTable $dataTable
-     * @return \Illuminate\Http\JsonResponse|\Illuminate\View\View
+     * @return \Illuminate\Http\Response
      */
-    public function index(KeywordsDataTable $dataTable)
+    public function index()
     {
-        return $dataTable->render('keyword.index');
+        //TODO
     }
 
     /**
@@ -38,8 +37,8 @@ class KeywordController extends Controller
     public function store(Request $request)
     {
         $validator = \Validator::make($request->all(), [
-            'keyword' => 'required|unique:keywords|max:255',
-            'reply'   => 'required|max:320',
+            'auto_reply_id' => 'required|exists:auto_replies,id',
+            'keyword'       => 'required|unique:keywords|max:255',
         ]);
         if ($validator->fails()) {
             return response()->json([
@@ -49,8 +48,8 @@ class KeywordController extends Controller
         }
         //新增語錄
         $keyword = Keyword::create([
-            'keyword' => $request->get('keyword'),
-            'reply'   => $request->get('reply'),
+            'auto_reply_id' => $request->get('auto_reply_id'),
+            'keyword'       => $request->get('keyword'),
         ]);
         //回傳結果
         $json = [
@@ -105,6 +104,6 @@ class KeywordController extends Controller
     {
         $keyword->delete();
 
-        return redirect()->route('keyword.index')->with('global', '關鍵字已刪除');
+        return response()->json(['success' => true]);
     }
 }

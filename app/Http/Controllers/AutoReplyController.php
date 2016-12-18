@@ -126,7 +126,7 @@ class AutoReplyController extends Controller
 
     public function data()
     {
-        $autoReply = AutoReply::orderBy('order')->orderBy('id')->get();
+        $autoReply = AutoReply::with('keywords')->orderBy('order')->orderBy('id')->get();
 
         return response()->json($autoReply);
     }
