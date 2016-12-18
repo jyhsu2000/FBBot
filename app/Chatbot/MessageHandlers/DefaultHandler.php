@@ -64,6 +64,7 @@ class DefaultHandler extends BaseHandler
                 $linkButtonCount = min($matchCount, 3);
                 //連結按鈕
                 $buttonTemplate = new ButtonTemplate($sender);
+                $buttonTemplate->setText('');
                 for ($i = 0; $i < $linkButtonCount; $i++) {
                     $buttonTemplate->addWebButton($matches[$i], $matches[$i]);
                 }
