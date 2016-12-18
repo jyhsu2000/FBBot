@@ -3,6 +3,12 @@
         <div class="card-header">
             新增
         </div>
+        <div class="card-block alert alert-warning py-0 my-0">
+            <ul>
+                <li>關鍵字：目前採完全匹配，完全相符才會觸發</li>
+                <li>回應內容：關鍵字符合時，隨機挑選一則作為回應</li>
+            </ul>
+        </div>
         <div class="card-block">
             <form class="form-inline row" @submit.prevent="submit">
                 <div class="col-sm-10">
