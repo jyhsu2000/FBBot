@@ -7,6 +7,7 @@ use App\Keyword;
 use App\AutoReplyMessage;
 use App\Chatbot\Tasks\NidTask;
 use App\Chatbot\Commands\CommandKernel;
+use Casperlaitw\LaravelFbMessenger\Messages\ButtonTemplate;
 use Casperlaitw\LaravelFbMessenger\Messages\Text;
 use Casperlaitw\LaravelFbMessenger\Contracts\BaseHandler;
 use Casperlaitw\LaravelFbMessenger\Messages\ReceiveMessage;
@@ -56,11 +57,23 @@ class DefaultHandler extends BaseHandler
                 //隨機選擇回覆訊息
                 /* @var AutoReplyMessage $autoReplyMessage */
                 $autoReplyMessage = $keyword->autoReply->autoReplyMessages->random(1);
+                $content = $autoReplyMessage->content;
+                //處理網址
+                $urlPattern = '/(?:http|https|ftp|ftps)\:\/\/[a-zA-Z0-9\-\.]+\.[a-zA-Z]{2,3}(?:\/\S*)?/';
+                $matchCount = preg_match_all($urlPattern, $content, $matches);
+                $linkButtonCount = min($matchCount, 3);
+                //連結按鈕
+                $buttonTemplate = new ButtonTemplate($sender);
+                for ($i = 0; $i < $linkButtonCount; $i++) {
+                    $buttonTemplate->addWebButton($matches[$i], $matches[$i]);
+                }
                 //計算次數
                 $keyword->increment('counter');
                 $autoReplyMessage->increment('counter');
                 //傳送訊息
-                $this->send(new Text($sender, $autoReplyMessage->content));
+                $this->send(new Text($sender, $content));
+                //傳送按鈕
+                $this->send($buttonTemplate);
 
                 return;
             }
