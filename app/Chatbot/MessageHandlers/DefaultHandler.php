@@ -2,9 +2,9 @@
 
 namespace App\Chatbot\MessageHandlers;
 
-use App\AutoReplyMessage;
 use App\Player;
 use App\Keyword;
+use App\AutoReplyMessage;
 use App\Chatbot\Tasks\NidTask;
 use App\Chatbot\Commands\CommandKernel;
 use Casperlaitw\LaravelFbMessenger\Messages\Text;
