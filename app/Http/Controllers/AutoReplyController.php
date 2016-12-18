@@ -51,6 +51,7 @@ class AutoReplyController extends Controller
         ]);
         //重新讀取
         $autoReply = $autoReply->fresh();
+        $autoReply->load('keywords', 'autoReplyMessages');
         //回傳結果
         $json = [
             'success'   => true,
