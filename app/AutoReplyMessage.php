@@ -9,6 +9,7 @@ class AutoReplyMessage extends Model
     protected $fillable = [
         'auto_reply_id',
         'content',
+        'counter',
     ];
 
     public function autoReply()

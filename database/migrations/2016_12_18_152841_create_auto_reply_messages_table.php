@@ -17,6 +17,7 @@ class CreateAutoReplyMessagesTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('auto_reply_id');
             $table->string('content', 320);
+            $table->integer('counter')->default(0);
             $table->timestamps();
 
             $table->foreign('auto_reply_id')->references('id')->on('auto_replies')
