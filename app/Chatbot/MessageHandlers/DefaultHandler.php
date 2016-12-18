@@ -66,7 +66,7 @@ class DefaultHandler extends BaseHandler
                 $buttonTemplate = new ButtonTemplate($sender);
                 $buttonTemplate->setText('Links:');
                 for ($i = 0; $i < $linkButtonCount; $i++) {
-                    $buttonTemplate->addWebButton($matches[$i], $matches[$i]);
+                    $buttonTemplate->addWebButton($matches[0][$i], $matches[0][$i]);
                 }
                 //計算次數
                 $keyword->increment('counter');
