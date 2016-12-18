@@ -50,6 +50,8 @@ class AutoReplyMessageController extends Controller
             'auto_reply_id' => $request->get('auto_reply_id'),
             'content'       => $request->get('content'),
         ]);
+        //重新取得（避免無法取得counter欄位）
+        $autoReplyMessage = $autoReplyMessage->fresh();
         //回傳結果
         $json = [
             'success'          => true,

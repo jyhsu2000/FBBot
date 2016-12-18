@@ -51,6 +51,8 @@ class KeywordController extends Controller
             'auto_reply_id' => $request->get('auto_reply_id'),
             'keyword'       => $request->get('keyword'),
         ]);
+        //重新取得（避免無法取得counter欄位）
+        $keyword = $keyword->fresh();
         //回傳結果
         $json = [
             'success' => true,

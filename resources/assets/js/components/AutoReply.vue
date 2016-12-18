@@ -15,6 +15,7 @@
                     <ul>
                         <li v-for="keyword in reply.keywords">
                             <a href="javascript:void(0)" class="text-danger" @click="removeKeyword(keyword)">[X刪除]</a>
+                            <span class="text-primary">({{ keyword.counter }})</span>
                             {{ keyword.keyword }}
                         </li>
                     </ul>
@@ -30,6 +31,7 @@
                     <ul>
                         <li v-for="auto_reply_message in reply.auto_reply_messages">
                             <a href="javascript:void(0)" class="text-danger" @click="removeMessage(auto_reply_message)">[X刪除]</a>
+                            <span class="text-primary">({{ auto_reply_message.counter }})</span>
                             <pre>{{ auto_reply_message.content }}</pre>
                         </li>
                     </ul>
