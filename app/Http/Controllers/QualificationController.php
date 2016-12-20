@@ -7,6 +7,7 @@ use Carbon\Carbon;
 use App\Qualification;
 use Illuminate\Http\Request;
 use App\DataTables\QualificationsDataTable;
+use Webpatser\Uuid\Uuid;
 
 class QualificationController extends Controller
 {
@@ -92,18 +93,18 @@ class QualificationController extends Controller
         //嘗試尋找玩家
         $player = Player::where('nid', $nid)->first();
         if (!$player) {
-            //TODO 強制新增玩家
-            return response()->json([
-                'success'      => false,
-                'errorMessage' => '無抽獎資格',
+            //強制新增玩家
+            $player = Player::create([
+                'app_uid' => 'force_' . Carbon::now()->toDateTimeString(),
+                'nid'     => $nid,
+                'uuid'    => Uuid::generate(),
             ]);
         }
         if (!$player->qualification) {
-            //TODO 強制新增抽獎資格
-            return response()->json([
-                'success'      => false,
-                'errorMessage' => '無抽獎資格',
-            ]);
+            //強制新增抽獎資格
+            $player->qualification()->save(new Qualification(['force' => true]));
+            //重新載入
+            $player = $player->fresh();
         }
         if ($player->qualification->get_at) {
             return response()->json([

@@ -150,6 +150,10 @@
                 if (nid.length == 0) {
                     return;
                 }
+                //再次確認
+                if (!confirm('確定要為 ' + nid + ' 強制抽獎嗎？')) {
+                    return;
+                }
                 //發送請求
                 this.$http.post(this.api + '/forceGrant', {
                     nid: nid
