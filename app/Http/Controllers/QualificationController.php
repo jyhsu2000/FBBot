@@ -84,4 +84,41 @@ class QualificationController extends Controller
             ],
         ]);
     }
+
+    public function forceGrant(Request $request)
+    {
+        //取得NID
+        $nid = $request->get('nid');
+        //嘗試尋找玩家
+        $player = Player::where('nid', $nid)->first();
+        if (!$player) {
+            //TODO 強制新增玩家
+            return response()->json([
+                'success'      => false,
+                'errorMessage' => '無抽獎資格',
+            ]);
+        }
+        if (!$player->qualification) {
+            //TODO 強制新增抽獎資格
+            return response()->json([
+                'success'      => false,
+                'errorMessage' => '無抽獎資格',
+            ]);
+        }
+        if ($player->qualification->get_at) {
+            return response()->json([
+                'success'      => false,
+                'errorMessage' => '重複抽獎（' . $player->qualification->get_at . '）',
+            ]);
+        }
+        $player->qualification->update(['get_at' => Carbon::now()]);
+
+        return response()->json([
+            'success' => true,
+            'player'  => [
+                'nid'           => $player->nid,
+                'qualification' => $player->qualification,
+            ],
+        ]);
+    }
 }

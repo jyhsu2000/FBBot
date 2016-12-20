@@ -34,7 +34,12 @@
             玩家
         </div>
         <div class="card-block text-sm-center" v-if="nid">
-            <span class="text-danger" style="font-size: 50px" v-if="!player">找不到玩家：{{ nid }}</span>
+            <template v-if="!player">
+                <span class="text-danger" style="font-size: 50px">找不到玩家：{{ nid }}</span><br/>
+                <button class="btn btn-danger" style="font-size: 50px" @click="forceGrant">
+                    <i class="fa fa-check-square-o" aria-hidden="true"></i> 強制標記為已抽獎
+                </button>
+            </template>
             <template v-else>
                 <span class="text-primary" style="font-size: 50px">玩家：{{ nid }}</span><br/>
                 <div style="font-size: 30px">
@@ -50,7 +55,10 @@
                         </template>
                     </template>
                     <template v-else>
-                        <span class="text-danger">未取得抽獎資格</span>
+                        <span class="text-danger">未取得抽獎資格</span><br/>
+                        <button class="btn btn-danger" style="font-size: 50px" @click="forceGrant">
+                            <i class="fa fa-check-square-o" aria-hidden="true"></i> 強制標記為已抽獎
+                        </button>
                     </template>
                 </div>
             </template>
@@ -120,6 +128,30 @@
                 }
                 //發送請求
                 this.$http.post(this.api + '/grant', {
+                    nid: nid
+                }).then(function (response) {
+                    var json = response.json();
+                    if (json.success != true) {
+                        alertify.notify('無法標記為已抽獎<br/>' + json.errorMessage, 'warning', 5);
+                        return;
+                    }
+                    alertify.notify('已標記為已抽獎', 'success', 5);
+                    this.player = json.player;
+                }, function (response) {
+                    console.log('Error: ');
+                    console.log(response);
+                    //顯示通知
+                    alertify.notify('發生錯誤', 'warning', 5);
+                });
+            },
+            forceGrant: function () {
+                var nid = this.nid;
+                //檢查輸入
+                if (nid.length == 0) {
+                    return;
+                }
+                //發送請求
+                this.$http.post(this.api + '/forceGrant', {
                     nid: nid
                 }).then(function (response) {
                     var json = response.json();

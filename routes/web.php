@@ -109,6 +109,7 @@ Route::group(['middleware' => ['auth', 'email']], function () {
         Route::get('grantPanel', 'QualificationController@panel')->name('qualification.panel');
         Route::post('qualification/find', 'QualificationController@find')->name('qualification.find');
         Route::post('qualification/grant', 'QualificationController@grant')->name('qualification.grant');
+        Route::post('qualification/forceGrant', 'QualificationController@forceGrant')->name('qualification.forceGrant');
         Route::resource('qualification', 'QualificationController', [
             'only' => 'index',
         ]);
