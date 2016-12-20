@@ -36,7 +36,7 @@
         <div class="card-block text-sm-center" v-if="nid">
             <template v-if="!player">
                 <span class="text-danger" style="font-size: 50px">找不到玩家：{{ nid }}</span><br/>
-                <button class="btn btn-danger" style="font-size: 50px" @click="forceGrant">
+                <button class="btn btn-danger" style="font-size: 30px" @click="forceGrant">
                     <i class="fa fa-check-square-o" aria-hidden="true"></i> 強制標記為已抽獎
                 </button>
             </template>
@@ -56,7 +56,7 @@
                     </template>
                     <template v-else>
                         <span class="text-danger">未取得抽獎資格</span><br/>
-                        <button class="btn btn-danger" style="font-size: 50px" @click="forceGrant">
+                        <button class="btn btn-danger" style="font-size: 30px" @click="forceGrant">
                             <i class="fa fa-check-square-o" aria-hidden="true"></i> 強制標記為已抽獎
                         </button>
                     </template>
