@@ -7,7 +7,7 @@ A backend website for FB Messenger Bot of Information-Security-Week
 ## Framework
 - Laravel 5.3
 - Bootstrap 4
-- Vue.js 1.0
+- Vue.js 2
 
 ## License
 This project is open-source under the [MIT license](http://opensource.org/licenses/MIT).
