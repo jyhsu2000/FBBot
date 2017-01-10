@@ -23,7 +23,7 @@ Vue.component('auto-reply-panel', require('./components/AutoReplyPanel.vue'));
 Vue.component('auto-reply', require('./components/AutoReply.vue'));
 
 const app = new Vue({
-    el: 'body'
+    el: '#app'
 });
 
 /**

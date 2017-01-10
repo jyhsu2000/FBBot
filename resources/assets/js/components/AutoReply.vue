@@ -77,7 +77,7 @@
                     auto_reply_id: this.reply.id,
                     keyword: keywordInput
                 }).then(function (response) {
-                    var json = response.json();
+                    var json = response.body;
                     if (json.success != true) {
                         window.errorMessage = '';
                         $.each(json.errors, function (field, item) {
@@ -105,7 +105,7 @@
                 }
                 //發送請求
                 this.$http.delete(this.api + '/destroyKeyword/' + keyword.id).then(function (response) {
-                    var json = response.json();
+                    var json = response.body;
                     if (json.success != true) {
                         window.errorMessage = '';
                         $.each(json.errors, function (field, item) {
@@ -137,7 +137,7 @@
                     auto_reply_id: this.reply.id,
                     content: messageInput
                 }).then(function (response) {
-                    var json = response.json();
+                    var json = response.body;
                     if (json.success != true) {
                         window.errorMessage = '';
                         $.each(json.errors, function (field, item) {
@@ -168,7 +168,7 @@
                 }
                 //發送請求
                 this.$http.delete(this.api + '/destroyMessage/' + auto_reply_message.id).then(function (response) {
-                    var json = response.json();
+                    var json = response.body;
                     if (json.success != true) {
                         window.errorMessage = '';
                         $.each(json.errors, function (field, item) {

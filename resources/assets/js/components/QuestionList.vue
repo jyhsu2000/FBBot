@@ -25,7 +25,7 @@
                     </ul>
                 </td>
                 <td>
-                    <a href="{{ api }}/{{ question.id }}" class="btn btn-primary">
+                    <a :href="api + '/' + question.id" class="btn btn-primary">
                         <i class="fa fa-search" aria-hidden="true"></i> 檢視/編輯
                     </a>
                 </td>
@@ -38,7 +38,7 @@
 
 <script>
     export default {
-        ready() {
+        mounted() {
             this.$nextTick(function () {
                 this.fetch();
             });
@@ -54,7 +54,7 @@
         methods: {
             fetch: function () {
                 this.$http.get(this.api + '/data').then(function (response) {
-                    this.questions = response.json();
+                    this.questions = response.body;
                 });
             },
             onUpdate: function (event) {

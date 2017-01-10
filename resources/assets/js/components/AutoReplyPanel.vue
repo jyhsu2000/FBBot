@@ -1,40 +1,42 @@
 <template>
-    <div class="card">
-        <div class="card-header">
-            新增
+    <div>
+        <div class="card">
+            <div class="card-header">
+                新增
+            </div>
+            <div class="card-block alert alert-warning py-0 my-0">
+                <ul>
+                    <li>關鍵字：目前採完全匹配，完全相符才會觸發</li>
+                    <li>回應內容：關鍵字符合時，隨機挑選一則作為回應</li>
+                </ul>
+            </div>
+            <div class="card-block">
+                <form class="form-inline row" @submit.prevent="submit">
+                    <div class="col-sm-10">
+                        <input type="text" name="autoReplyInput" class="form-control form-control-lg"
+                               placeholder="請輸入欲新增之名稱" required style="width: 100%"
+                               v-model="autoReplyInput">
+                    </div>
+                    <div class="col-sm-2">
+                        <button type="submit" class="btn btn-primary btn-lg"
+                                :disabled="autoReplyInput.length <= 0">
+                            新增
+                        </button>
+                    </div>
+                </form>
+            </div>
         </div>
-        <div class="card-block alert alert-warning py-0 my-0">
-            <ul>
-                <li>關鍵字：目前採完全匹配，完全相符才會觸發</li>
-                <li>回應內容：關鍵字符合時，隨機挑選一則作為回應</li>
-            </ul>
+        <div v-sortable="{ onUpdate: onUpdate, handle: '.handle' }">
+            <template v-for="autoReply in autoReplies">
+                <auto-reply :api="api" :reply="autoReply"></auto-reply>
+            </template>
         </div>
-        <div class="card-block">
-            <form class="form-inline row" @submit.prevent="submit">
-                <div class="col-sm-10">
-                    <input type="text" name="autoReplyInput" class="form-control form-control-lg"
-                           placeholder="請輸入欲新增之名稱" required style="width: 100%"
-                           v-model="autoReplyInput">
-                </div>
-                <div class="col-sm-2">
-                    <button type="submit" class="btn btn-primary btn-lg"
-                            :disabled="autoReplyInput.length <= 0">
-                        新增
-                    </button>
-                </div>
-            </form>
-        </div>
-    </div>
-    <div v-sortable="{ onUpdate: onUpdate, handle: '.handle' }">
-        <template v-for="autoReply in autoReplies">
-            <auto-reply :api="api" :reply="autoReply"></auto-reply>
-        </template>
     </div>
 </template>
 
 <script>
     export default {
-        ready() {
+        mounted() {
             this.$nextTick(function () {
                 this.fetch();
             });
@@ -49,7 +51,7 @@
         methods: {
             fetch: function () {
                 this.$http.get(this.api + '/data').then(function (response) {
-                    var json = response.json();
+                    var json = response.body;
                     var autoReplies = [];
                     $.each(json, function (key, value) {
                         autoReplies.push(value);
@@ -67,7 +69,7 @@
                 this.$http.post(this.api, {
                     name: input
                 }).then(function (response) {
-                    var json = response.json();
+                    var json = response.body;
                     if (json.success != true) {
                         window.errorMessage = '';
                         $.each(json.errors, function (field, item) {
@@ -97,7 +99,7 @@
                 }
                 //發送請求
                 this.$http.delete(this.api + '/' + autoReply.id).then(function (response) {
-                    var json = response.json();
+                    var json = response.body;
                     if (json.success != true) {
                         alertify.notify('刪除失敗', 'warning', 5);
                         return;
@@ -139,7 +141,7 @@
                 this.$http.patch(this.api + '/' + autoReply.id, {
                     name: newName
                 }).then(function (response) {
-                    var json = response.json();
+                    var json = response.body;
                     if (json.success != true) {
                         window.errorMessage = '';
                         $.each(json.errors, function (field, item) {

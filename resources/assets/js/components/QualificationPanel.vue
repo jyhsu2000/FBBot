@@ -4,67 +4,69 @@
     }
 </style>
 <template>
-    <div class="card">
-        <div class="card-header">
-            輸入NID
-            <label class="custom-control custom-checkbox" style="margin: 0">
-                <input type="checkbox" class="custom-control-input" v-model="autoFocus">
-                <span class="custom-control-indicator"></span>
-                <span class="custom-control-description">Auto Focus</span>
-            </label>
-        </div>
-        <div class="card-block">
-            <form @submit.prevent="findPlayer">
-                <div class="input-group">
-                    <input id="nidInput" class="form-control" type="text" required v-model="nidInput"
-                           :placeholder="focused ? '掃描學生證條碼 或 輸入NID' : '請點擊此處'"
-                           v-focus="focused" @focus="focused = true" @blur="onLostFocus" autofocus>
-                    <span class="input-group-btn">
+    <div>
+        <div class="card">
+            <div class="card-header">
+                輸入NID
+                <label class="custom-control custom-checkbox" style="margin: 0">
+                    <input type="checkbox" class="custom-control-input" v-model="autoFocus">
+                    <span class="custom-control-indicator"></span>
+                    <span class="custom-control-description">Auto Focus</span>
+                </label>
+            </div>
+            <div class="card-block">
+                <form @submit.prevent="findPlayer">
+                    <div class="input-group">
+                        <input id="nidInput" class="form-control" type="text" required v-model="nidInput"
+                               :placeholder="focused ? '掃描學生證條碼 或 輸入NID' : '請點擊此處'"
+                               v-focus="focused" @focus="focused = true" @blur="onLostFocus" autofocus>
+                        <span class="input-group-btn">
                         <button id="nidSubmitButton" class="btn btn-secondary" type="submit"
                                 :disabled="nidInput.length <= 0">
                             <i class="fa fa-search" aria-hidden="true"></i>
                         </button>
                     </span>
-                </div>
-            </form>
+                    </div>
+                </form>
+            </div>
         </div>
-    </div>
-    <div class="card">
-        <div class="card-header">
-            玩家
-        </div>
-        <div class="card-block text-sm-center" v-if="nid">
-            <template v-if="!player">
-                <span class="text-danger" style="font-size: 50px">找不到玩家：{{ nid }}</span><br/>
-                <button class="btn btn-danger" style="font-size: 30px" @click="forceGrant">
-                    <i class="fa fa-check-square-o" aria-hidden="true"></i> 強制標記為已抽獎
-                </button>
-            </template>
-            <template v-else>
-                <span class="text-primary" style="font-size: 50px">玩家：{{ nid }}</span><br/>
-                <div style="font-size: 30px">
-                    <template v-if="player.qualification">
-                        <template v-if="player.qualification.get_at">
-                            <span class="text-primary">已抽獎 （{{ player.qualification.get_at }}）</span>
+        <div class="card">
+            <div class="card-header">
+                玩家
+            </div>
+            <div class="card-block text-sm-center" v-if="nid">
+                <template v-if="!player">
+                    <span class="text-danger" style="font-size: 50px">找不到玩家：{{ nid }}</span><br/>
+                    <button class="btn btn-danger" style="font-size: 30px" @click="forceGrant">
+                        <i class="fa fa-check-square-o" aria-hidden="true"></i> 強制標記為已抽獎
+                    </button>
+                </template>
+                <template v-else>
+                    <span class="text-primary" style="font-size: 50px">玩家：{{ nid }}</span><br/>
+                    <div style="font-size: 30px">
+                        <template v-if="player.qualification">
+                            <template v-if="player.qualification.get_at">
+                                <span class="text-primary">已抽獎 （{{ player.qualification.get_at }}）</span>
+                            </template>
+                            <template v-else>
+                                <span class="text-success">已取得抽獎資格</span><br/>
+                                <button class="btn btn-success" style="font-size: 50px" @click="grant">
+                                    <i class="fa fa-check-square-o" aria-hidden="true"></i> 標記為已抽獎
+                                </button>
+                            </template>
                         </template>
                         <template v-else>
-                            <span class="text-success">已取得抽獎資格</span><br/>
-                            <button class="btn btn-success" style="font-size: 50px" @click="grant">
-                                <i class="fa fa-check-square-o" aria-hidden="true"></i> 標記為已抽獎
+                            <span class="text-danger">未取得抽獎資格</span><br/>
+                            <button class="btn btn-danger" style="font-size: 30px" @click="forceGrant">
+                                <i class="fa fa-check-square-o" aria-hidden="true"></i> 強制標記為已抽獎
                             </button>
                         </template>
-                    </template>
-                    <template v-else>
-                        <span class="text-danger">未取得抽獎資格</span><br/>
-                        <button class="btn btn-danger" style="font-size: 30px" @click="forceGrant">
-                            <i class="fa fa-check-square-o" aria-hidden="true"></i> 強制標記為已抽獎
-                        </button>
-                    </template>
-                </div>
-            </template>
-        </div>
-        <div class="card-block text-sm-center" style="font-size: 50px" v-else>
-            ﾚ(ﾟ∀ﾟ;)ﾍ　ﾍ( ﾟ∀ﾟ;)ﾉ
+                    </div>
+                </template>
+            </div>
+            <div class="card-block text-sm-center" style="font-size: 50px" v-else>
+                ﾚ(ﾟ∀ﾟ;)ﾍ　ﾍ( ﾟ∀ﾟ;)ﾉ
+            </div>
         </div>
     </div>
 </template>
@@ -110,7 +112,7 @@
                 this.$http.post(this.api + '/find', {
                     nid: input
                 }).then(function (response) {
-                    var json = response.json();
+                    var json = response.body;
                     this.nid = json.nid;
                     this.player = json.player;
                 }, function (response) {
@@ -130,7 +132,7 @@
                 this.$http.post(this.api + '/grant', {
                     nid: nid
                 }).then(function (response) {
-                    var json = response.json();
+                    var json = response.body;
                     if (json.success != true) {
                         alertify.notify('無法標記為已抽獎<br/>' + json.errorMessage, 'warning', 5);
                         return;
@@ -158,7 +160,7 @@
                 this.$http.post(this.api + '/forceGrant', {
                     nid: nid
                 }).then(function (response) {
-                    var json = response.json();
+                    var json = response.body;
                     if (json.success != true) {
                         alertify.notify('無法標記為已抽獎<br/>' + json.errorMessage, 'warning', 5);
                         return;

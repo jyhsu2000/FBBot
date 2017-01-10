@@ -18,7 +18,7 @@
                 <div class="row">
                     <div class="col-sm-8">
                         <input type="text" class="form-control" required v-model="choiceInput"
-                               value="{{ choice.content }}" style="width: 100%"/>
+                               :value="choice.content" style="width: 100%"/>
                     </div>
                     <div class="col-sm-4">
                         <input type="submit" value="更新" class="btn btn-primary" :disabled="choice.content.length <= 0"/>
@@ -51,7 +51,7 @@
             toggleCorrect: function (choiceId) {
                 //發送請求
                 this.$http.post(this.choice_api + '/toggleCorrect/' + choiceId).then(function (response) {
-                    var json = response.json();
+                    var json = response.body;
                     //即時顯示
                     this.choice.is_correct = json.is_correct;
                     //顯示通知
@@ -75,7 +75,7 @@
                 this.$http.patch(this.choice_api + '/' + this.choice.id, {
                     content: input
                 }).then(function (response) {
-                    var json = response.json();
+                    var json = response.body;
                     if (json.success != true) {
                         window.errorMessage = '';
                         $.each(json.errors, function (field, item) {

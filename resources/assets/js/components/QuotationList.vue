@@ -1,32 +1,34 @@
 <template>
-    <div class="card">
-        <div class="card-header">
-            新增
+    <div>
+        <div class="card">
+            <div class="card-header">
+                新增
+            </div>
+            <div class="card-block">
+                <form class="form-inline row" @submit.prevent="submit">
+                    <div class="col-sm-10">
+                        <input type="text" name="quotation" class="form-control form-control-lg"
+                               placeholder="請輸入欲新增之內容" required style="width: 100%"
+                               v-model="quotationInput">
+                    </div>
+                    <div class="col-sm-2">
+                        <button type="submit" class="btn btn-primary btn-lg"
+                                :disabled="quotationInput.length <= 0">
+                            新增
+                        </button>
+                    </div>
+                </form>
+            </div>
         </div>
-        <div class="card-block">
-            <form class="form-inline row" @submit.prevent="submit">
-                <div class="col-sm-10">
-                    <input type="text" name="quotation" class="form-control form-control-lg"
-                           placeholder="請輸入欲新增之內容" required style="width: 100%"
-                           v-model="quotationInput">
-                </div>
-                <div class="col-sm-2">
-                    <button type="submit" class="btn btn-primary btn-lg"
-                            :disabled="quotationInput.length <= 0">
-                        新增
-                    </button>
-                </div>
-            </form>
-        </div>
+        <template v-for="quotation in quotations">
+            <quotation :quotation="quotation"></quotation>
+        </template>
     </div>
-    <template v-for="quotation in quotations">
-        <quotation :quotation="quotation"></quotation>
-    </template>
 </template>
 
 <script>
     export default {
-        ready() {
+        mounted() {
             this.$nextTick(function () {
                 this.fetch();
             });
@@ -41,7 +43,7 @@
         methods: {
             fetch: function () {
                 this.$http.get(this.api + '/data').then(function (response) {
-                    var json = response.json();
+                    var json = response.body;
                     var quotations = [];
                     $.each(json, function (key, value) {
                         quotations.push(value);
@@ -61,7 +63,7 @@
                 this.$http.post(this.api, {
                     content: input
                 }).then(function (response) {
-                    var json = response.json();
+                    var json = response.body;
                     if (json.success != true) {
                         window.errorMessage = '';
                         $.each(json.errors, function (field, item) {
@@ -86,12 +88,12 @@
                 });
             },
             destroy: function (quotation) {
-                if(!confirm('確定要刪除嗎？')){
+                if (!confirm('確定要刪除嗎？')) {
                     return;
                 }
                 //發送請求
                 this.$http.delete(this.api + '/' + quotation.id).then(function (response) {
-                    var json = response.json();
+                    var json = response.body;
                     if (json.success != true) {
                         alertify.notify('刪除失敗', 'warning', 5);
                         return;
