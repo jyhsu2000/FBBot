@@ -29,5 +29,10 @@
         </SOURCES>
       </library>
     </orderEntry>
+    <orderEntry type="library" name="clipboard" level="application" />
+    <orderEntry type="library" name="dataTables.bootstrap4" level="application" />
+    <orderEntry type="library" name="dataTables.buttons" level="application" />
+    <orderEntry type="library" name="dataTables.responsive" level="application" />
+    <orderEntry type="library" name="jquery.dataTables" level="application" />
   </component>
 </module>
