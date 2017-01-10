@@ -8,10 +8,11 @@
                 <div class="card-text" v-if="!editMode">
                     <h3><span class="tag tag-default">問題描述</span></h3>
                     <p>{{ question.content }}</p>
+                    <!-- FIXME: 無法作為HTML解析，導致無法實現多行顯示 -->
                     <h3><span class="tag tag-default">答對的說明</span></h3>
-                    <p v-html="question.correct_message | escapeHtml | nl2br"></p>
+                    <p>{{ question.correct_message | escapeHtml | nl2br }}</p>
                     <h3><span class="tag tag-default">答錯的說明</span></h3>
-                    <p v-html="question.wrong_message | escapeHtml | nl2br"></p>
+                    <p>{{ question.wrong_message | escapeHtml | nl2br }}</p>
                 </div>
                 <form @submit.prevent="submit" v-else>
                     <label for="question">問題描述</label>
@@ -127,10 +128,10 @@
                 });
             },
             enableEditMode: function () {
-                this.questionInput = question.content;
-                this.correctMessageInput = question.correct_message;
-                this.wrongMessageInput = question.wrong_message;
-                editMode = true;
+                this.questionInput = this.question.content;
+                this.correctMessageInput = this.question.correct_message;
+                this.wrongMessageInput = this.question.wrong_message;
+                this.editMode = true;
             }
         }
     }
