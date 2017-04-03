@@ -2,17 +2,17 @@
 
 namespace App\Chatbot\Tasks;
 
-use App\AnswerRecord;
-use App\Chatbot\PostbackHandlers\DefaultPostbackHandler;
 use App\Choice;
 use App\Player;
-use App\Qualification;
 use App\Question;
+use App\AnswerRecord;
+use App\Qualification;
+use Casperlaitw\LaravelFbMessenger\Messages\Text;
+use App\Chatbot\PostbackHandlers\DefaultPostbackHandler;
 use Casperlaitw\LaravelFbMessenger\Contracts\BaseHandler;
 use Casperlaitw\LaravelFbMessenger\Messages\ButtonTemplate;
-use Casperlaitw\LaravelFbMessenger\Messages\GenericTemplate;
 use Casperlaitw\LaravelFbMessenger\Messages\ReceiveMessage;
-use Casperlaitw\LaravelFbMessenger\Messages\Text;
+use Casperlaitw\LaravelFbMessenger\Messages\GenericTemplate;
 
 class ChallengeTask extends Task
 {
