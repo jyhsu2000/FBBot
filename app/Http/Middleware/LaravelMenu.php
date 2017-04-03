@@ -2,9 +2,9 @@
 
 namespace App\Http\Middleware;
 
-use Menu;
 use Closure;
 use Entrust;
+use Menu;
 
 class LaravelMenu
 {
@@ -27,6 +27,7 @@ class LaravelMenu
         //右側
         Menu::make('right', function ($menu) {
             /* @var \Lavary\Menu\Builder $menu */
+            $menu->add('答題狀況', ['route' => 'question.stats']);
             //會員
             if (auth()->check()) {
                 if (!auth()->user()->isConfirmed) {
@@ -35,9 +36,6 @@ class LaravelMenu
                 }
                 //管理員
                 if (Entrust::can('menu.view') and auth()->user()->isConfirmed) {
-                    if (Entrust::can('question.manage')) {
-                        $menu->add('答題狀況', ['route' => 'question.stats']);
-                    }
                     if (Entrust::can('qualification.manage')) {
                         $menu->add('抽獎面板', ['route' => 'qualification.panel']);
                     }

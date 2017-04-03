@@ -24,6 +24,8 @@ Route::get('terms', function () {
 //玩家資訊
 Route::get('player/{uuid}', 'PlayerController@showByUuid')->name('player.showByUuid')
     ->where('uuid', '[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}');
+//答題狀況
+Route::get('stats', 'QuestionController@stats')->name('question.stats');
 
 //會員（須完成信箱驗證）
 Route::group(['middleware' => ['auth', 'email']], function () {
@@ -88,7 +90,6 @@ Route::group(['middleware' => ['auth', 'email']], function () {
         Route::get('question/data', 'QuestionController@data')->name('question.data');
         Route::get('question/get/{question}', 'QuestionController@get')->name('question.get');
         Route::post('question/sort', 'QuestionController@sort')->name('question.sort');
-        Route::get('stats', 'QuestionController@stats')->name('question.stats');
         Route::resource('question', 'QuestionController', [
             'except' => [
                 'create',
