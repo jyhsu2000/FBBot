@@ -10,16 +10,6 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module-library">
-      <library name="PHP Runtime" type="php">
-        <CLASSES>
-          <root url="jar://$APPLICATION_HOME_DIR$/plugins/php/lib/php.jar!/stubs/standard" />
-        </CLASSES>
-        <SOURCES>
-          <root url="jar://$APPLICATION_HOME_DIR$/plugins/php/lib/php.jar!/stubs/standard" />
-        </SOURCES>
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library">
       <library name="PHARS">
         <CLASSES>
           <root url="phar://$MODULE_DIR$/vendor/phpunit/phpunit/tests/_files/phpunit-example-extension/tools/phpunit.d/phpunit-example-extension-1.0.0.phar/" />
@@ -29,10 +19,5 @@
         </SOURCES>
       </library>
     </orderEntry>
-    <orderEntry type="library" name="clipboard" level="application" />
-    <orderEntry type="library" name="dataTables.bootstrap4" level="application" />
-    <orderEntry type="library" name="dataTables.buttons" level="application" />
-    <orderEntry type="library" name="dataTables.responsive" level="application" />
-    <orderEntry type="library" name="jquery.dataTables" level="application" />
   </component>
 </module>

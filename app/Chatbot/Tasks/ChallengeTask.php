@@ -2,17 +2,17 @@
 
 namespace App\Chatbot\Tasks;
 
+use App\AnswerRecord;
+use App\Chatbot\PostbackHandlers\DefaultPostbackHandler;
 use App\Choice;
 use App\Player;
-use App\Question;
-use App\AnswerRecord;
 use App\Qualification;
-use Casperlaitw\LaravelFbMessenger\Messages\Text;
-use App\Chatbot\PostbackHandlers\DefaultPostbackHandler;
+use App\Question;
 use Casperlaitw\LaravelFbMessenger\Contracts\BaseHandler;
 use Casperlaitw\LaravelFbMessenger\Messages\ButtonTemplate;
-use Casperlaitw\LaravelFbMessenger\Messages\ReceiveMessage;
 use Casperlaitw\LaravelFbMessenger\Messages\GenericTemplate;
+use Casperlaitw\LaravelFbMessenger\Messages\ReceiveMessage;
+use Casperlaitw\LaravelFbMessenger\Messages\Text;
 
 class ChallengeTask extends Task
 {
@@ -146,10 +146,10 @@ class ChallengeTask extends Task
         if ($justFinish) {
             //顯示提示訊息
             $message = '🎉恭喜完成挑戰🎉' . PHP_EOL;
-            $message .= '請於活動當天攜帶學生證（或職員證）至攤位參加抽獎' . PHP_EOL;
-            if (!$player->nid) {
-                $message .= '（您未完成NID綁定，若是本校學生，完成綁定後即可參加抽獎）' . PHP_EOL;
-            }
+//            $message .= '請於活動當天攜帶學生證（或職員證）至攤位參加抽獎' . PHP_EOL;
+//            if (!$player->nid) {
+//                $message .= '（您未完成NID綁定，若是本校學生，完成綁定後即可參加抽獎）' . PHP_EOL;
+//            }
 
             $playerUrl = route('player.showByUuid', $player->uuid);
             $button = new ButtonTemplate($sender, $message);
