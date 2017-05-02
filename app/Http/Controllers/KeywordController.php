@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Keyword;
 use Illuminate\Http\Request;
+use App\DataTables\KeywordsDataTable;
 
 class KeywordController extends Controller
 {
