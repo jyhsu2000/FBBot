@@ -9,6 +9,7 @@ use App\Chatbot\Tasks\NidTask;
 use App\Chatbot\Commands\CommandKernel;
 use Casperlaitw\LaravelFbMessenger\Messages\Text;
 use Casperlaitw\LaravelFbMessenger\Contracts\BaseHandler;
+use Casperlaitw\LaravelFbMessenger\Messages\ButtonTemplate;
 use Casperlaitw\LaravelFbMessenger\Messages\ReceiveMessage;
 
 /**
