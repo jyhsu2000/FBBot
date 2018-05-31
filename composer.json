@@ -6,17 +6,17 @@
     "type": "project",
     "require": {
         "php": ">=5.6.4",
-        "laravel/framework": "5.4.*",
-        "laravelcollective/html": "^5.3",
+        "laravel/framework": "5.5.*",
+        "laravelcollective/html": "^5.5",
         "predis/predis": "^1.1",
         "barryvdh/laravel-ide-helper": "^2.2",
         "doctrine/dbal": "^2.5",
         "recca0120/laravel-tracy": "^1.7",
         "thomaswelton/laravel-gravatar": "^1.1",
         "klaravel/ntrust": "^1.1",
-        "graham-campbell/throttle": "^5.2",
+        "graham-campbell/throttle": "^7.0",
         "lavary/laravel-menu": "^1.6",
-        "arcanedev/log-viewer": "^4.1",
+        "arcanedev/log-viewer": "^4.4",
         "casperlaitw/laravel-fb-messenger": "^1.2",
         "yajra/laravel-datatables-oracle": "^6.22",
         "shiftonelabs/laravel-cascade-deletes": "^1.0",
@@ -26,9 +26,10 @@
     "require-dev": {
         "fzaninotto/faker": "~1.4",
         "mockery/mockery": "0.9.*",
-        "phpunit/phpunit": "~5.7",
+        "phpunit/phpunit": "~6.0",
         "symfony/css-selector": "3.1.*",
-        "symfony/dom-crawler": "3.1.*"
+        "symfony/dom-crawler": "3.1.*",
+        "filp/whoops": "~2.0"
     },
     "autoload": {
         "classmap": [
@@ -58,11 +59,15 @@
         "post-update-cmd": [
             "Illuminate\\Foundation\\ComposerScripts::postUpdate",
             "php artisan ide-helper:generate",
-            "php artisan ide-helper:meta",
-            "php artisan optimize"
+            "php artisan ide-helper:meta"
+        ],
+        "post-autoload-dump": [
+            "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
+            "@php artisan package:discover"
         ]
     },
     "config": {
-        "preferred-install": "dist"
+        "preferred-install": "dist",
+        "optimize-autoloader": true
     }
 }
