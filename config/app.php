@@ -169,7 +169,7 @@ return [
 
         Collective\Html\HtmlServiceProvider::class,
         Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
-        Recca0120\LaravelTracy\ServiceProvider::class,
+        Recca0120\LaravelTracy\LaravelTracyServiceProvider::class,
         Thomaswelton\LaravelGravatar\LaravelGravatarServiceProvider::class,
         Klaravel\Ntrust\NtrustServiceProvider::class,
         GrahamCampbell\Throttle\ThrottleServiceProvider::class,
