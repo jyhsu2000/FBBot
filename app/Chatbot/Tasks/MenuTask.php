@@ -3,8 +3,8 @@
 namespace App\Chatbot\Tasks;
 
 use Casperlaitw\LaravelFbMessenger\Contracts\BaseHandler;
-use Casperlaitw\LaravelFbMessenger\Messages\ReceiveMessage;
 use Casperlaitw\LaravelFbMessenger\Messages\GenericTemplate;
+use Casperlaitw\LaravelFbMessenger\Messages\ReceiveMessage;
 
 class MenuTask extends Task
 {

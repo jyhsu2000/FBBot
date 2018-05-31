@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Player;
-use Carbon\Carbon;
-use App\Qualification;
-use Webpatser\Uuid\Uuid;
-use Illuminate\Http\Request;
 use App\DataTables\QualificationsDataTable;
+use App\Player;
+use App\Qualification;
+use Carbon\Carbon;
+use Illuminate\Http\Request;
+use Webpatser\Uuid\Uuid;
 
 class QualificationController extends Controller
 {

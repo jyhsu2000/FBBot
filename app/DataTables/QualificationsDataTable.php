@@ -3,8 +3,8 @@
 namespace App\DataTables;
 
 use App\Qualification;
-use Yajra\Datatables\Services\DataTable;
 use Illuminate\Database\Eloquent\Builder;
+use Yajra\Datatables\Services\DataTable;
 
 class QualificationsDataTable extends DataTable
 {

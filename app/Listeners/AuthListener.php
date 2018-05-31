@@ -2,11 +2,11 @@
 
 namespace App\Listeners;
 
-use Request;
-use Carbon\Carbon;
 use App\Services\LogService;
+use Carbon\Carbon;
 use Illuminate\Auth\Events\Login;
 use Illuminate\Auth\Events\Logout;
+use Request;
 
 class AuthListener
 {

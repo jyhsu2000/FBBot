@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Route;
-use App\Player;
 use App\AnswerRecord;
+use App\DataTables\PlayersDataTable;
+use App\Player;
 use App\Services\LogService;
 use Illuminate\Http\Request;
-use App\DataTables\PlayersDataTable;
+use Route;
 
 class PlayerController extends Controller
 {

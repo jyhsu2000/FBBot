@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\Auth;
 
-use Hash;
-use App\User;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\User;
+use Hash;
+use Illuminate\Http\Request;
 
 class PasswordController extends Controller
 {

@@ -3,9 +3,9 @@
 namespace App\Chatbot\PostbackHandlers;
 
 use App\Chatbot\Postbacks\PostbackKernel;
-use Casperlaitw\LaravelFbMessenger\Messages\Text;
-use Casperlaitw\LaravelFbMessenger\Messages\ReceiveMessage;
 use Casperlaitw\LaravelFbMessenger\Contracts\PostbackHandler;
+use Casperlaitw\LaravelFbMessenger\Messages\ReceiveMessage;
+use Casperlaitw\LaravelFbMessenger\Messages\Text;
 
 class DefaultPostbackHandler extends PostbackHandler
 {
