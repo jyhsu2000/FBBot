@@ -4,10 +4,10 @@ namespace App\Chatbot\Tasks;
 
 use App\Player;
 use App\Services\LogService;
-use Casperlaitw\LaravelFbMessenger\Messages\Text;
-use Casperlaitw\LaravelFbMessenger\Messages\QuickReply;
 use Casperlaitw\LaravelFbMessenger\Contracts\BaseHandler;
+use Casperlaitw\LaravelFbMessenger\Messages\QuickReply;
 use Casperlaitw\LaravelFbMessenger\Messages\ReceiveMessage;
+use Casperlaitw\LaravelFbMessenger\Messages\Text;
 
 class NidTask extends Task
 {

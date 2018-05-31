@@ -2,14 +2,14 @@
 
 namespace App\Chatbot\MessageHandlers;
 
-use App\Player;
-use App\Keyword;
 use App\AutoReplyMessage;
-use App\Chatbot\Tasks\NidTask;
 use App\Chatbot\Commands\CommandKernel;
-use Casperlaitw\LaravelFbMessenger\Messages\Text;
+use App\Chatbot\Tasks\NidTask;
+use App\Keyword;
+use App\Player;
 use Casperlaitw\LaravelFbMessenger\Contracts\BaseHandler;
 use Casperlaitw\LaravelFbMessenger\Messages\ReceiveMessage;
+use Casperlaitw\LaravelFbMessenger\Messages\Text;
 
 /**
  * Class DefaultHandler

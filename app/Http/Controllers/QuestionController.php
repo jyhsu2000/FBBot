@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use DB;
+use App\AnswerRecord;
 use App\Choice;
 use App\Question;
-use App\AnswerRecord;
+use DB;
 use Illuminate\Http\Request;
 
 class QuestionController extends Controller

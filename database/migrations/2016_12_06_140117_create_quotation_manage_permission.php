@@ -1,7 +1,7 @@
 <?php
 
-use App\Role;
 use App\Permission;
+use App\Role;
 use Illuminate\Database\Migrations\Migration;
 
 class CreateQuotationManagePermission extends Migration
