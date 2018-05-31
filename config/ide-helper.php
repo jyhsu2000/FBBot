@@ -14,6 +14,30 @@ return [
     'filename' => '_ide_helper',
     'format'   => 'php',
 
+    'meta_filename' => '.phpstorm.meta.php',
+
+    /*
+    |--------------------------------------------------------------------------
+    | Fluent helpers
+    |--------------------------------------------------------------------------
+    |
+    | Set to true to generate commonly used Fluent methods
+    |
+    */
+
+    'include_fluent' => true,
+
+    /*
+    |--------------------------------------------------------------------------
+    | Write Model Magic methods
+    |--------------------------------------------------------------------------
+    |
+    | Set to false to disable write magic methods of model
+    |
+    */
+
+    'write_model_magic_where' => true,
+
     /*
     |--------------------------------------------------------------------------
     | Helper files to include
@@ -24,7 +48,7 @@ return [
     |
     */
 
-    'include_helpers' => false,
+    'include_helpers' => true,
 
     'helper_files' => [
         base_path() . '/vendor/laravel/framework/src/Illuminate/Support/helpers.php',
@@ -141,4 +165,16 @@ return [
      */
     'model_camel_case_properties' => false,
 
+    /*
+    |--------------------------------------------------------------------------
+    | Property Casts
+    |--------------------------------------------------------------------------
+    |
+    | Cast the given "real type" to the given "type".
+    |
+    */
+    'type_overrides'              => [
+        'integer' => 'int',
+        'boolean' => 'bool',
+    ],
 ];

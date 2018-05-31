@@ -1,15 +1,18 @@
 <?php
-
 return [
     'debug'        => env('MESSENGER_DEBUG', false),
     'verify_token' => env('MESSENGER_VERIFY_TOKEN'),
     'app_token'    => env('MESSENGER_APP_TOKEN'),
-    'auto_typing'  => false,
+    'app_secret'   => env('MESSENGER_APP_SECRET'),
+    'auto_typing'  => true,
     'handlers'     => [
-        App\Chatbot\MessageHandlers\DefaultHandler::class,
+        Casperlaitw\LaravelFbMessenger\Contracts\DefaultHandler::class,
     ],
     'custom_url'   => '/webhook',
-    'postbacks'    => [
-        App\Chatbot\PostbackHandlers\DefaultPostbackHandler::class,
+    'postbacks'    => [],
+    'home_url'     => [
+        'url'                  => env('MESSENGER_HOME_URL'),
+        'webview_share_button' => 'show',
+        'in_test'              => true,
     ],
 ];

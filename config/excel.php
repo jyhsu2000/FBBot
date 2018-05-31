@@ -367,7 +367,7 @@ return [
         |
         | The sheet has a heading (first) row which we can use as attribute names
         |
-        | Options: true|false|slugged|slugged_with_count|ascii|numeric|hashed|trans|original
+        | Options: true|false|slugged|slugged_with_count|ascii|numeric|hashed|hashed_with_lower|trans|original
         |
         */
 
@@ -396,6 +396,19 @@ return [
         */
 
         'separator' => '_',
+
+        /*
+        |--------------------------------------------------------------------------
+        | Slug whitelisting
+        |--------------------------------------------------------------------------
+        |
+        | Here you can whitelist certain characters in the slug.
+        | E.g. user.last_name will not remove . and _
+        | Note: only applies to 'heading' settings 'true' && 'slugged'
+        |
+        */
+
+        'slug_whitelist' => '._',
 
         /*
         |--------------------------------------------------------------------------
@@ -613,7 +626,7 @@ return [
 
             /*
             |--------------------------------------------------------------------------
-            | Heading 2
+            | Heading 3
             |--------------------------------------------------------------------------
             */
             'h3'     => [
